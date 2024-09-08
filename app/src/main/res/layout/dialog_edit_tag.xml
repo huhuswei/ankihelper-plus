@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <AutoCompleteTextView
+        android:id="@+id/edit_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionThreshold="1"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        />
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_use_as_default_tags"
+        android:id="@+id/checkbox_as_default_tag"
+        />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tag_chip_list"
+        >
+
+    </com.google.android.material.chip.ChipGroup>
+
+</LinearLayout>

@@ -1,0 +1,358 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="BlackBackground" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+    <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="color_footer_background">@color/footer_background</item>
+        <item name="color_footer_pressed">@color/footer_pressed</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+
+    <style name="AppThemePink" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryPink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkPink</item>
+        <item name="colorAccent">@color/colorAccentPink</item>
+        <item name="color_footer_background">@color/footer_background_pink</item>
+        <item name="color_footer_pressed">@color/footer_pressed_pink</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+
+    <style name="AppThemeBlue" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryBlue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkBlue</item>
+        <item name="colorAccent">@color/colorAccentBlue</item>
+        <item name="color_footer_background">@color/footer_background_blue</item>
+        <item name="color_footer_pressed">@color/footer_pressed_blue</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppThemePink.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppThemeBlue.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppThemePink.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppThemeBlue.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="Transparent" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="color_cursor">@drawable/color_cursor</item>
+        <item name="backgroup_cursor">@drawable/backgroup_cursor</item>
+        <item name="button_background_selector">@drawable/selector</item>
+        <item name="color_popup_background">@color/popup_background</item>
+        <item name="color_footer_background">@color/footer_background</item>
+        <item name="color_footer_pressed">@color/footer_pressed</item>
+        <item name="icon_scroll_top">@drawable/icon_scroll_top</item>
+        <item name="icon_scroll_bottom">@drawable/icon_scroll_bottom</item>
+        <item name="icon_toolbar_share">@drawable/ic_ali_share</item>
+        <item name="icon_translate_normal">@drawable/ic_ali_translate</item>
+        <item name="icon_translate_wait">@drawable/ic_ali_wait</item>
+        <item name="icon_translate_done">@drawable/ic_ali_translate_green</item>
+        <item name="icon_left_arrow">@drawable/ic_ali_arrow_up</item>
+        <item name="icon_right_arrow">@drawable/ic_ali_arrow_down</item>
+        <item name="icon_note">@drawable/ic_ali_note</item>
+        <item name="icon_tag">@drawable/ic_ali_tag</item>
+        <item name="icon_copy">@drawable/ic_ali_copy</item>
+        <item name="icon_play">@drawable/ic_ali_play</item>
+        <item name="icon_set_mdict">@drawable/ic_set_dict</item>
+        <item name="icon_search">@drawable/ic_ali_search</item>
+        <item name="icon_add">@drawable/ic_ali_add</item>
+        <item name="icon_add_done">@drawable/ic_ali_add_green</item>
+        <item name="icon_redo">@drawable/ic_redo</item>
+        <item name="icon_undo">@drawable/ic_undo</item>
+        <item name="icon_format">@drawable/ic_format</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="TransparentPink" parent="AppThemePink">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="color_cursor">@drawable/color_cursor_pink</item>
+        <item name="backgroup_cursor">@drawable/backgroup_cursor_pink</item>
+        <item name="button_background_selector">@drawable/selector_pink</item>
+        <item name="color_popup_background">@color/popup_background_pink</item>
+        <item name="color_footer_background">@color/footer_background_pink</item>
+        <item name="color_footer_pressed">@color/footer_pressed_pink</item>
+        <item name="icon_scroll_top">@drawable/icon_scroll_top_pink</item>
+        <item name="icon_scroll_bottom">@drawable/icon_scroll_bottom_pink</item>
+        <item name="icon_toolbar_share">@drawable/ic_ali_share_pink</item>
+        <item name="icon_translate_normal">@drawable/ic_ali_translate_pink</item>
+        <item name="icon_translate_wait">@drawable/ic_ali_wait_pink</item>
+        <item name="icon_translate_done">@drawable/ic_ali_translate_green_pink</item>
+        <item name="icon_left_arrow">@drawable/ic_ali_arrow_up_pink</item>
+        <item name="icon_right_arrow">@drawable/ic_ali_arrow_down_pink</item>
+        <item name="icon_note">@drawable/ic_ali_note_pink</item>
+        <item name="icon_tag">@drawable/ic_ali_tag_pink</item>
+        <item name="icon_copy">@drawable/ic_ali_copy_pink</item>
+        <item name="icon_play">@drawable/ic_ali_play_pink</item>
+        <item name="icon_set_mdict">@drawable/ic_set_dict_pink</item>
+        <item name="icon_search">@drawable/ic_ali_search_pink</item>
+        <item name="icon_add">@drawable/ic_ali_heart</item>
+        <item name="icon_add_done">@drawable/ic_ali_heart_filled</item>
+        <item name="icon_redo">@drawable/ic_redo_pink</item>
+        <item name="icon_undo">@drawable/ic_undo_pink</item>
+        <item name="icon_format">@drawable/ic_format_pink</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="TransparentBlue" parent="AppThemeBlue">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="color_cursor">@drawable/color_cursor_blue</item>
+        <item name="backgroup_cursor">@drawable/backgroup_cursor_blue</item>
+        <item name="button_background_selector">@drawable/selector_blue</item>
+        <item name="color_popup_background">@color/popup_background_blue</item>
+        <item name="color_footer_background">@color/footer_background_blue</item>
+        <item name="color_footer_pressed">@color/footer_pressed_blue</item>
+        <item name="icon_scroll_top">@drawable/icon_scroll_top</item>
+        <item name="icon_scroll_bottom">@drawable/icon_scroll_bottom</item>
+        <item name="icon_toolbar_share">@drawable/ic_ali_share</item>
+        <item name="icon_translate_normal">@drawable/ic_ali_translate</item>
+        <item name="icon_translate_wait">@drawable/ic_ali_wait</item>
+        <item name="icon_translate_done">@drawable/ic_ali_translate_green_blue</item>
+        <item name="icon_left_arrow">@drawable/ic_ali_arrow_up</item>
+        <item name="icon_right_arrow">@drawable/ic_ali_arrow_down</item>
+        <item name="icon_note">@drawable/ic_ali_note</item>
+        <item name="icon_tag">@drawable/ic_ali_tag</item>
+        <item name="icon_copy">@drawable/ic_ali_copy</item>
+        <item name="icon_play">@drawable/ic_ali_play</item>
+        <item name="icon_set_mdict">@drawable/ic_set_dict_blue</item>
+        <item name="icon_search">@drawable/ic_ali_search</item>
+        <item name="icon_add">@drawable/ic_ali_add</item>
+        <item name="icon_add_done">@drawable/ic_ali_add_blue</item>
+        <item name="icon_redo">@drawable/ic_redo_blue</item>
+        <item name="icon_undo">@drawable/ic_undo_blue</item>
+        <item name="icon_format">@drawable/ic_format_blue</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <!--Android File Picker theme of DIY-->
+    <style name="CustomDicTheme" parent="AppTheme">
+        <item name="icon_custom_dict">@drawable/ic_set_dict</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="CustomDicThemePink" parent="AppThemePink">
+        <item name="icon_custom_dict">@drawable/ic_set_dict_pink</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <style name="CustomDicThemeBlue" parent="AppThemeBlue">
+        <item name="icon_custom_dict">@drawable/ic_set_dict_blue</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <style name="AndroidFilePickerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/rail_color_accent</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="buttonStyle">@style/FilePickerThemeRailButtonStyle</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="AndroidFilePickerThemePink" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryPink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkPink</item>
+        <item name="colorAccent">@color/colorAccentPink</item>
+        <item name="android:textColor">@color/textColorPink</item>
+        <item name="android:textColorPrimary">@color/textColorPink</item>
+        <item name="buttonStyle">@style/FilePickerThemeShrineButtonStyle</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <style name="AndroidFilePickerThemeBlue" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryBlue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkBlue</item>
+        <item name="colorAccent">@color/colorAccentBlue</item>
+        <item name="android:textColor">@color/textColorBlue</item>
+        <item name="android:textColorPrimary">@color/textColorBlue</item>
+        <item name="buttonStyle">@style/FilePickerThemeShrineButtonStyle</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+
+    <style name="circleDialog" parent="android:style/Theme.Dialog">
+        <!-- 背景透明,设置圆角对话框必须设置背景透明，否则四角会有背景色小块-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 没有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!-- 淡入淡出动画 -->
+    <style name="activity_switch_fade">
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+
+    <!-- 第一个表示新的activity创建进入效果， 第2个表示activity还没有finish()下退出效果， 第3个表示上一个activity返回进入效果，
+第4个表示的是activity finish()之后退出效果 比如有两个activity A和B, A上面有个按钮可以打开
+B, 点击按钮后，此时A执行第二个动画（android:activityOpenExitAnimation） B执行第一个动画(android:activityOpenEnterAnimation) 如此此时按下返回键,
+B退出，A显示，则此时A执行动画3（android:activityCloseEnterAnimation） B执行动画4（android:activityCloseExitAnimation） -->
+    <style name="fade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/zoomin</item>
+        <item name="android:activityCloseExitAnimation">@anim/zoomout</item>
+    </style>
+
+    <style name="OverlayTheme" parent="@style/AppTheme" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="OverlayThemePink" parent="@style/AppThemePink" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="OverlayThemeBlue" parent="@style/AppThemeBlue" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="ScreenCaptureTheme" parent="OverlayTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="ScreenCaptureThemePink" parent="OverlayThemePink">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="ScreenCaptureThemeBlue" parent="OverlayThemeBlue">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="BigBangTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+        <item name="color_popup_background">@color/popup_background</item>
+        <item name="color_footer_pressed">@color/footer_pressed</item>
+        <item name="color_btn_down">@color/btn_down</item>
+        <item name="android:windowBackground">@drawable/bigbang_activity_window_bg</item>
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+        <item name="listPreferredItemPaddingRight">0dp</item>
+        <item name="icon_redo">@drawable/ic_redo</item>
+        <item name="icon_undo">@drawable/ic_undo</item>
+        <item name="icon_format">@drawable/ic_format</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="BigBangThemePink" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimaryPink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkPink</item>
+        <item name="colorAccent">@color/colorAccentPink</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+        <item name="color_popup_background">@color/popup_background_pink</item>
+        <item name="color_footer_pressed">@color/footer_pressed_pink</item>
+        <item name="color_btn_down">@color/btn_down_pink</item>
+        <item name="android:windowBackground">@drawable/bigbang_activity_window_bg</item>
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+        <item name="listPreferredItemPaddingRight">0dp</item>
+        <item name="icon_redo">@drawable/ic_redo_pink</item>
+        <item name="icon_undo">@drawable/ic_undo_pink</item>
+        <item name="icon_format">@drawable/ic_format_pink</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="BigBangThemeBlue" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimaryBlue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkBlue</item>
+        <item name="colorAccent">@color/colorAccentBlue</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@style/fade</item>
+        <item name="color_popup_background">@color/popup_background_blue</item>
+        <item name="color_footer_pressed">@color/footer_pressed_blue</item>
+        <item name="color_btn_down">@color/btn_down_blue</item>
+        <item name="android:windowBackground">@drawable/bigbang_activity_window_bg</item>
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+        <item name="listPreferredItemPaddingRight">0dp</item>
+        <item name="icon_redo">@drawable/ic_redo_blue</item>
+        <item name="icon_undo">@drawable/ic_undo_blue</item>
+        <item name="icon_format">@drawable/ic_format_blue</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="MathxView" parent="AppTheme">
+
+    </style>
+</resources>

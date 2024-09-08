@@ -1,0 +1,18 @@
+                        -H/Users/ss/gits/anki助手/app/src/main/cpp
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=26
+-DANDROID_PLATFORM=android-26
+-DANDROID_ABI=x86
+-DCMAKE_ANDROID_ARCH_ABI=x86
+-DANDROID_NDK=/Users/ss/Library/Android/sdk/ndk/21.4.7075529
+-DCMAKE_ANDROID_NDK=/Users/ss/Library/Android/sdk/ndk/21.4.7075529
+-DCMAKE_TOOLCHAIN_FILE=/Users/ss/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/ss/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/ss/gits/anki助手/app/build/intermediates/cxx/Debug/326a1qav/obj/x86
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/Users/ss/gits/anki助手/app/build/intermediates/cxx/Debug/326a1qav/obj/x86
+-DCMAKE_BUILD_TYPE=Debug
+-B/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86
+-GNinja
+                        Build command args: []
+                        Version: 2

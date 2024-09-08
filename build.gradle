@@ -1,0 +1,85 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+//    ext.KOTLIN_VERSION='1.3.50'
+    ext.KOTLIN_VERSION= '1.7.10'
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url "https://www.jitpack.io" }
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url "https://www.jitpack.io" }
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        jcenter()
+    }
+}
+
+ext {
+    FOLIOREADER_SDK_VERSION = '0.5.1'
+    R2_STREAMER_KOTLIN_VERSION = '1.0.3-5'
+    R2_SHARED_KOTLIN_VERSION = '1.0.3-2'
+
+    VERSION_NAME = "0.20.13"
+    VERSION_CODE = 213
+    ANDROID_MIN_SDK = 26
+    ANDROID_COMPILE_SDK_VERSION = 33
+    ANDROID_TARGET_SDK_VERSION = 28
+    ANDROID_LIB_VERSION = '28.0.0'
+//    ANDROID_COMPILE_SDK_VERSION = 27
+//    ANDROID_TARGET_SDK_VERSION = 27
+//    ANDROID_LIB_VERSION = '27.1.1'
+
+    CONSTRAINT_LAYOUT_VERSION = "1.1.3"
+
+    JACKSON_VERSION = '2.8.6'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+subprojects{
+    project.evaluationDependsOn(":app")
+
+    project.configurations.all {
+
+        resolutionStrategy.eachDependency { details ->
+
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "28.0.0"
+            }
+        }
+    }
+}
+
+

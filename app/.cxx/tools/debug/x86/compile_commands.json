@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86",
+  "command": "/Users/ss/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android26 --gcc-toolchain=/Users/ss/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/ss/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dcpp_layer_EXPORTS -I/usr/local/include -I/Users/ss/gits/anki助手/app/src/main/cpp -I/Users/ss/gits/anki助手/app/src/main/cpp/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security    -O0 -Wall -g -ggdb -std=c++14  -fPIC   -o CMakeFiles/cpp-layer.dir/RegistrationCodeUtils.cpp.o -c /Users/ss/gits/anki助手/app/src/main/cpp/RegistrationCodeUtils.cpp",
+  "file": "/Users/ss/gits/anki助手/app/src/main/cpp/RegistrationCodeUtils.cpp"
+},
+
+{
+  "directory": "/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86",
+  "command": "/Users/ss/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android26 --gcc-toolchain=/Users/ss/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/ss/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Djni_layer_EXPORTS -I/usr/local/include -I/Users/ss/gits/anki助手/app/src/main/cpp -I/Users/ss/gits/anki助手/app/src/main/cpp/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security    -O0 -Wall -g -ggdb -std=c++14  -fPIC   -o CMakeFiles/jni-layer.dir/jni-layer.cpp.o -c /Users/ss/gits/anki助手/app/src/main/cpp/jni-layer.cpp",
+  "file": "/Users/ss/gits/anki助手/app/src/main/cpp/jni-layer.cpp"
+}
+]

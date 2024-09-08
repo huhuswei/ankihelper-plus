@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    app:cardElevation="1dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+       <LinearLayout
+            android:layout_width="wrap_content"
+            android:id="@+id/btn_pronounce_large"
+            android:layout_height="match_parent"
+           android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:id="@+id/btn_add_definition_large"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+           <ImageButton
+               android:id="@+id/btn_add_definition"
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginLeft="8dp"
+               android:layout_marginRight="10dp"
+               android:padding="10dp"
+               android:background="?attr/icon_add"
+               />
+           </LinearLayout>
+
+<!--           <ImageButton-->
+<!--               android:id="@+id/btn_pronounce"-->
+<!--               android:layout_width="25dp"-->
+<!--               android:layout_height="25dp"-->
+<!--               android:layout_gravity="center"-->
+<!--               android:layout_margin="5dp"-->
+<!--               android:layout_weight="0"-->
+<!--               android:adjustViewBounds="true"-->
+<!--               android:background="?attr/button_background_selector"-->
+<!--               android:scaleType="centerInside"-->
+<!--               android:src="?attr/icon_play"-->
+<!--               android:visibility="visible" />-->
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            tools:ignore="WebViewLayout">
+            <TextView
+                android:layout_margin="5dp"
+                android:textIsSelectable="true"
+                android:id="@+id/textview_definition"
+                android:layout_width="match_parent"
+                android:minLines="2"
+                android:textColor="#101010"
+                android:layout_height="wrap_content" />
+            <com.mmjang.ankihelper.ui.popup.MdxCustomActionWebView
+                android:id="@+id/webview_definition"
+                android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                android:visibility="gone"/>
+            <ImageView
+                android:visibility="gone"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:id="@+id/def_img"
+                android:scaleType="fitCenter"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+</LinearLayout>

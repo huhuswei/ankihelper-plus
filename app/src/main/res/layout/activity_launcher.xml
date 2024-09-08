@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_open_plan_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_plans_manager_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+<!--            <View style="@style/Divider" />-->
+<!--            <com.balysv.materialripple.MaterialRippleLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/btn_add_default_plan"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingLeft="16dp"-->
+<!--                    android:paddingRight="16dp"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:text="@string/adding_default_plan_str"-->
+<!--                    android:textColor="@color/primary_text"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </com.balysv.materialripple.MaterialRippleLayout>-->
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:duplicateParentState="false"
+                    android:id="@+id/switch_monite_clipboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/monite_clipboard"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:duplicateParentState="false"
+                    android:id="@+id/switch_cancel_after_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/cancel_after_add"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:duplicateParentState="false"
+                    android:id="@+id/left_hand_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/left_hand_mode"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_color_theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_color_theme_q"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/mrl_dark_mode"
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_dark_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_dark_mode_q"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_show_random_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_btn_open_random_quote"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_open_custom_dictionary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_custom_dicitonary_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_set_tango"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_tango_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+<!--            <View style="@style/Divider" />-->
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_set_mdict"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_mdict_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_set_popupwindow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_popupwindow_settings_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_set_floating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_floating_settings_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_set_intelligence_window"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_intelligencewindow_settings_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" android:visibility="gone"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/btn_matheditor_window"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_matheditor_window_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/btn_set_custom_fanyi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_custom_fanyi_engine_api"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/btn_ankidroid_dir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_ankidroid_path"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/btn_activate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/btn_activation_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+<!--            <View style="@style/Divider" />-->
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/btn_about_and_support"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/btn_about_and_support_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <!--            <View style="@style/Divider"/>-->
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/btn_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/btn_help_str"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+<!--            <View style="@style/Divider" />-->
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/btn_qq_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_add_qq_group"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textview_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/secondary_text"
+        android:textSize="12sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        />
+</LinearLayout>
+</ScrollView>

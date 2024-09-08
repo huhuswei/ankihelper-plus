@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFeedbackType="feedbackAllMask"
+    android:identifier="flagDefault|flagRetrieveInteractiveWindows|flagIncludeNotImportantViews|flagReportViewIds"
+    android:accessibilityFlags="flagRetrieveInteractiveWindows"
+    android:canPerformGestures="true"
+    android:canRetrieveWindowContent="true"
+    android:notificationTimeout="100" />
+
+<!--<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:accessibilityEventTypes="typeViewClicked|typeViewScrolled|typeViewTextChanged|typeWindowContentChanged|typeWindowStateChanged|typeWindowsChanged"-->
+<!--    android:packageNames="@null"-->
+<!--    android:accessibilityFeedbackType="feedbackGeneric"-->
+<!--    android:notificationTimeout="100"-->
+<!--    android:accessibilityFlags="flagDefault|flagReportViewIds|flagRetrieveInteractiveWindows"-->
+<!--    android:canPerformGestures="true"-->
+<!--    android:canRetrieveWindowContent="true" />-->
+
+<!--    android:accessibilityEventTypes="typeAllMask"-->
+<!--    android:accessibilityFeedbackType="feedbackAllMask|feedbackGeneric|feedbackSpoken"-->
+<!--    android:accessibilityFlags="flagIncludeNotImportantViews|flagDefault|flagRetrieveInteractiveWindows|flagIncludeNotImportantViews|flagReportViewIds|flagRequestEnhancedWebAccessibility"-->
+<!--    android:canPerformGestures="true"-->
+<!--    android:canRequestFilterKeyEvents="true"-->
+<!--    android:canRetrieveWindowContent="true"-->
+<!--    android:canRequestEnhancedWebAccessibility="true"-->
+<!--    android:packageNames="@null"-->
+<!--    android:notificationTimeout="100" />-->

@@ -1,0 +1,47 @@
+{
+  "buildFiles": [
+    "/Users/ss/gits/anki助手/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/ss/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+      "-C",
+      "/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/ss/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+    "-C",
+    "/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "jni-layer-Debug-x86": {
+      "artifactName": "jni-layer",
+      "buildCommandComponents": [
+        "/Users/ss/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+        "-C",
+        "/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86",
+        "jni-layer"
+      ],
+      "abi": "x86",
+      "output": "/Users/ss/gits/anki助手/app/build/intermediates/cxx/Debug/326a1qav/obj/x86/libjni-layer.so",
+      "runtimeFiles": [
+        "/Users/ss/gits/anki助手/app/build/intermediates/cxx/Debug/326a1qav/obj/x86/libcpp-layer.so"
+      ]
+    },
+    "cpp-layer-Debug-x86": {
+      "artifactName": "cpp-layer",
+      "buildCommandComponents": [
+        "/Users/ss/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+        "-C",
+        "/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86",
+        "cpp-layer"
+      ],
+      "abi": "x86",
+      "output": "/Users/ss/gits/anki助手/app/build/intermediates/cxx/Debug/326a1qav/obj/x86/libcpp-layer.so",
+      "runtimeFiles": []
+    }
+  }
+}

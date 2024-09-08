@@ -1,0 +1,1297 @@
+<div id="d1" style="display:block">
+  <div class="liju">
+    <div class="lijc">
+      <in>&nbsp;{{#自动发音}}♩ - {{/自动发音}}<span id="infe"> </span> {{#自动发音}} - ♩{{/自动发音}}&nbsp;</in>
+      <div style="display:none;">{{自动发音}}</div>
+      {{#摘取例句（加粗）}}
+      <div class="complex">
+        <span id="sentence" class="lijb">{{摘取例句（加粗）}}</span>
+        {{^摘取例句（加粗）}}<hr>{{/摘取例句（加粗）}}
+        {{#发音链接}}<br/><audio id="audio" src="{{发音链接}}" controllist="nodownload" controls="controls"></audio>{{/发音链接}}
+      </div>
+      {{/摘取例句（加粗）}}
+      {{^例句}}<br/>{{/例句}}
+      {{#例句}}<br/><span id="sentence" class="lijb">{{例句}}<hr></span>{{/例句}}
+    </div>
+  <tg><span id="info"></span></tg><br>
+  </div>
+</div>
+
+<div style="display:nne">
+  <br><br><br><br><br><br><br>
+</div>
+
+<script type="text/javascript">
+function infe()
+{
+document.getElementById("infe").innerHTML = "〔" +  bridge.getNoteReviews() +"c - " + bridge.getNoteLapses()  + "x〕"}
+infe();
+</script>
+
+<script type="text/javascript">
+function info()
+{
+var sc = document.querySelector(".dub91_title,.eudic_title,.rrcd_title");
+document.getElementById("info").innerHTML = "「" + sc.textContent + "」</info>"}
+info();
+</script>
+
+@@@
+
+<div class="tango">
+  <a href="javascript:getSelectionTextAndSearch()">
+    📙
+  </a>
+</div>
+
+<div class="eudic">
+  <a href="javascript:getSelectionTextAndSearchOnEudic()">
+    📘
+  </a>
+</div>
+
+<div class="helper">
+  <a href="javascript:getSelectionTextAndSearchOnHelper()">
+    📗
+  </a>
+</div>
+
+<div id="d1" style="display:block">
+  <div class="liju">
+    <div class="lijc">
+    <in>&nbsp;{{#自动发音}}♩ - {{/自动发音}}<span id="infe"> </span> {{#自动发音}} - ♩{{/自动发音}}&nbsp;</in>
+    {{#摘取例句（加粗）}}
+      <div class="complex">
+        <span id="sentence" class="lijbv">{{摘取例句（加粗）}}</span>
+        {{^摘取例句（加粗）}}<hr>{{/摘取例句（加粗）}}
+        {{#句子翻译}}<br/>{{句子翻译}}{{/句子翻译}}
+        {{#发音链接}}<br/><audio id="audio" src="{{发音链接}}" controllist="nodownload" controls="controls"></audio>{{/发音链接}}
+      </div>
+    {{/摘取例句（加粗）}}
+    {{^例句}}<br/><hr/>{{/例句}}
+    {{#例句}}<br/><span id="sentence" class="lijbv">{{例句}}<hr></span>{{/例句}}
+    {{#单词}}<hd>{{单词}}</hd>{{/单词}}
+    {{#释义}}<zw>{{释义}}</zw>{{/释义}}
+  </div>
+  <tg><span id="info"></span></tg><br>
+  </div>
+</div>
+
+<div class="huaci">
+      <div style='position:fixed;left:15%; top:90%'><a id="button1" href="void">新建</a></div>
+
+      <div style='position:fixed;left:35%; top:90%'><a id="button2" href="void">覆盖</a></div>
+
+      <div style='position:fixed;left:55%; top:90%'><a id="button3" href="void">追加</a></div>
+
+      <div style='position:fixed;left:75%; top:90%'><a id="button4" href="void">例句</a></div>
+
+      <yc>
+        /*隐藏切换按钮*/
+        <div style='position:fixed;right:0%; top:48%;font-size:48px;opacity:0'>
+          <a href="#d1">♥</a></div>
+        <div style='position:fixed;left:0%; top:48%;font-size:48px;opacity:0'>
+          <a href="#d2">♥</a></div>
+      </yc>
+
+</div>
+
+<script>
+    function getNoteID() {
+    return {{Note ID}};
+    }
+
+    function callAnkihelper(source_id, button_id, plan_name, update_action){
+    if(arguments==3) {
+    update_action = "";
+    }
+    var source = document.querySelector(source_id);
+    var button = document.querySelector(button_id);
+    var noteid = getNoteID();
+    var encoded = btoa(unescape(encodeURIComponent(source.textContent)));
+
+    var url_component = "intent:#Intent;action=android.intent.action.SEND;" +
+    "category=android.intent.category.DEFAULT;" +
+    "type=text/plain;component=com.mmjang.ankihelper/com.mmjang.ankihelper.ui.popup.PopupActivity;";
+    var url_text = "";
+    var url_base64 = "S.com.mmjang.ankihelper.base64=1;";
+    var url_note_id = "";
+    var url_plan_name = "S.com.mmjang.ankihelper.plan_name=" + plan_name + ";";
+    var url_update_action= "";
+    var url_end = "end;";
+
+    switch(update_action) {
+    case "append":
+    url_text = "S.android.intent.extra.TEXT=" +
+    btoa(unescape(encodeURIComponent(source.textContent))) + ";";
+    url_note_id = "S.com.mmjang.ankihelper.note_id=" + noteid + ";";
+    break;
+    case "replace":
+    url_text = "S.android.intent.extra.TEXT=" + btoa(unescape(encodeURIComponent(source.innerHTML)))
+    + ";";
+    url_note_id = "S.com.mmjang.ankihelper.note_id=" + noteid + ";";
+    url_update_action= "S.com.mmjang.ankihelper.note_update_action=replace;";
+    break;
+    default:
+    url_text = "S.android.intent.extra.TEXT=" +
+    btoa(unescape(encodeURIComponent(source.textContent))) + ";";
+    }
+
+    var url = url_component + url_text + url_base64 + url_note_id + url_plan_name +
+    url_update_action + url_end;
+    button.href = url;
+    console.log(url);
+    }
+
+    callAnkihelper("#sentence","#button1", "必应牛津")
+    callAnkihelper("#sentence","#button2", "wordbean","replace")
+    callAnkihelper("#sentence","#button3","必应牛津", "append")
+    callAnkihelper("#sentence","#button4","欧路词典原声例句", "append")
+
+</script>
+
+<script type="text/javascript">
+  function infe()
+  {
+  var revi = bridge.getNoteReviews();
+  document.getElementById("infe").innerHTML = "〔" +  revi +"c - " + bridge.getNoteLapses()  + "x〕"}
+  infe();
+</script>
+
+<script type="text/javascript">
+  function info()
+  {
+  var sc = document.querySelector(".dub91_title,.eudic_title,.rrcd_title");
+  document.getElementById("info").innerHTML = "「" + sc.textContent + "」</info>"}
+  info();
+</script>
+
+
+{{#来源}}
+<div class="url">
+  <a href={{来源}}>
+    🌐
+  </a>
+</div>
+{{/来源}}
+
+  </div>
+</div>
+
+<div style="display:none">
+  <br><br><br><br><br><br><br>
+</div>
+
+@@@
+
+.card {
+font-family: Orkney-regular, FaricyNew;
+font-size: 14.5px;
+text-align: left;
+color: black;
+overflow-x: hidden;
+word-spacing: normal;
+word-spacing: 0px;
+}
+
+.liju b,
+.lijb i,
+zw i {
+border-bottom: 1px solid #aaa
+}
+
+.liju u,
+.lwzj u {
+text-decoration: none;
+background: #fff
+}
+
+.lijc {
+box-shadow: 0px 0px 8px 0px #90baab;
+}
+
+sn,
+ssn {
+font-size: 0.85em;
+padding-right: 0.3em
+}
+
+zw i,
+.liju,
+tg,
+.huaci a,
+.mFoot b,
+.lijc i {
+color: #555
+}
+
+.liju zw b,
+#d1:target .liju zw b {
+color: #555;
+opacity: 1;
+border: 0;
+padding: 0px;
+margin: 0px
+}
+
+.card {
+background: linear-gradient(to bottom, #e0efec, #e0efec);
+}
+
+#d1:target .yingwenshiyi b {
+border-bottom: 1px solid #fff;
+color: #555
+}
+
+#d1:target .oxts b {
+font-weight: 700;
+font-variant: small-caps;
+}
+
+in {
+background: #eef9f6;
+line-height: 2.5em
+}
+
+mark {
+background: #fff
+}
+
+oric h2,
+.yingwenshiyi .vocab_hwd,
+dc,
+danci,
+dannj,
+.yl,
+idiom .ds-single i,
+AHDI i,
+zd b,
+.illustration,
+.dictionary_hwd,
+.collins_hwd,
+.ode_hwd,
+.liju a,
+zw a,
+.voca_hwd,
+.yl b,
+.L_GRA b,
+.yl em,
+text,
+syn b,
+.voca_def,
+.dictionary_def i,
+.liju .voca_def b,
+hd,
+zw i,
+ts,
+#d1:target .liju b,
+#d1:target .yl b,
+#d1:target .oxts b,
+.xxl,
+tg,
+mark,
+.oxts .yl,
+.dictionary_def u,
+.dictionary_def i,
+#d1:target .lijb .vocab_hwd,
+.word_or_phrase {
+color: #80aa99
+}
+
+.lijb .vocab_hwd {
+text-align: center;
+font-size: 1.3em;
+color: #fff;
+font-weight: 500;
+margin-top: 3px;
+}
+
+.yl b,
+.L_GRA b,
+.yl em,
+text,
+syn b,
+.vocab_def b,
+.dictionary_def i {
+font-style: normal;
+font-variant: normal;
+padding: px;
+}
+
+.liju b,
+.liju w {
+margin: 0px 1px 0px 1px;
+}
+
+.cont-list {
+display: block;
+}
+
+hl {
+display: block;
+color: #fff;
+font-size: 0.5em;
+text-align: center;
+padding-right: 12px;
+line-height: 80%
+}
+
+hl a {
+display: none;
+color: #999;
+}
+
+.yingwenshiyi {
+font-family: FaricyNew, bentley;
+font-size: .88em;
+color: #666;
+line-height: 115%;
+display: none;
+}
+
+.lijc {
+background: #fff;
+border-radius: px;
+border: 1px solid #fff;
+padding: 6px;
+margin-bottom: 6px;
+min-height: 80px;
+line-height: 200%;
+}
+
+.liju {
+margin-top: -6px;
+padding-top: 8px;
+}
+
+.yingwenshiyi oric,
+idiom,
+.yingwenshiyi .dictionary_vocab,
+AHDI,
+.njzj,
+.lwzj,
+.div_dictionary,
+.div_collins,
+.div_ode,
+.dictionary_voca,
+.oxts,
+.yingwenshiyi zw {
+font-size: 0.95em;
+border-top: 1px dashed #ddd;
+padding: 9px 0px 0px 0px;
+margin: 0px 0px -8px 0px;
+display: block
+}
+
+.zl {
+margin-bottom: 0px;
+}
+
+.lwzj,
+.njzj {
+padding-bottom: 0px;
+}
+
+oric h2,
+dc,
+dannj,
+danci,
+.dictionary_hwd,
+.collins_hwd,
+.yingwenshiyi .voca_hwd,
+.ode_hwd,
+hd,
+.word_or_phrase {
+font-family: bentley;
+font-size: 1.6em;
+font-weight: 700;
+letter-spacing: 1px;
+font-variant: small-cas;
+display: inline;
+padding-right: 1px;
+line-height: 120%;
+}
+
+psc {
+font-size: 1.2em
+}
+
+.complex .source {
+opacity: 0.5;
+}
+
+.complex .source .indicator {
+font-style: italic;
+}
+
+.dictionary_ipa,
+y {
+font-size: 0.85em;
+font-family: FaricyNew;
+}
+
+c {
+font-size: .88em;
+}
+
+ax {
+color: #88bbcc
+}
+
+bcx {
+text-transform: uppercase;
+}
+
+.LM_LIA {
+display: block
+}
+
+.cont-list {
+display: inline
+}
+
+i {
+font-style: normal;
+}
+
+em,
+.dps {
+font-variant: small-caps;
+font-style: normal;
+}
+
+syn {
+margin-left: px
+}
+
+syn b {
+font-variant: small-cap;
+text-transform: lowercse;
+padding-left: 5px;
+}
+
+.oxts br {
+display: block
+}
+
+.yingwenshiyi u {
+text-decoration: none;
+}
+
+.odef {
+font-size: 0.82em;
+font-variant: small-caps;
+white-space: nowrap;
+}
+
+.text {
+padding: 0px 3px 0px 1px;
+font-variant: small-caps;
+}
+
+.yl {
+font-size: .95em;
+white-space: normal, nowrap;
+display: block;
+margin: 0px 0px -3px 0px;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+
+.oxts .yl {
+display: block;
+padding: 5px 0px 5px 0px;
+font-size: 1em;
+white-space: normal
+}
+
+.zl {
+font-size: .70em;
+margin-left: 5px;
+white-space: nowrap;
+display: block;
+overflow-x: hidden;
+color: #bbb
+}
+
+.zsl {
+font-size: .82em;
+padding: 0px 2px 0px 2px;
+}
+
+.zs {
+font-size: .82em;
+padding: 0px 2px 0px 2px;
+overflow-x: hidden;
+}
+
+.xxl {
+padding-left: 7px;
+font-size: 0.75em;
+padding-bottom: 7px;
+color: #888
+}
+
+.dp {
+font-size: .75em;
+color: #555;
+}
+
+.dpz {
+font-size: .6em;
+}
+
+.brr {
+display: none
+}
+
+.ops {
+color: #259
+}
+
+khu {
+display: none
+}
+
+.xx {
+display: none
+}
+
+
+.liju a,
+zw a {
+text-decoration: none;
+}
+
+.yingwenshiyi a {
+display: none;
+visibility: hidden;
+}
+
+.dictionary_def,
+.dictionary_ipa,
+.collins_ipa,
+.collins_def,
+.ode_ipa,
+.ode_def,
+.voca_def {
+display: inline;
+line-height: 120%;
+padding-right: 5px;
+}
+
+.liju .long,
+.liju .short {
+padding: 0px;
+font-size: .97em;
+line-height: 160%;
+}
+
+
+
+
+.oxts syn,
+syn b {
+margin: 0px;
+padding: 0px
+}
+
+
+.liju .dictionary_vocab {
+box-shadow: 0px 0px 0px 0px #eaa;
+padding: 0px;
+margin: 0px;
+}
+
+.liju br {
+margin: 3px
+}
+
+.liju {
+line-height: 180%;
+font-size: 1.06em;
+text-align: justify;
+}
+
+.liju a {
+opacity: 0.5
+}
+
+zw {
+display: block;
+padding: 7px 0px 14px 0px;
+font-size: 1em;
+line-height: 160%;
+}
+
+idiom,
+AHDI {
+display: block;
+line-height: 160%;
+font-size: em;
+}
+
+AHDI b {
+font-size: 1.2em
+}
+
+AHDI br {
+line-height: 230%;
+}
+
+tg {
+font-size: 0.65em;
+display: block;
+margin: 3px -3px 0px -5px;
+text-align: right;
+}
+
+in {
+font-size: 0.7em;
+display: block;
+margin: -2px -3px 14px -3px;
+text-align: center;
+color: grey;
+border-radius: 10px;
+border: 0px solid #fff;
+}
+
+info {
+display: none
+}
+
+.dictionary_def i {
+color: #aaa;
+white-space: nowrap;
+margin-bottom: -1em
+}
+
+.dps b,
+bcx,
+psc,
+.dps {
+font-variant: small-caps;
+text-transform: lowercase;
+color: #666;
+font-weight: 500;
+}
+
+p {
+display: block;
+margin-top: 8px;
+}
+
+.oxts {
+text-transform: lowercase;
+}
+
+.oxts br {
+display: none
+}
+
+.eudic_sentence {
+padding-top: 12px
+}
+
+.exp {
+margin-top: -5px
+}
+
+zw {
+margin-top: 5px
+}
+
+.dub91_cn {
+margin-bottom: 30px
+}
+
+info {
+padding: 0em
+}
+
+.mFoot {
+margin: -5px 0px 25px 0px
+}
+
+.ankihelper_image,
+.rrcd_img,
+.dub91_img {
+text-align: left;
+margin: -7px 0px -15px -7px;
+min-width: 347.5px;
+}
+
+
+/*d1d2互换*/
+#sentene {
+display: none;
+opacity: 0;
+weight: 1px;
+}
+
+#df a,
+#df b {
+color: #ecc;
+display: inline
+}
+
+#d1:target .mFoot b {
+color: #777
+}
+
+#d2:target .yingwenshiyi {
+display: block
+}
+
+#color {
+display: none
+}
+
+.huaci a {
+display: table-cell;
+opacity: 0.15;
+text-decoration: none;
+background: #ffffff;
+border-radius: 10px;
+border: 1px solid;
+font-size: 1.33em;
+width: 2.9em;
+height: 2.2em;
+vertical-align: middle;
+text-align: center
+}
+
+
+video {
+display: inline-block;
+vertical-align: baseline;
+}
+
+audio:not([controls]) {
+display: none;
+height: 0;
+}
+
+
+@font-face {
+font-family: 'FaricyNew';
+src: url('font/FaricyNew-Regular.otf');
+}
+
+@font-face {
+font-family: 'FaricyNew';
+src: url('font/FaricyNew-Bold.otf');
+font-weight: bold;
+}
+
+@font-face {
+font-family: 'FaricyNew';
+src: url('font/FaricyNew-Italic.otf');
+font-style: italic;
+}
+
+@font-face {
+font-family: 'FaricyNew';
+src: url('font/FaricyNew-BoldItalic.otf');
+font-style: italic;
+font-weight: bold;
+}
+
+@font-face {
+font-family: 'Theinhardt';
+src: url('font/theinhardt-regular.ttf');
+}
+
+@font-face {
+font-family: 'Theinhardt';
+src: url('font/theinhardt-bold.ttf');
+font-weight: bold;
+}
+
+@font-face {
+font-family: 'Theinhardt';
+src: url('font/theinhardt-regularitaita.ttf');
+font-style: italic;
+}
+
+@font-face {
+font-family: 'Theinhardt';
+src: url('font/theinhardt-boldita.ttf');
+font-style: italic;
+font-weight: bold;
+}
+
+zw a,
+zw .mBottom,
+zw .eudic_en,
+zw .dub91_en,
+khu {
+display: none
+}
+
+.rrcd_context {
+display: block;
+opacity: 1
+}
+
+zw .rrcd_title,
+zw .eudic_title,
+zw .dub91_title {
+font-size: 0.4em;
+padding: 6px 6px 6px 0px;
+text-align: right;
+}
+
+zw .eudic_title {
+margin-bottom: -5px;
+}
+
+.mFoot b,
+.exp b {
+color: #555ebb;
+border-bottom: 1px solid #fff;
+padding: 0px;
+margin: 0px
+}
+
+z {
+color: LightCoral, tomato
+}
+
+.ys,
+.dpss {
+padding: 3px
+}
+
+.ys b {
+font-variant: small-caps
+}
+
+.lijb .dub91_img,
+.lijb .dub91_c,
+.zs,
+.zsl {
+display: none
+}
+
+.zl {
+opacity: 0;
+margin-bottom: -22px;
+font-size: 2px
+}
+
+.dictionary_voca {
+background: rgba(255, 255, 255, 1);
+border: 1px solid rgba(0, 0, 0, 0);
+margin: 0px;
+padding-top: 0px;
+}
+
+.dub91_title,
+.eudic_title,
+.eudic_titlex,
+.rrcd_title {
+display: none
+}
+
+.liju b {
+color: #fff;
+}
+
+.dub91_title,
+.eudic_title,
+.eudic_titlex,
+.rrcd_title {
+display: none
+}
+
+.lijbv b,
+.lijbvb.complex b {
+color: #000;
+}
+
+
+.eudic_sentence {
+margin-top: -9px;
+}
+
+.eudic_cn {
+margin-top: 12px
+}
+
+.rrcd_context {
+margin: 12px 0px -29px 0px
+}
+
+#info {
+color: grey;
+font-size: 10px
+}
+
+strong {
+font-weight: 500;
+background: #f1f1f1;
+margin: 3px
+}
+
+#d1:target .vocab_def .vocab_def b,
+.vocab_def .vocab_def b,
+.yingwenshiyi zw b,
+.vocab_def .vocab_def ts {
+color: lightcoral;
+font-weight: 500;
+}
+
+.lijb hr {
+margin: 1px;
+opacity: 0
+}
+
+.lijb {
+text-align: justify;
+word-spacing: px
+}
+
+.yingwenshiyi {
+text-align: left;
+}
+
+zzw {
+opacity: 0
+}
+
+.lijb .vocab_def b {
+margin-right: 4px
+}
+
+.lijb .vocab_def {
+margin-top: 20px
+}
+
+.ref {
+margin-top: 12px;
+display: block
+}
+
+.dictionary_vocab .vocab_hwd {
+display: block
+}
+
+.yingwenshiyi AHDI i {
+color: #aaa;
+font-size: em;
+font-style: italic;
+word-spacing: 0px;
+}
+
+sy {
+display: block;
+padding-bottom: 35px;
+}
+
+.lijc {
+background-image: linear-gradient(to top, #e0efec 1px, #ffffff 50px);
+}
+
+il {
+background-image: linear-gradient(to bottom, #e0efec 5px, #ffffff 50px);
+}
+
+.lwzj {
+display: block;
+margin-bottom: 9px
+}
+
+.dub91_cn {
+margin: 0px 0px 28px 0px
+}
+
+
+yc {
+display: none;
+}
+
+.lijb .complex .sentence_content .translation {
+display: none;
+}
+
+
+/*悬浮查词按钮*/
+.tango {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 0px;
+right: 0px;
+border-radius: 3px;
+padding: 10px;
+opacity: 0.75;
+text-align: right;
+background-color: lightgray;
+font-size: 20px;
+}
+
+.tango a {
+text-decoration: none !important
+}
+
+/*悬浮查词按钮*/
+.eudic {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 0px;
+right: 50px;
+border-radius: 3px;
+padding: 10px;
+opacity: 0.75;
+text-align: right;
+background-color: lightgray;
+font-size: 20px;
+}
+
+.eudic a {
+text-decoration: none !important
+}
+
+/*悬浮查词按钮*/
+.helper {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 0px;
+right: 100px;
+border-radius: 3px;
+padding: 10px;
+opacity: 0.75;
+text-align: right;
+background-color: lightgray;
+font-size: 20px;
+}
+
+.helper a {
+text-decoration: none !important
+}
+
+.url a {
+text-decoration: none !important
+}
+
+/*来源网页*/
+.url {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 500px;
+right: 7px;
+border-radius: 3px;
+padding: 6px;
+opacity: 0.75;
+text-align: right;
+background-color: #f2f8f7;
+font-size: 20px;
+}
+
+.url a {
+text-decoration: none !important
+}
+
+
+/*查询例句翻译按钮*/
+.translate {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 600px;
+right: 7px;
+border-radius: 3px;
+padding: 6px;
+opacity: 0.75;
+text-align: right;
+background-color: #f2f8f7;
+font-size: 20px;
+}
+
+.translate a {
+text-decoration: none !important
+}
+
+</style>
+
+<script>
+// dictTango
+
+function getSelectionTextAndSearch() {
+var url="dttp://app.dicttango/WordLookup?word=";
+var word="";
+if(window.getSelection) {
+word = window.getSelection().toString();
+} else if(document.selection && document.selection.createRange) {
+word =  document.selection.createRange().text;
+}
+if(word!="") {
+location.href = url + word;
+}
+}
+</script>
+
+<script>
+//eudic
+
+function getSelectionTextAndSearchOnEudic() {
+
+var word="";
+if(window.getSelection) {
+word = window.getSelection().toString();
+} else if(document.selection && document.selection.createRange) {
+word =  document.selection.createRange().text;
+}
+if(word!="") {
+var url=`intent:peek#Intent;action=colordict.intent.action.SEARCH;category=android.intent.category.DEFAULT;type=text/plain;component=com.eusoft.eudic/com.eusoft.dict.activity.dict.LightpeekActivity;scheme=eudic;S.EXTRA_QUERY=${word};end`;
+location.href = url;
+}
+}
+</script>
+
+<script src="https://www.lanrenzhijia.com/ajaxjs/1.11.1/jquery-1.11.1.min.js"></script>
+<script src="https://demo.lanrenzhijia.com/2015/touchSwipe0313/js/jquery.touchSwipe.min.js"></script>
+
+<script>
+/**
+      * selection sentence
+      */
+
+//
+     const INLINE_TAGS = new Set([
+ // Inline text semantics
+ 'a', 'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'dfn', 'em', 'i',
+ 'kbd', 'mark', 'q', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'small',
+ 'span', 'strong', 'sub', 'sup', 'time', 'u', 'var', 'wbr'
+])
+// match head   a.b is ok chars that ends a sentence
+const sentenceHeadTester = /((\.(?![ .]))|[^.?!。？！…\r\n])+$/
+// match tail       for "..."
+const sentenceTailTester = /^((\.(?![ .]))|[^.?!。？！…\r\n])+(.)\3{0,2}/
+
+
+/**
+* @returns {string}
+*/
+function getSelectionSentence () {
+    var url = "akhp://ankihelper/lookup?";
+    var sentence = "";
+ const selection = window.getSelection()
+ const selectedText = selection.toString()
+ if (!selectedText.trim()) { return '' }
+
+ var sentenceHead = ''
+ var sentenceTail = ''
+
+ const anchorNode = selection.anchorNode
+ if (anchorNode.nodeType === Node.TEXT_NODE) {
+ let leadingText = anchorNode.textContent.slice(0, selection.anchorOffset)
+ for (let node = anchorNode.previousSibling; node; node = node.previousSibling) {
+ if (node.nodeType === Node.TEXT_NODE) {
+ leadingText = node.textContent + leadingText
+ } else if (node.nodeType === Node.ELEMENT_NODE) {
+ leadingText = node.innerText + leadingText
+ }
+ }
+
+ for (
+ let element = anchorNode.parentElement;
+ element && INLINE_TAGS.has(element.tagName.toLowerCase()) && element !== document.body;
+ element = element.parentElement
+ ) {
+ for (let el = element.previousElementSibling; el; el = el.previousElementSibling) {
+ leadingText = el.innerText + leadingText
+ }
+ }
+
+ sentenceHead = (leadingText.match(sentenceHeadTester) || [''])[0]
+ }
+
+ const focusNode = selection.focusNode
+ if (selection.focusNode.nodeType === Node.TEXT_NODE) {
+ let tailingText = selection.focusNode.textContent.slice(selection.focusOffset)
+ for (let node = focusNode.nextSibling; node; node = node.nextSibling) {
+ if (node.nodeType === Node.TEXT_NODE) {
+ tailingText += node.textContent
+ } else if (node.nodeType === Node.ELEMENT_NODE) {
+ tailingText += node.innerText
+ }
+ }
+
+ for (
+ let element = focusNode.parentElement;
+ element && INLINE_TAGS.has(element.tagName.toLowerCase()) && element !== document.body;
+ element = element.parentElement
+ ) {
+ for (let el = element.nextElementSibling; el; el = el.nextElementSibling) {
+ tailingText += el.innerText
+ }
+ }
+
+ sentenceTail = (tailingText.match(sentenceTailTester) || [''])[0]
+ }
+
+ sentence = (sentenceHead + selectedText + sentenceTail)
+ .replace(/(^\s+)|(\s+$)/gm, '\n') // allow one empty line & trim each line
+ .replace(/(^\s+)|(\s+$)/g, ''); // remove heading or tailing \n
+ if (sentence != "") {
+        location.href = `${url}key=${encodeURIComponent(selectedText)}&content=${encodeURIComponent(sentence)}`;
+      }
+
+      if (document.selection) {
+document.selection.empty();
+} else if (window.getSelection) {
+window.getSelection().removeAllRanges();
+}
+}
+
+
+/**
+ * Selection Text And Search On Helper
+ */
+    function getSelectionTextAndSearchOnHelper() {
+      var url = "akhp://ankihelper/lookup?content=";
+      var word = "";
+      if (window.getSelection) {
+        word = window.getSelection().toString();
+      } else if (document.selection && document.selection.createRange) {
+        word = document.selection.createRange().text;
+      }
+      if (word != "") {
+        location.href = url + word;
+      }
+if (document.selection) {
+document.selection.empty();
+} else if (window.getSelection) {
+window.getSelection().removeAllRanges();
+}
+    }
+
+    // Check if you are in mobile or not
+// Code credit: https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
+function isMobile() {
+    try{ document.createEvent("TouchEvent"); return true; }
+    catch(e){ return false; }
+}
+
+if (isMobile() == true) {
+        $(window).swipe({
+            swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+                //getSelectionTextAndSearchOnHelper();
+                if (null == direction && window.getSelection().toString().trim()) {
+                    getSelectionSentence();
+                } else if (document.selection) {
+                    document.selection.empty();
+                } else if (window.getSelection) {
+                    window.getSelection().removeAllRanges();
+                }
+            },
+            //Default is 75px, set to 0 for demo so any distance triggers swipe
+            threshold: 0
+        });
+}
+</script>

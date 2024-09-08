@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [["$", "$"], ["\\(", "\\)"]]
+                },
+                svg: {
+                    fontCache: "global"
+                },
+                chtml: {
+                    scale: {$text_scale},
+                }
+            };
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            messageStyle: 'none',
+            tex2jax: {preview: 'none'}
+        });
+    </script>
+    <script type="text/x-mathjax-config">
+        {$config}
+    </script>
+    <script type="text/javascript" async src="mathjax/tex-chtml.js">
+    </script>
+</head>
+<body>
+<script>
+    var s = " {$formula} ";
+    document.body.style.color = "{$text_color}";
+    document.write(s);
+</script>
+<script>
+// 获取滚动屏幕的高度
+function getScrollWindow()
+{
+var heightTop=0;
+if (document.documentElement && document.documentElement.scrollTop) {
+heightTop = document.documentElement.scrollTop;
+} else if (document.body) {
+heightTop = document.body.scrollTop;
+}
+window.js.getScrollWindow(heightTop)
+}
+
+// 滚动位置
+function scrollWindow(scroll)
+{
+window.scrollTo(0,scroll)
+}
+</script>
+</body>
+</html>

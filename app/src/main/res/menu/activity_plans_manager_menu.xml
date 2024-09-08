@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_item_add_plan"
+        android:title="@string/adding_default_plan_str"
+        app:showAsAction="ifRoom|withText"
+        />
+
+    <item
+        android:id="@+id/menu_item_refresh_models"
+        android:title="@string/str_switch_plans"
+        app:showAsAction="ifRoom|withText"
+        />
+<!--    <item-->
+<!--        android:id="@+id/menu_item_script_field_editor"-->
+<!--        android:title="@string/title_script_content_editor"-->
+<!--        />-->
+    <item
+        android:id="@+id/menu_item_export_plan"
+        android:title="@string/str_export_plans"
+        app:showAsAction="ifRoom|withText"
+        />
+
+    <item
+        android:id="@+id/menu_item_import_plan"
+        android:title="@string/str_import_plans"
+        app:showAsAction="ifRoom|withText"
+        />
+
+    <item
+        android:id="@+id/menu_item_delete_all_plans"
+        android:title="@string/str_delete_all_plans"
+        app:showAsAction="never"
+        />
+</menu>

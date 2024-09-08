@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--圆角的大小-->
+    <!--控件高度的一半-->
+    <corners android:radius="6dp"/>
+
+    <!--填充颜色-->
+    <!--@android中定义了一些颜色，可以自己查看使用-->
+<!--    <solid android:color="@android:color/white"/>-->
+    <solid android:color="?attr/color_btn_down"/>
+
+<!--    &lt;!&ndash;边框&ndash;&gt;-->
+<!--    <stroke-->
+<!--        android:width="1dp"-->
+<!--        android:color="@android:color/holo_blue_bright"/>-->
+</shape>

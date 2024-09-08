@@ -1,0 +1,4 @@
+/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86/CMakeFiles/rebuild_cache.dir
+/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86/CMakeFiles/edit_cache.dir
+/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86/CMakeFiles/cpp-layer.dir
+/Users/ss/gits/anki助手/app/.cxx/Debug/326a1qav/x86/CMakeFiles/jni-layer.dir

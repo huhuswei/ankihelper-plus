@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.ichi2.anki.permission.READ_WRITE_DATABASE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!-- 请求忽略电池优化 -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:extractNativeLibs="false"
+        android:icon="@drawable/icon_light"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network"
+        android:roundIcon="@drawable/icon_light"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:enableOnBackInvokedCallback="true"
+        android:hasFragileUserData="true">
+
+        <activity
+            android:name=".ui.SplashScreenActivity"
+            android:launchMode="singleTop"
+            android:configChanges="uiMode"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.LauncherActivity"
+            android:launchMode="singleTop"
+            android:configChanges="uiMode"
+            android:theme="@style/AppTheme">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+<!--        <activity-->
+<!--            android:name=".ui.floating.FloatingSwitchActivity"-->
+<!--            android:launchMode="singleTop"-->
+<!--            android:configChanges="uiMode"-->
+<!--            android:icon="@drawable/floating"-->
+<!--            android:label="@string/floating_name"-->
+<!--            android:theme="@style/AppTheme">-->
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
+<!--        </activity>-->
+
+        <activity
+            android:name=".ui.popup.PopupActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/popup_name"
+            android:icon="@drawable/ic_launcher"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:theme="@style/Transparent"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="inline" />
+                <data android:mimeType="text/html" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.VIEW" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+                <category
+                    android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="content" />
+                <data
+                    android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="akhp"
+                    android:host="ankihelper"
+                    android:pathPrefix="/lookup"
+                     />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="colordict.intent.action.SEARCH" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="mdict.intent.action.SEARCH" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.plan.PlansManagerActivity"
+            android:label="@string/title_plans_manager_str"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.plan.PlanScriptForAppendingActivity"
+            android:label="@string/title_script_content_editor"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.plan.PlansManagerActivity" />
+        </activity>
+        <activity
+            android:name=".ui.plan.PlanEditorActivity"
+            android:label="@string/title_plan_editor"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.plan.PlansManagerActivity" />
+        </activity>
+        <activity
+            android:name=".ui.popup.PopupSettingActivity"
+            android:label="@string/title_popupwindow_settings_str"
+            android:noHistory="true"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.floating.FloatingSettingActivity"
+            android:label="@string/title_floating_settings_str"
+            android:noHistory="true"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.intelligence.IntelligenceActivity"
+            android:label="@string/title_intelligencewindow_settings_str"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.intelligence.mathpix.MathpixSettingActivity"
+            android:label="@string/name_mathpix_ocr"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.intelligence.IntelligenceActivity" />
+        </activity>
+
+        <service
+            android:name=".ui.floating.QuickStartTileService"
+            android:icon="@drawable/icon_light"
+            android:label="@string/tv_popup_floating"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+<!--                <action android:name="android.service.quicksettings.ACTIVE_TILE" android:value="true" />-->
+            </intent-filter>
+
+<!--            <meta-data-->
+<!--                android:name="android.service.quicksettings.ACTIVE_TILE"-->
+<!--                android:value="true" />-->
+        </service>
+
+        <service
+            android:name=".domain.CBWatcherService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":CBService" /> <!-- <service android:name=".ui.floating.FxService"/> -->
+        <service
+            android:name=".ui.floating.assist.AssistService"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/assist_service" />
+        </service>
+
+        <activity
+            android:name=".ui.floating.screenshot.ScreenCaptureActivity"
+            android:label="@string/screenshot_name"
+            android:icon="@drawable/print_screen"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/ScreenCaptureTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.floating.screenshot.CaptureResultActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/BigBangTheme"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.translation.CustomTranslationActivity"
+            android:label="@string/title_custom_fanyi_engine_api"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity android:name=".ui.about.AboutActivity" />
+        <activity
+            android:name=".ui.customdict.CustomDictionaryActivity"
+            android:label="@string/title_custom_dicitonary_str"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.tango.DictTangoActivity"
+            android:label="@string/title_tango_str"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.tango.TangoLocationEditorActivity"
+            android:label="@string/title_activity_tango_location_editor"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.tango.DictTangoActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.mdict.MdictActivity"
+            android:label="@string/title_mdict_str"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.mdict.MdictEditorActivity"
+            android:label="@string/title_activity_mdict_editor"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.mdict.MdictActivity" />
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider> <!-- <activity -->
+        <!-- android:name=".ui.customdict.CustomDictFilePickerActivity" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:theme="@style/FilePickerTheme"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.GET_CONTENT" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <activity
+            android:name=".ui.stat.StatActivity"
+            android:exported="true"
+            android:label="@string/title_activity_stat"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.content.ContentActivity"
+            android:label="@string/str_btn_open_random_quote"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mmjang.ankihelper.ui.LauncherActivity" />
+        </activity>
+        <activity
+            android:name=".ui.content.ContentViewerActivity"
+            android:label="@string/str_btn_open_random_quote"
+            android:parentActivityName=".ui.content.ContentActivity" />
+    </application>
+
+</manifest>

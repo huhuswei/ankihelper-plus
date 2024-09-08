@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_item_add_fields_locator_edit"
+        android:title="add"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menu_item_remove_fields_locator_edit"
+        android:title="remove"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menu_item_save_locator_edit"
+        android:icon="@drawable/ic_ok"
+        android:title="save"
+        app:showAsAction="always"
+        />
+</menu>

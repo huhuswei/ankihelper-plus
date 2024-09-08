@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+    <TextView
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="html"
+    />
+
+    <View style="@style/Divider" />
+
+    <com.mmjang.ankihelper.widget.NoteEditText
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center|left"
+        android:minLines="8"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/margin_double"
+        android:paddingRight="@dimen/margin_double"
+        android:scrollbars="vertical"
+        android:textColor="@color/primary_text"
+        android:background="@drawable/no_solid_background"
+        android:textSize="@dimen/text_size_normal"
+        android:id="@+id/et_card_html"
+        />
+
+    <TextView
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="javascript"
+        />
+
+    <com.mmjang.ankihelper.widget.NoteEditText
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center|left"
+        android:minLines="8"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/margin_double"
+        android:paddingRight="@dimen/margin_double"
+        android:scrollbars="vertical"
+        android:textColor="@color/primary_text"
+        android:background="@drawable/no_solid_background"
+        android:textSize="@dimen/text_size_normal"
+        android:id="@+id/et_card_javascript"
+        />
+
+    <TextView
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="css"
+        />
+
+    <com.mmjang.ankihelper.widget.NoteEditText
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center|left"
+        android:minLines="8"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/margin_double"
+        android:paddingRight="@dimen/margin_double"
+        android:scrollbars="vertical"
+        android:textColor="@color/primary_text"
+        android:background="@drawable/no_solid_background"
+        android:textSize="@dimen/text_size_normal"
+        android:id="@+id/et_card_css"
+        />
+</LinearLayout>

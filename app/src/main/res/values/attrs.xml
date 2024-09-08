@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BigBangLayout">
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="reference"/>
+        <attr name="itemSpace" format="dimension"/>
+        <attr name="lineSpace" format="dimension"/>
+        <attr name="textBackground" format="reference"/>
+        <attr name="sectionTextBackground" format="reference"/>
+        <attr name="symbolTextBackground" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="MathxView">
+        <attr name="text" format="string" />
+        <attr name="engine" format="enum">
+            <enum name="KaTeX" value="0" />
+            <enum name="MathJax" value="1" />
+        </attr>
+        <attr name="maxHeight" format="dimension"/>
+        <attr name="fontColor" format="color" />
+        <attr name="bgColor" format="color" />
+    </declare-styleable>
+
+    <attr name="mathxView" format="reference"/>
+
+    <attr name="button_background_selector" format="reference"/>
+    <attr name="color_popup_background" format="reference"/>
+    <attr name="color_footer_background" format="reference"/>
+    <attr name="color_footer_pressed" format="reference"/>
+    <attr name="icon_scroll_top" format="reference"/>
+    <attr name="icon_scroll_bottom" format="reference"/>
+    <attr name="icon_toolbar_share" format="reference"/>
+    <attr name="icon_translate_normal" format="reference"/>
+    <attr name="icon_translate_wait" format="reference"/>
+    <attr name="icon_translate_done" format="reference"/>
+    <attr name="icon_left_arrow" format="reference"/>
+    <attr name="icon_right_arrow" format="reference"/>
+    <attr name="icon_note" format="reference"/>
+    <attr name="icon_tag" format="reference"/>
+    <attr name="icon_copy" format="reference"/>
+    <attr name="icon_play" format="reference"/>
+    <attr name="icon_set_mdict" format="reference"/>
+    <attr name="icon_custom_dict" format="reference"/>
+    <attr name="icon_search" format="reference"/>
+    <attr name="icon_add" format="reference"/>
+    <attr name="icon_add_done" format="reference"/>
+    <attr name="color_cursor" format="reference"/>
+    <attr name="backgroup_cursor" format="reference"/>
+    <attr name="icon_redo" format="reference"/>
+    <attr name="icon_undo" format="reference"/>
+    <attr name="icon_format" format="reference"/>
+    <attr name="color_btn_down" format="reference"/>
+</resources>

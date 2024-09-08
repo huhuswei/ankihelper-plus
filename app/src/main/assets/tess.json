@@ -1,0 +1,61 @@
+{
+  "url": "http://cloud.fooview.com:37625/ocr/tess4.0.0/lang/",
+  "languages": [
+    {
+      "language_name": "中文（简体）",
+      "package_name": "chi_sim.traineddata",
+      "download_package": "chi_sim.traineddata.zip"
+    },
+    {
+      "language_name": "中文（繁体）",
+      "package_name": "chi_tra.traineddata",
+      "download_package": "chi_tra.traineddata.zip"
+    },
+    {
+      "language_name": "English",
+      "package_name": "eng.traineddata",
+      "download_package": "eng.traineddata.zip"
+    },
+    {
+      "language_name": "Русский",
+      "package_name": "rus.traineddata",
+      "download_package": "rus.traineddata.zip"
+    },
+    {
+      "language_name": "العربية",
+      "package_name": "ara.traineddata",
+      "download_package": "ara.traineddata.zip"
+    },
+    {
+      "language_name": "조선말",
+      "package_name": "kor.traineddata",
+      "download_package": "kor.traineddata.zip"
+    },
+    {
+      "language_name": "Français",
+      "package_name": "fra.traineddata",
+      "download_package": "fra.traineddata.zip"
+    },
+    {
+      "language_name": "Español",
+      "package_name": "spa.traineddata",
+      "download_package": "spa.traineddata.zip"
+    },
+    {
+      "language_name": "Deutsch",
+      "package_name": "deu.traineddata",
+      "download_package": "deu.traineddata.zip"
+    },
+    {
+      "language_name": "Italiano",
+      "package_name": "ita.traineddata",
+      "download_package": "ita.traineddata.zip"
+    },
+
+    {
+      "language_name": "日本語",
+      "package_name": "jpn.traineddata",
+      "download_package": "jpn.traineddata.zip"
+    }
+  ]
+}

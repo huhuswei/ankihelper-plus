@@ -1,0 +1,748 @@
+例句
+@@@
+Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|Remarks
+@@@
+<div class="tango">
+    <a href="javascript:getSelectionTextAndSearch()">
+        📙
+    </a>
+</div>
+
+<div class="eudic">
+    <a href="javascript:getSelectionTextAndSearchOnEudic()">
+        📘
+    </a>
+</div>
+
+<div class="helper">
+    <a href="javascript:getSelectionTextAndSearchOnHelper()">
+        📗
+    </a>
+</div>
+
+<br/><br/><br/><br/>
+{{#摘取例句加粗}}{{摘取例句加粗}}{{/摘取例句加粗}}
+{{#例句}}{{例句}}{{/例句}}
+
+@@@
+
+<div class="tango">
+    <a href="javascript:getSelectionTextAndSearch()">
+        📙
+    </a>
+</div>
+
+<div class="eudic">
+    <a href="javascript:getSelectionTextAndSearchOnEudic()">
+        📘
+    </a>
+</div>
+
+<div class="helper">
+    <a href="javascript:getSelectionTextAndSearchOnHelper()">
+        📗
+    </a>
+</div>
+
+<br/><br/><br/><br/>
+
+<xs>
+    {{#摘取例句加粗}}{{摘取例句加粗}}{{/摘取例句加粗}}
+    {{#例句}}{{例句}}{{/例句}}
+    <animate class="slide">
+        {{#释义}}{{释义}}{{/释义}}
+    </animate>
+</xs>
+
+<div class="huaci">
+    <a id="button1" href="void">新建</a>
+    <a id="button2" href="void">覆盖</a>
+    <a id="button3" href="void">追加</a>
+    <a id="button4" href="void">例句</a>
+</div>
+
+{{#url}}
+<a class="url" href="{{url}}">
+    🌐
+</a>
+{{/url}}
+
+<br/><br/><br/><br/><br/><br/><br/>
+<div style="display:none">
+    {{#Remarks}}{{Remarks}}{{/Remarks}}
+    {{#自动发音}}{{自动发音}}{{/自动发音}}
+</div>
+
+<script>
+    function getNoteID() {
+    return {{Note ID}};
+    }
+
+    function callAnkihelper(source_id, button_id, plan_name, update_action){
+    if(arguments==3) {
+    update_action = "";
+    }
+    var source = document.querySelector(source_id);
+    var button = document.querySelector(button_id);
+    var noteid = getNoteID();
+    var encoded = btoa(unescape(encodeURIComponent(source.textContent)));
+
+    var url_component = "intent:#Intent;action=android.intent.action.SEND;" +
+    "category=android.intent.category.DEFAULT;" +
+    "type=text/plain;component=com.mmjang.ankihelper/com.mmjang.ankihelper.ui.popup.PopupActivity;";
+    var url_text = "";
+    var url_base64 = "S.com.mmjang.ankihelper.base64=1;";
+    var url_note_id = "";
+    var url_plan_name = "S.com.mmjang.ankihelper.plan_name=" + plan_name + ";";
+    var url_update_action= "";
+    var url_end = "end;";
+
+    switch(update_action) {
+    case "append":
+    url_text = "S.android.intent.extra.TEXT=" +
+    btoa(unescape(encodeURIComponent(source.textContent))) + ";";
+    url_note_id = "S.com.mmjang.ankihelper.note_id=" + noteid + ";";
+    break;
+    case "replace":
+    url_text = "S.android.intent.extra.TEXT=" + btoa(unescape(encodeURIComponent(source.innerHTML)))
+    + ";";
+    url_note_id = "S.com.mmjang.ankihelper.note_id=" + noteid + ";";
+    url_update_action= "S.com.mmjang.ankihelper.note_update_action=replace;";
+    break;
+    default:
+    url_text = "S.android.intent.extra.TEXT=" +
+    btoa(unescape(encodeURIComponent(source.textContent))) + ";";
+    }
+
+    var url = url_component + url_text + url_base64 + url_note_id + url_plan_name +
+    url_update_action + url_end;
+    button.href = url;
+    console.log(url);
+    }
+
+    /*
+    callAnkihelper("#sentence-picked","#button1", "")
+    callAnkihelper("#sentence-picked","#button2", "","replace")
+    callAnkihelper("#sentence-picked","#button3","", "append")
+    callAnkihelper("#sentence-picked","#button4","", "append")
+    */
+    callAnkihelper("#sentence-picked","#button1", "S_必应牛津双解")
+    callAnkihelper("#sentence-picked","#button2", "S_必应牛津双解","replace")
+    callAnkihelper("#sentence-picked","#button3","", "append")
+    callAnkihelper("#sentence-picked","#button4","S_欧路原声例句", "append")
+
+
+    /*unused*/
+    function switchShowing(selector, textLightColor, textDarkColor) {
+    let textColor;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // 处于暗黑模式
+    textColor = textDarkColor;
+    } else {
+    // 处于普通模式
+    textColor = textLightColor;
+    }
+    let elements = document.querySelectorAll(selector);
+    let visibleMap = new Map();
+
+    elements.forEach(function (element) {
+    visibleMap.set(element, false);
+    element.addEventListener('click', function () {
+    if (visibleMap.get(element)) {
+    element.style.color = 'transparent';
+    element.style.textIndent = '100%';
+    } else {
+    element.style.color = textColor; // 或者其他不透明的颜色
+    element.style.textIndent = '0%';
+    }
+    visibleMap.set(element, !visibleMap.get(element));
+    });
+    });
+    }
+
+</script>
+@@@
+.card {
+font-family          :serif;
+font-size              : 20px;
+text-align             : left;
+color                     : #101010;
+background-color :rgb(203,213,223)
+}
+
+.complex {
+margin: auto;
+position: relative;
+color: #2e2e2f;
+cursor: move;
+padding: 1rem;
+border-radius: 8px;
+box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+margin-bottom: 1rem;
+border: 3px dashed transparent;
+max-width: 800px;
+/*background-color: rgba(255, 255, 255, 1);*/
+background-color : #f8f8f8;
+color: #000;
+border-radius: 10px;
+/*
+box-shadow: 0px 19px 38px 0px rgba(0, 0, 0, 0.3),
+0px 15px 12px 0px rgba(0, 0, 0, 0.22);
+*/
+}
+
+video,
+.keyword,
+.pronunciation,
+.sentence,
+.definition,
+.translation,
+.origin,
+.sense,
+.misc-content,
+.note,
+.mbox {
+padding: 0 2px 0;
+margin: 2px 0 2px;
+display: inline-block;
+/* 设置为行内块元素 */
+clear: right;
+}
+
+.keyword {
+font-size: 22px;
+color: #066e29;
+font-family:bentley;
+font-size:1.6em;
+font-weight:700;
+letter-spacing:1px;
+font-variant:small-cas;
+padding-right:1px;
+line-height:120%;
+}
+
+.definition {
+background-color: #c7edcc;
+font-size:1.2em;
+}
+
+video,
+.pronunciation,
+.sentence,
+.definition,
+.sense,
+.misc-content{
+border-radius: 6px;
+}
+
+.complex b {
+//color: black;
+border-bottom: 1px solid #9fa4aa;
+}
+
+xs .complex .keyword {
+text-indent: 0%;
+color: #066e29;
+}
+
+/*
+.complex:hover b,
+.complex:hover .keyword {
+text-indent: 0%;
+overflow: visible;
+color: inherit;
+}
+
+.complex:hover .keyword {
+color: #ffffff;
+}
+*/
+
+.complex:hover {
+box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+border-color: rgba(162, 179, 207, 0.2) !important;
+}
+
+.complex .pronunciation,
+.complex .definition,
+.complex .translation,
+.complex .sense,
+.cpmplex .misc-content{
+display:none;
+/* display:block; */
+}
+
+
+xs .complex .definition,
+xs .complex .translation,
+xs .complex .pronunciation,
+xs .complex .sense,
+xs .complex .misc-content{
+display:block;
+}
+
+
+.origin {
+position: relative;
+color: #9fa4aa;
+font-size: 12px;
+align-items: center;
+justify-content: space-between;
+}
+
+.mbox {
+display: flex;
+justify-content: flex-end;
+}
+
+.mbox .btn-play-audio {
+display:block;
+font-size: 1.2em;
+background-color: transparent;
+border: 20px;
+cursor: pointer;
+transition: transform 0.3s;
+}
+
+.btn-play-audio {
+float: right;
+font-size: 1.2em;
+background-color: transparent;
+border: 20px;
+cursor: pointer;
+transition: transform 0.3s;
+}
+
+.btn-play-audio:hover {
+transform: scale(0.9);
+}
+
+/*
+.btn-play-audio {
+font-size: 1.2em;
+background-color: transparent;
+border: 20px;
+cursor: pointer;
+transition: transform 0.3s;
+float: right;
+}
+
+.btn-play-audio:hover {
+transform: scale(1.1);
+}
+*/
+
+/*
+.btn-play-audio {
+background-color: white;
+box-sizing: border-box;
+background-color: transparent;
+cursor: pointer;
+transition: transform 0.3s;
+float: right;
+height: 19.73px;
+border-style: solid;
+border-width: 9.866px 0 9.866px 16px;
+border-color: transparent transparent transparent #066e2988;
+text-indent: -9999px;
+}
+.btn-play-audio:hover {
+transform: scale(1.1);
+}
+*/
+
+input[type=range].rate {
+display:block;
+width: 100px;
+margin: 0.7px 0;
+background-color: transparent;
+-webkit-appearance: none;
+}
+input[type=range].rate:focus {
+outline: none;
+}
+input[type=range].rate::-webkit-slider-runnable-track {
+background: rgba(255, 67, 95, 0.1);
+border: 0;
+width: 100%;
+height: 15.6px;
+cursor: pointer;
+border-radius: 8px;
+box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+}
+input[type=range].rate::-webkit-slider-thumb {
+margin-top: -0.7px;
+width: 18px;
+height: 17px;
+background: rgba(255, 67, 95, 0.30);
+border: 0;
+cursor: pointer;
+-webkit-appearance: none;
+}
+input[type=range].rate:focus::-webkit-slider-runnable-track {
+background: rgba(255, 67, 95, 0.20);
+}
+
+.huaci {
+z-index: 9999;
+bottom: 0px;
+left: 0;
+width: 100%;
+position: fixed;
+display: flex;
+flex-wrap: wrap;
+}
+.huaci a {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 60px;
+/* 间隙为5px */
+margin: 0 5px 5px 0;
+/* END */
+
+/* 这里的15px = (分布个数4-1)*间隙5px, 可以根据实际的分布个数和间隙区调整 */
+width: calc((100% - 15px) / 4);
+/* END */
+
+/* 加入这两个后每个item的宽度就生效了 */
+min-width: calc((100% - 15px) / 4);
+max-width: calc((100% - 15px) / 4);
+/* END */
+
+background-color:#cacaca;
+color: #000000;
+opacity: 0.3;
+text-decoration:none !important;
+border-radius: 3px;
+border: 1px bold;
+font-size: 1.2em;
+vertical-align: middle;
+text-align: center;
+}
+
+.huaci a:nth-child(4n) {
+/* 去除第2n个的margin-right */
+margin-right: 0;
+}
+
+
+
+/* Cloze */
+.cloze {
+color: #ec6c4f;
+#font-weight: bold;
+border-bottom: 1px solid #ec6c4f;
+padding-bottom: 2px;
+-webkit-animation: cloze 0.4s 0s;
+-webkit-animation-fill-mode: forwards;
+}
+
+
+/*来源网页*/
+.url {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 0px;
+left:7px;
+border-radius: 3px;
+padding:6px;
+opacity:0.75;
+text-align:left;
+background-color:#f2f8f7;
+font-size:20px;
+text-decoration:none !important;
+}
+
+
+/*悬浮查词按钮*/
+.tango {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top:0px;
+right:57px;
+border-radius: 3px;
+padding:6px;
+opacity:0.75;
+text-align:right;
+background-color:#f2f8f7;
+font-size:20px;
+}
+.tango a{text-decoration:none !important}
+
+/*悬浮查词按钮*/
+.eudic {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top:0px;
+right:7px;
+border-radius: 3px;
+padding:6px;
+opacity:0.75;
+text-align:right;
+background-color:#f2f8f7;
+font-size:20px;
+}
+.eudic a{text-decoration:none !important}
+
+/*悬浮查词按钮*/
+.helper {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top:0px;
+right:107px;
+border-radius: 3px;
+padding:6px;
+opacity:0.75;
+text-align:right;
+background-color:#f2f8f7;
+font-size:20px;
+}
+.helper a{text-decoration:none !important}
+
+/* ------a标签单击选择文本 ------- */
+/***
+a:active, a:hover, a:visited{
+-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+-webkit-user-select: all;
+-moz-user-focus: all;
+-moz-user-select: all;
+}
+***/
+
+/* ---------Dark Mode--------- */
+.card.nightMode *:not(.huaci):not(.huaci a):not(.complex b):not(.misc-content){
+color: #589df6;
+filter: invert(1) hue-rotate(180deg);
+}
+
+.nightMode .definition {
+/*
+    background-color: black;
+*/
+}
+
+.nightMode xs .complex b{
+text-indent: 0%;
+color: #589df6;
+}
+
+/* ----------动画效果---------- */
+.slide { position: relative; -webkit-animation: slide 1s 0s; -webkit-animation-fill-mode: forwards; }
+@-webkit-keyframes slide {
+0%	{ opacity: 0  ; top: 100px; }
+50%	{ opacity: 0.8; top: -10px; }
+100%	{ opacity: 1.0; top: 0px; }
+}
+</style>
+
+<script type="text/javascript">
+  function infe()
+  {
+  var revi = bridge.getNoteReviews();
+  document.getElementById("infe").innerHTML = "〔" +  revi +"c - " + bridge.getNoteLapses()  + "x〕"}
+  infe();
+</script>
+
+<script type="text/javascript">
+  function info()
+  {
+  var sc = document.querySelector(".dub91_title,.eudic_title,.rrcd_title");
+  document.getElementById("info").innerHTML = "「" + sc.textContent + "」</info>"}
+  info();
+</script>
+
+<script src="https://www.lanrenzhijia.com/ajaxjs/1.11.1/jquery-1.11.1.min.js"></script>
+<script src="https://demo.lanrenzhijia.com/2015/touchSwipe0313/js/jquery.touchSwipe.min.js"></script>
+<script>
+
+/**
+      * selection sentence
+      */
+
+//
+     const INLINE_TAGS = new Set([
+ // Inline text semantics
+ 'a', 'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'dfn', 'em', 'i',
+ 'kbd', 'mark', 'q', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'small',
+ 'span', 'strong', 'sub', 'sup', 'time', 'u', 'var', 'wbr'
+])
+// match head   a.b is ok chars that ends a sentence
+const sentenceHeadTester = /((\.(?![ .]))|[^.?!。？！…\r\n])+$/
+// match tail       for "..."
+const sentenceTailTester = /^((\.(?![ .]))|[^.?!。？！…\r\n])+(.)\3{0,2}/
+
+
+/**
+* @returns {string}
+*/
+function getSelectionSentence () {
+    var url = "akhp://ankihelper/lookup?";
+    var noteid = getNoteID();
+    var sentence = "";
+ const selection = window.getSelection()
+ const selectedText = selection.toString()
+ if (!selectedText.trim()) { return '' }
+
+ var sentenceHead = ''
+ var sentenceTail = ''
+
+ const anchorNode = selection.anchorNode
+ if (anchorNode.nodeType === Node.TEXT_NODE) {
+ let leadingText = anchorNode.textContent.slice(0, selection.anchorOffset)
+ for (let node = anchorNode.previousSibling; node; node = node.previousSibling) {
+ if (node.nodeType === Node.TEXT_NODE) {
+ leadingText = node.textContent + leadingText
+ } else if (node.nodeType === Node.ELEMENT_NODE) {
+ leadingText = node.innerText + leadingText
+ }
+ }
+
+ for (
+ let element = anchorNode.parentElement;
+ element && INLINE_TAGS.has(element.tagName.toLowerCase()) && element !== document.body;
+ element = element.parentElement
+ ) {
+ for (let el = element.previousElementSibling; el; el = el.previousElementSibling) {
+ leadingText = el.innerText + leadingText
+ }
+ }
+
+ sentenceHead = (leadingText.match(sentenceHeadTester) || [''])[0]
+ }
+
+ const focusNode = selection.focusNode
+ if (selection.focusNode.nodeType === Node.TEXT_NODE) {
+ let tailingText = selection.focusNode.textContent.slice(selection.focusOffset)
+ for (let node = focusNode.nextSibling; node; node = node.nextSibling) {
+ if (node.nodeType === Node.TEXT_NODE) {
+ tailingText += node.textContent
+ } else if (node.nodeType === Node.ELEMENT_NODE) {
+ tailingText += node.innerText
+ }
+ }
+
+ for (
+ let element = focusNode.parentElement;
+ element && INLINE_TAGS.has(element.tagName.toLowerCase()) && element !== document.body;
+ element = element.parentElement
+ ) {
+ for (let el = element.nextElementSibling; el; el = el.nextElementSibling) {
+ tailingText += el.innerText
+ }
+ }
+
+ sentenceTail = (tailingText.match(sentenceTailTester) || [''])[0]
+ }
+
+ sentence = (sentenceHead + selectedText + sentenceTail)
+ .replace(/(^\s+)|(\s+$)/gm, '\n') // allow one empty line & trim each line
+ .replace(/(^\s+)|(\s+$)/g, ''); // remove heading or tailing \n
+if (sentence != "") {
+        location.href = `${url}id=${noteid}&key=${encodeURIComponent(selectedText)}&content=${encodeURIComponent(sentence)}`;
+      }
+
+      if (document.selection) {
+document.selection.empty();
+} else if (window.getSelection) {
+window.getSelection().removeAllRanges();
+}
+}
+
+
+/**
+ * Selection Text And Search On Helper
+ */
+    function getSelectionTextAndSearchOnHelper() {
+      var url = "akhp://ankihelper/lookup?content=";
+      var word = "";
+      if (window.getSelection) {
+        word = window.getSelection().toString();
+      } else if (document.selection && document.selection.createRange) {
+        word = document.selection.createRange().text;
+      }
+      if (word != "") {
+        location.href = url + word;
+      }
+if (document.selection) {
+document.selection.empty();
+} else if (window.getSelection) {
+window.getSelection().removeAllRanges();
+}
+    }
+
+    // Check if you are in mobile or not
+// Code credit: https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
+function isMobile() {
+    try{ document.createEvent("TouchEvent"); return true; }
+    catch(e){ return false; }
+}
+
+if (isMobile() == true) {
+        $(window).swipe({
+            swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+                //getSelectionTextAndSearchOnHelper();
+                if (null == direction && window.getSelection().toString().trim()) {
+                    getSelectionSentence();
+                } else if (document.selection) {
+                    document.selection.empty();
+                } else if (window.getSelection) {
+                    window.getSelection().removeAllRanges();
+                }
+            },
+            //Default is 75px, set to 0 for demo so any distance triggers swipe
+            threshold: 0
+        });
+}
+
+</script>
+
+
+<script>
+// dictTango
+
+function getSelectionTextAndSearch() {
+var url="dttp://app.dicttango/WordLookup?word=";
+var word="";
+if(window.getSelection) {
+word = window.getSelection().toString();
+} else if(document.selection && document.selection.createRange) {
+word =  document.selection.createRange().text;
+}
+if(word!="") {
+location.href = url + word;
+}
+if (document.selection) {
+document.selection.empty();
+} else if (window.getSelection) {
+window.getSelection().removeAllRanges();
+}
+}
+</script>
+
+<script>
+//eudic
+
+function getSelectionTextAndSearchOnEudic() {
+
+var word="";
+if(window.getSelection) {
+word = window.getSelection().toString();
+} else if(document.selection && document.selection.createRange) {
+word =  document.selection.createRange().text;
+}
+if(word!="") {
+var url=`intent:peek#Intent;action=colordict.intent.action.SEARCH;category=android.intent.category.DEFAULT;type=text/plain;component=com.eusoft.eudic/com.eusoft.dict.activity.dict.LightpeekActivity;scheme=eudic;S.EXTRA_QUERY=${word};end`;
+location.href = url;
+}
+if (document.selection) {
+document.selection.empty();
+} else if (window.getSelection) {
+window.getSelection().removeAllRanges();
+}
+}
+</script>

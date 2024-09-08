@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- 用户名 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username" />
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your username"
+        android:textColorHint="#9E9E9E" />
+
+    <!-- 注册码 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registration Code"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/et_registration_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your registration code from machine"
+        android:enabled="false"
+        android:textColorHint="#9E9E9E"/>
+
+    <!-- 激活码 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activation Code"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/et_activation_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your activation code"
+        android:textColorHint="#9E9E9E"/>
+
+    <!-- 激活按钮 -->
+    <Button
+        android:id="@+id/btn_activate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activate"
+        android:background="@drawable/button_background"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Mondrian风格的图形 -->
+    <LinearLayout
+        android:id="@+id/layout_mondrian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp">
+
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/red_block"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FF0000"/>
+
+            <View
+                android:id="@+id/black_line1"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
+
+            <View
+                android:id="@+id/yellow_block"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFFF00"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000000"/>
+
+        <LinearLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/blue_block"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000FF"/>
+
+            <View
+                android:id="@+id/black_line2"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
+
+            <View
+                android:id="@+id/white_block"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

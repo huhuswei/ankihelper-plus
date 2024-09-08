@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 这里可以添加对话框的标题或介绍文本 -->
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_tess_data_str"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- 这里定义了每个下载项的布局 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/download_item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true"
+        android:orientation="vertical">
+
+        <!-- 下载项将被动态添加到这个容器中 -->
+<!--        &lt;!&ndash; 示例：一个下载项 &ndash;&gt;-->
+<!--        <include layout="@layout/item_download"/>-->
+
+        <!-- 可以继续添加更多的下载项 -->
+
+    </LinearLayout>
+    </ScrollView>
+    <!-- 可能需要的按钮或其他操作控件 -->
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消所有下载"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
+
+</LinearLayout>

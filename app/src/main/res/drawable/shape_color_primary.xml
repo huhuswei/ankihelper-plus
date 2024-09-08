@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<shape-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    &lt;!&ndash;角度&ndash;&gt;-->
+<!--    &lt;!&ndash;radius的值为控件高度的一半&ndash;&gt;-->
+<!--    <corners-->
+<!--        android:radius="6dp" />-->
+<!--    &lt;!&ndash;填充色&ndash;&gt;-->
+<!--&lt;!&ndash;    <solid&ndash;&gt;-->
+<!--&lt;!&ndash;        android:color="@color/popup_background"/>&ndash;&gt;-->
+<!--</shape>-->
+
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--角度-->
+    <!--radius的值为控件高度的一半-->
+    <corners
+        android:radius="6dp" />
+    <!--填充色-->
+    <solid
+        android:color="?attr/colorAccent"/>
+</shape>

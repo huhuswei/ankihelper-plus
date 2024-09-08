@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimary">#227D51</color>
+    <color name="colorPrimaryDark">#2D6D4B</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccent">#3B9465</color>
+
+    <color name="colorPrimaryPink">#e39090</color>
+    <color name="colorPrimaryDarkPink">#e68080</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccentPink">#EE9898</color>
+
+    <color name="colorPrimaryBlue">#5387ED</color>
+    <color name="colorPrimaryDarkBlue">#4773CA</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccentBlue">#588EF8</color>
+
+    <color name="textColor">#fff</color>
+    <color name="textColorPink">#fff</color>
+    <color name="textColorBlue">#fff</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="popup_background">#E0E0E0</color>
+    <color name="popup_background_pink">#f4e7e7</color>
+    <color name="popup_background_blue">#E6EAF3</color>
+
+    <color name="divider">#cee9e9e9</color>
+
+    <color name="footer_background">#e0e0e0</color>
+    <color name="footer_background_pink">#e1bcbc</color>
+    <color name="footer_background_blue">#B3C0DA</color>
+
+    <color name="footer_pressed">#4f8069</color>
+    <color name="footer_pressed_pink">#c5a4a4</color>
+    <color name="footer_pressed_blue">#B6C2D8</color>
+
+    <color name="btn_down">#4D227D51</color>
+    <color name="btn_down_pink">#4DE39090</color>
+    <color name="btn_down_blue">#4D5387ED</color>
+
+    <color name="bottom_panel_icon">#808080</color>
+
+    <color name="shadow">#C7D7E2</color>
+    <color name="golden">#FAC000</color>
+    <color name="orange">#FF9400</color>
+</resources>

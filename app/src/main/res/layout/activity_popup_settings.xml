@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollbars="none">
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/tv_popup_plan_and_deck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:gravity="left"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_choose_planlist"
+                    android:text="@string/tv_customize_your_plan_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_choose_decklist"
+                    android:text="@string/tv_customize_your_deck_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_select_deck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_deck"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_ignore_deck_scheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_ignoree_deck_plan"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:text="@string/tv_popup_toolbar_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+
+                android:gravity="left"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_scroll_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_add_scroll_bottom"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_add_search"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_add_note"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_add_tag"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_copy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_add_copy"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:text="@string/tv_webview_context_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:gravity="left"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_copy_context_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@android:string/copy"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_select_all_context_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@android:string/selectAll"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_share_text_context_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/str_share"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/tv_popup_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:gravity="left"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_rich_to_plain_text_context_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/str_rich_text_to_plain"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_select_symbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_symbol"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_merge_bold_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_merge_bold_tags"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_automatic_translation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_automatic_translation"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_auto_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/switch_popup_auto_search"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <TextView
+                android:id="@+id/tv_bigbing_font_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="16sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/primary_text"
+                android:gravity="left"/>
+
+            <SeekBar
+                android:id="@+id/sb_bing_font_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:min="14"
+                android:max="36" />
+
+            <View style="@style/Divider" />
+
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/tv_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:gravity="left"/>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_clear_cache"
+                android:text="@string/str_clear_cache"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+</ScrollView>

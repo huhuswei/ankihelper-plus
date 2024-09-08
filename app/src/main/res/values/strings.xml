@@ -1,0 +1,299 @@
+<resources>
+    <string name="app_name">Anki Helper Plus</string>
+    <string name="popup_name">Popup for Anki Helper Plus</string>
+    <string name="screenshot_name">Screenshot for Anki Helper Plus</string>
+    <string name="floating_name">FloatBall for Anki Helper Plus</string>
+    <string name="tv_plan_name">Plan Name:</string>
+    <string name="title_plan_editor">📝Plan Editor</string>
+    <string name="title_script_content_editor">Script Reference</string>
+    <string name="tv_select_plan">Plan:</string>
+    <string name="tv_select_deck">Deck:</string>
+    <string name="tv_select_model">Model:</string>
+    <string name="tv_choose_dictionary">Dictionary:</string>
+    <string name="api_not_available_message">Api not available!</string>
+    <string name="permission_denied">Permission Denied！</string>
+    <string name="dialog_ask_permission_overlays">The lack of suspended window permission, or can not use the floating ball function!</string>
+    <string name="dialog_btn_go_to_permission_window">GO TO SET PERMISSION</string>
+    <string name="cancel_after_add">Close Popup after adding</string>
+    <string name="monite_clipboard">Monitor Clipboard</string>
+    <string name="title_plans_manager_str">Plans Manager</string>
+    <string name="str_share">Share</string>
+    <string name="str_added">Added</string>
+    <string name="str_add_rich_text">Add rich</string>
+    <string name="str_rich_text_to_plain">Rich text to plain</string>
+    <string name="str_failed_add">Failed! Please check plan settings.</string>
+    <string name="str_no_dictionary_in_solution" formatted="true">The dictionary \"%s\" selected in the \"%s\" solution does not exist. Please check if it needs to be re-imported.</string>
+    <string name="str_no_dictionary" formatted="true">The dictionary \"%s\" does not exist, please check if you need to re-import the dictionary.</string>
+    <string name="str_plan_name_should_not_be_blank">Plan name can\'t be blank!</string>
+    <string name="plan_already_exists">Plan name already exists!</string>
+    <string name="dialog_note">Note</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="username">Username</string>
+    <string name="activationcode">Activation Code</string>
+    <string name="btn_activate">Activate</string>
+    <string name="btn_activated">Be Activated</string>
+    <string name="machinecode">Registration Code</string>
+    <string name="dialog_tag">Tag(seperated by\',\')</string>
+    <string name="tag_cant_be_blank">Tag can\'t be blank!</string>
+    <string name="definition_not_found">Definition not found</string>
+    <string name="str_about">About</string>
+    <string name="about_message">I\'m Zha Maomiao(aka mmjang), this project is open-sourced. <a href="https://github.com/mmjang/ankihelper">Check it out on github.</a></string>
+    <string name="confirm_deletion">Delete?</string>
+    <string name="save_plan_error_all_blank">Failed to save. All fields are empty!</string>
+    <string name="plan_anki_not_started">please start ankidroid first!</string>
+    <string name="str_ankidroid_directory_setting">1. Open AnkiDroid: Settings > Advanced > AnkiDroid Directory\n2. Click OK and select the AnkiDroid directory.</string>
+    <string name="open_ankidroid">Open AnkiDroid</string>
+    <string name="title_custom_dicitonary_str">Custom Dictionaries</string>
+    <string name="title_mdict_str">📗Mdx Dict</string>
+    <string name="title_activity_mdict_editor">Mdict editor</string>
+    <string name="title_tango_str">📘Tango Dict</string>
+    <string name="title_popupwindow_settings_str">📰Popup Window Settings</string>
+    <string name="title_floating_settings_str">🛸Floating Button</string>
+    <string name="title_intelligencewindow_settings_str">🧠Intelligence</string>
+    <string name="title_matheditor_window_str">📝Latex Editor</string>
+    <string name="title_custom_fanyi_engine_api">🐻Translation Engine</string>
+    <string name="tv_ocr_helper">OCR</string>
+    <string name="btn_tess_str">Tesseract OCR</string>
+    <string name="btn_tess_data_str">tessdata</string>
+    <string name="info_downloaded"> downloaded</string>
+    <string name="name_mathpix_ocr">Mathpix</string>
+    <string name="btn_open_mlkit_ocrwindow_settings_str">ML-kit</string>
+    <string name="til_ocr_hint_processing">...</string>
+    <string name="til_ocr_hint_result">Content:</string>
+    <string name="tv_popup_font_size">BigBang font size: %d</string>
+    <string name="switch_floating">Open the floating Ball</string>
+    <string name="switch_pin_floating">Pin-up📌</string>
+    <string name="switch_floating_auto_side">Auto side</string>
+    <string name="tv_open_accessibility">Accessibility service</string>
+    <string name="tv_kill_battery">Kill Battery</string>
+    <string name="tv_open_overlays">Overlays Permission</string>
+    <string name="switch_clear_searched">Clear copied text after Search</string>
+    <string name="switch_floating_snip_search">Snip/Search switch</string>
+    <string name="switch_copy_marked">Copy marked text</string>
+    <string name="tv_popup_toolbar_buttons">Toolbar buttons</string>
+    <string name="tv_webview_context_menu">Context Menu</string>
+    <string name="tv_popup_floating">Floating</string>
+    <string name="tv_popup_sideline">Side Line</string>
+    <string name="width">Width</string>
+    <string name="height">Height</string>
+    <string name="tv_popup_plan_and_deck">Plan &#38; Deck</string>
+    <string name="tv_popup_text">Text</string>
+    <string name="tv_other">Other</string>
+    <string name="switch_popup_symbol">Allow selecting symbol</string>
+    <string name="switch_merge_bold_tags">Merge bold tags(Selections)</string>
+    <string name="switch_popup_auto_search">Automatic search</string>
+    <string name="switch_automatic_translation">Automatic translation</string>
+    <string name="switch_automatic_recognition">Automatic recognition</string>
+    <string name="switch_popup_add_scroll_bottom">Bottom</string>
+    <string name="switch_popup_add_search">Search</string>
+    <string name="switch_popup_add_note">Note</string>
+    <string name="tv_preview">Preview</string>
+    <string name="switch_popup_add_tag">Tag</string>
+    <string name="switch_popup_add_copy">Copy</string>
+    <string name="tv_floating_alpha">Alpha</string>
+    <string name="tv_floating_hovering">Hovering<i>(ms)</i></string>
+    <string name="tv_floating_size">Floating Size</string>
+    <string name="str_clear_cache">Clear cache</string>
+    <string name="tv_customize_your_plan_list">Customize your plan list</string>
+    <string name="tv_customize_your_deck_list">Customize your deck list</string>
+    <string name="toast_keep_at_least_one_plan">Keep at least one plan</string>
+    <string name="toast_keep_at_least_one_deck">Keep at least one deck</string>
+    <string name="toast_failed_to_get_plan_list">Failed to get plan list</string>
+    <string name="toast_failed_to_get_deck_list">Failed to get deck list</string>
+    <string name="tv_choose_translation_engine">Choose translation engine</string>
+    <string name="tv_select_mathpix_request_parameters">Select the request parameters</string>
+    <string name="tv_cache_has_been_clear">Cache has been clear</string>
+    <string name="switch_popup_deck">Allow selecting deck</string>
+    <string name="switch_popup_ignoree_deck_plan">Ignore the deck of plan</string>
+    <string name="title_activity_tango_location_editor">Tango location editor</string>
+    <string name="add_custom_dictionary_str">Import custom dictionary</string>
+    <string name="delete_all_custom_dictionary">Clear imported dictionaries</string>
+    <string name="delete_all_mdict">Clear imported dictionaries</string>
+    <string name="confirm_add_default_plan">No plans found, add default?</string>
+    <string name="confirm_use_mathpix">Use Mathpix？</string>
+    <string name="default_plan_added">Default plan added, check out at plans manager</string>
+    <string name="str_ankidroid_path">AnkiDroid Directory</string>
+    <string name="btn_activation_str">Activation</string>
+    <string name="btn_help_str">Help</string>
+    <string name="btn_about_and_support_str"></string>
+    <string name="confirm_add_default_plan_when_exists_already">Add default plan?</string>
+    <string name="adding_default_plan_str">Add default</string>
+    <string name="duplicate_plan_name_complain">Default plan already exists, delete it in plans manager first.</string>
+    <string name="toast_no_available_plan">No usable plan, add one in the main window of ankihelper.</string>
+    <string name="left_hand_mode">Left Hand Mode</string>
+    <string name="str_add_qq_group">Join QQ Group</string>
+    <string name="str_clipboard_service_running">Clipboard Monitor is Running</string>
+    <string name="str_field_map">Fields Mapping\\Mode:</string>
+    <string name="str_field_map_normal">Normal</string>
+    <string name="str_field_map_append">Append</string>
+    <string name="note_mode_create">Create</string>
+    <string name="note_mode_append">Append</string>
+    <string name="note_mode_replace">Replace</string>
+    <string name="dark_mode_system">System</string>
+    <string name="dark_mode_light">Light</string>
+    <string name="dark_mode_dark">Dark</string>
+    <string name="color_theme_green">Sea green</string>
+    <string name="color_theme_blue">Dodger blue</string>
+    <string name="color_theme_pink">Rosy brown</string>
+    <string name="str_only_one_plan_cant_switch">There is only one plan, not switchable.</string>
+    <string name="str_btn_open_random_quote">Random Content</string>
+    <string name="str_dark_mode_q">Dark Mode</string>
+    <string name="str_color_theme_q">Color Theme</string>
+    <string name="str_error_noteid">Failed to add note id</string>
+    <string name="str_error_notetype_noncompatible">Note failed to update. Note type not compatible</string>
+    <string name="str_note_updated">Note updated!</string>
+    <string name="str_error_note_update">Note failed to update!</string>
+    <string name="str_cancel_note_add">Canceled</string>
+    <string name="error_note_cancel">Failed to cancel</string>
+    <string name="str_not_cancelable_append_mode">No cancellable in append mode</string>
+    <string name="str_switch_plans">Switch Model Id</string>
+    <string name="str_export_plans">Export plans to clipboard</string>
+    <string name="str_import_plans">Import plans from clipbaord</string>
+    <string name="str_delete_all_plans">Clear imported plans</string>
+    <string name="toast_import_multi">Importing takes more time, waiting please.</string>
+    <string name="title_activity_stat">📈Statistics</string>
+    <string name="large_text" translatable="false">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="str_chart_title_hour_stat">By Hours</string>
+    <string name="str_time_period">Period: </string>
+    <string name="str_last_days_stat">By Days</string>
+    <string name="str_show_already_read">不显示已阅内容</string>
+    <string name="str_check_ankidroid_permisson">无法连接 Ankidroid 数据库，请检查并打开 Ankidroid 的自启动和应用间唤醒等权限</string>
+    <string name="epub_reader">EPUB Reader</string>
+    <string name="epub_reader_label">EPUB Reader</string>
+    <string name="menu_title_statistics">Statistics</string>
+    <string name="str_use_as_default_tags">作为默认标签</string>
+    <string name="custom_baidu_translation_introduction"><b>百度翻译API</b>\n每月5万总字符的限额，如果使用翻译功能时出现带 recharge 字样的报错，则需要自行申请一个<a href="https://jingyan.baidu.com/article/219f4bf7bdb028de442d38e1.html">百度翻译API秘钥</a>填入下方。</string>
+    <string name="custom_mathpix_ocr_introduction"><b>Mathpix API</b></string>
+    <string name="custom_microsoft_translation_introduction"><b>微软翻译API</b>\n每月不知道多少万总字符的限额，可以自行申请一个<a href="https://cn.bing.com/partners/developers">微软翻译API秘钥</a>填入下方。</string>
+    <string name="custom_caiyun_translation_introduction"><b>彩云小译API</b>\n每月100万总字符的限额，自行申请一个<a href="https://caiyunapp.com">API秘钥</a>填入下方。</string>
+    <string name="custom_youdao_translation_introduction"><b>有道翻译API</b>\n不免费，自行申请一个<a href="https://ai.youdao.com">API</a>填入下方。</string>
+    <string name="set_mdictionary_introduction">目前有限支持DictTango的"前台服务"。</string>
+    <string name="str_clipboard_service_running_version_q">Copy text and click this notification</string>
+    <!--PlayAudioManager-->
+    <string name="play_no_audio">No audio, Select a definition please.</string>
+    <string name="play_pronounciation_failed">Pronunciation failed</string>
+    <string name="downlaod_completed">Download Completed!</string>
+
+    <string name="title_activity_location_manager">定位管理器</string>
+    <string name="tv_locator_dict_name">词典名：</string>
+    <string name="tv_locator_css_name">CSS文件：</string>
+    <string name="tv_locator_js_name">JS文件：</string>
+    <string name="tv_mdict_custom_fields">自定义项：</string>
+    <string name="title_activity_location_editor">定位编辑器</string>
+    <string name="tv_choose_language_name">语言：</string>
+    <string name="tv_choose_script_charactor">文字：</string>
+    <string name="tv_choose_language_pronounce_picked_sentence">Pronunciation Of the Sentence Picked：</string>
+    <string name="tv_translation_engine">翻译引擎：</string>
+    <string name="tv_capture_result_edit_mode">编辑模式：</string>
+    <string name="tv_note_mode">笔记模式：</string>
+    <string name="str_locator_field_map">定位映射：</string>
+    <string name="locator_dict_name_already_exists">词典名已存在!</string>
+    <string name="str_locator_dict_name_should_not_be_blank">词典名不能为空</string>
+    <string name="str_string_segment_format_error">format error: Field names can include letters, numbers, and a single plus sign, with the @ symbol as a delimiter. Only one field is allowed to be prefixed with a plus sign for adding a card.</string>
+    <string name="str_error_missing_plus">Missing Plus field required for submission, e.g., +Definition</string>
+    <string name="str_error_missing_keyword_fields">Necessary field is missing: 关键字</string>
+    <string name="str_error_duplicate_fields">Duplicate fields detected</string>
+    <string name="save_selector_error_all_blank">保存失败，输出字段不能全部为空！</string>
+    <string name="dir_no_exist">The folder does not exist.</string>
+    <string name="capture_tips">Take a screenshot of the area on the screen</string>
+    <string name="capture_all">Click TO Capture Full Screen</string>
+    <string name="capture_type_rect">Rectangular selection</string>
+    <string name="capture_type_free">Curve selection</string>
+    <string name="click_to_edit">When complete edit, long press or click the Bigbang to start word segment</string>
+    <string name="ask_again">Please give application necessary permissions to let it works properly。</string>
+    <string name="perm_tip">Lack of running the required permissions \n please click on the "Settings" - "authority" - open access \n then click the back button to return to this page。</string>
+    <string name="setting">setting</string>
+
+    <string name="text_recognition_chinese">Chinese</string>
+    <string name="load_mdict_error_version">Failed to load, the version is less than 2.0, not implements yet.</string>
+
+</resources>
