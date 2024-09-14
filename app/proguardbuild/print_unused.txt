@@ -8523,6 +8523,7 @@ com.mmjang.ankihelper.domain.PronounceManager:
     public static final int SOUND_SOURCE_YOUDAO
     public void <init>()
     public void PronounceManager()
+    public static int getDictInformationSize()
 com.mmjang.ankihelper.domain.ScreenListener:
     public void unregisterListener()
 com.mmjang.ankihelper.domain.SettingsChangeContentObserver
@@ -8618,7 +8619,7 @@ com.mmjang.ankihelper.ui.popup.MdxCustomActionWebView:
     private static final java.lang.String CUSTOM_MENU_JS_INTERFACE
     private boolean isMenuStayingCutomMenuList(android.view.MenuItem)
     private boolean isMenuStayingMenuList(android.view.MenuItem)
-com.mmjang.ankihelper.ui.popup.PopupActivity$44:
+com.mmjang.ankihelper.ui.popup.PopupActivity$45:
     public void onClick(java.lang.String,java.lang.String,java.lang.String)
 com.mmjang.ankihelper.ui.share.AppInfo
 com.mmjang.ankihelper.ui.share.AppInfoAdapter$ViewHolder

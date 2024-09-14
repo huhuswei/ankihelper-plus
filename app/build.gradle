@@ -43,9 +43,9 @@ android {
     signingConfigs {
         release {
             keyAlias 'key0'
-            keyPassword 'ss4235087'
+//            keyPassword 'ss4235087'
             storeFile file('/Volumes/m/Documents/keys/ankihelperKey.jks')
-            storePassword 'ss4235087'
+//            storePassword 'ss4235087'
         }
     }
 

@@ -38,6 +38,8 @@
                 android:textStyle="bold"
                 android:gravity="left"/>
 
+            <View style="@style/Divider" />
+
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -127,8 +129,9 @@
                 android:paddingBottom="8dp"
                 android:textColor="@color/secondary_text"
                 android:textStyle="bold"
-
                 android:gravity="left"/>
+
+            <View style="@style/Divider" />
 
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
@@ -234,6 +237,8 @@
                 android:textStyle="bold"
                 android:gravity="left"/>
 
+            <View style="@style/Divider" />
+
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -308,6 +313,8 @@
                 android:textColor="@color/secondary_text"
                 android:textStyle="bold"
                 android:gravity="left"/>
+
+            <View style="@style/Divider" />
 
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
@@ -442,6 +449,8 @@
                 android:textStyle="bold"
                 android:gravity="left"/>
 
+            <View style="@style/Divider" />
+
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -455,6 +464,7 @@
                 android:paddingLeft="16dp"
                 android:textColor="@color/primary_text"
                 android:textSize="16sp" />
+
             </com.balysv.materialripple.MaterialRippleLayout>
 
         </LinearLayout>

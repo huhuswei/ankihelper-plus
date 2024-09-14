@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -29,6 +30,7 @@ import android.speech.tts.UtteranceProgressListener;
 import android.speech.tts.Voice;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.TextUtils;
@@ -599,7 +601,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
             visible = View.GONE;
         mBtnFooterCopy.setVisibility(visible);
 
-        if(settings.getLeftHandModeQ() || !settings.get(Settings.POPUP_SWITCH_AUTO_SEARCH, true))
+//        if(settings.getLeftHandModeQ() || !settings.get(Settings.POPUP_SWITCH_AUTO_SEARCH, true))
             btnSearch.setVisibility(View.VISIBLE);
 
 
@@ -820,6 +822,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         pickedSentencePronouceLanguageIndex = settings.getRestorePronounceSpinnerIndex(Settings.ACTION_LONGCLICK, type, currentDictionary.isExistAudioUrl(), toLoadTTS);
         if(pickedSentencePronouceLanguageIndex == -1 || pickedSentencePronouceLanguageIndex >= languages.length) {
             pickedSentencePronouceLanguageIndex = PronounceManager.getSoundInforIndexByList(type) != -1 ? PronounceManager.getSoundInforIndexByList(type) : 0;
+            settings.setRestorePronounceSpinnerIndex(Settings.ACTION_LONGCLICK, pickedSentencePronouceLanguageIndex, type, currentDictionary.isExistAudioUrl(), toLoadTTS);
         }
     }
 
@@ -1165,6 +1168,15 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                 }
         );
 
+        btnSearch.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(!TextUtils.isEmpty(mTextToProcess))
+                    setupEditSentenceDialog();
+                return true;
+            }
+        });
+
         btnSetTangoDict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1326,8 +1338,8 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         acTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (btnSearch.getVisibility() != View.VISIBLE)
-                    btnSearch.setVisibility(View.VISIBLE);
+//                if (btnSearch.getVisibility() != View.VISIBLE)
+//                    btnSearch.setVisibility(View.VISIBLE);
                 return false;
             }
         });
@@ -3208,7 +3220,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         LinearLayout tagArrAWLL, performEditArrLL, containerLl, viewerOnContainerLl;//, editorOnContainerLl;
 
         result = (NoteEditText) dialogView.findViewById(R.id.result_net);
-        result.setBackgroundResource(R.drawable.edit_background);
+        result.setBackgroundResource(R.drawable.backgroup_cursor);
         result.setHorizontallyScrolling(false);
         result.setText(mNoteEditedByUser);
         result.setSelection(mNoteEditedByUser.length());
@@ -3309,6 +3321,8 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         performEditArrLL = dialogView.findViewById(R.id.layout_perform_edit_buttons);
         PerformEdit performEdit = new PerformEdit(result);
         for (PerformEditButton.ActionEnum action : PerformEditButton.ActionEnum.values()) {
+            if(action == PerformEditButton.ActionEnum.format) continue;
+
             final PerformEditButton btn = new PerformEditButton(PopupActivity.this);
             btn.setupPerformEditAction(action, performEdit);
 
@@ -3409,6 +3423,127 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         dialogBuilder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 mNoteEditedByUser = result.getText().toString().replaceAll("\\n|\\r|\\t", "");
+            }
+        });
+//                        dialogBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int whichButton) {
+//                                //pass
+//                            }
+//                        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+    }
+
+
+    private void setupEditSentenceDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(PopupActivity.this);
+        LayoutInflater inflater = PopupActivity.this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_edit_sentence, null);
+        dialogBuilder.setView(dialogView);
+
+        NoteEditText result;
+//        TextView tilHint;
+        LinearLayout performEditArrLL; //tagArrAWLL, containerLl, viewerOnContainerLl;//, editorOnContainerLl;
+
+        result = (NoteEditText) dialogView.findViewById(R.id.result_net);
+        result.setBackgroundResource(R.drawable.backgroup_cursor);
+        result.setHorizontallyScrolling(false);
+        result.setTextSize(settings.getPopupFontSize());
+        result.setLines(320/settings.getPopupFontSize());
+        result.setText(mTextToProcess);
+        result.setSelection(mTextToProcess.length());
+        result.requestFocus();
+        result.post(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(result, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
+//        containerLl = (LinearLayout) dialogView.findViewById(R.id.layout_container);
+//        editorOnContainerLl = (LinearLayout) dialogView.findViewById(R.id.layout_container_edit);
+//        tilHint = (TextView) dialogView.findViewById(R.id.ocr_result_key);
+
+        //获取屏幕的宽高
+        heightDpChanged = ScreenUtils.getAvailableScreenHeight(PopupActivity.this);
+        widthDpChanged = ScreenUtils.getScreenWidth(PopupActivity.this);
+
+        // viewerOnContainerLl containerLl布局
+        //根据屏幕旋转状态设置布局参数
+        //横屏状态
+//        if (getResources().getConfiguration().orientation != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+//            heightDpChanged = heightDpChanged * 25 / 100 * heightDpChanged / NORMAL_HEIGHT;
+//            result.setMaxHeight(heightDpChanged * 2);
+//
+//            containerLl.setOrientation(LinearLayout.HORIZONTAL);
+//            //竖屏状态
+//        } else {
+//            heightDpChanged = heightDpChanged * 10 / 100 * heightDpChanged / NORMAL_HEIGHT;
+//            result.setMaxHeight(heightDpChanged * 2);
+//
+//            containerLl.setOrientation(LinearLayout.VERTICAL);
+//        }
+
+        DisplayMetrics localDisplayMetrics = new DisplayMetrics();
+        ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(localDisplayMetrics);
+
+        //start--标签按钮和和撤回按钮
+//        MLLabel[] mixTagArr = ArrayUtils.concat(Constant.latexTagArr, Constant.htmlTagArr);
+//        for (MLLabel tag : mixTagArr) {
+//            final MLLabelButton btn = new MLLabelButton(PopupActivity.this);
+//            btn.setupHtmlTag(result, tag);
+//            Paint p = btn.getPaint();
+//            p.setTypeface(btn.getTypeface());
+//            p.setTextSize(btn.getTextSize());
+//            float needWidth = btn.getPaddingLeft() + btn.getPaddingRight() + p.measureText(btn.getText().toString());
+//        }
+
+        performEditArrLL = dialogView.findViewById(R.id.layout_perform_edit_buttons);
+        PerformEdit performEdit = new PerformEdit(result);
+        for (PerformEditButton.ActionEnum action : PerformEditButton.ActionEnum.values()) {
+            if(action == PerformEditButton.ActionEnum.format) continue;
+
+            final PerformEditButton btn = new PerformEditButton(PopupActivity.this);
+            btn.setupPerformEditAction(action, performEdit);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            params.gravity = Gravity.CENTER_HORIZONTAL;
+            params.leftMargin = ScreenUtils.dp2px(getApplicationContext(), 2);
+            params.rightMargin = ScreenUtils.dp2px(getApplicationContext(), 2);
+            params.height = ScreenUtils.dp2px(getApplicationContext(), 24);
+            params.width = ScreenUtils.dp2px(getApplicationContext(), 24);
+            performEditArrLL.addView(btn, params);
+        }
+        //end
+
+        result.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+//                UrlCountUtil.onEvent(UrlCountUtil.CLICK_CAPTURERESULT_OCRRESULT);
+//                if (!TextUtils.isEmpty(ocrResult.getText())) {
+//                    Intent intent = new Intent(CaptureResultActivity.this, BigBangActivity.class);
+//                    intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.putExtra(BigBangActivity.TO_SPLIT_STR, ocrResult.getText().toString());
+//                    startActivity(intent);
+//                    finish();
+//                }
+                return true;
+            }
+
+        });
+
+        dialogBuilder.setTitle(null);
+        //dialogBuilder.setMessage("输入笔记");
+        dialogBuilder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String text = result.getText().toString().trim();//replaceAll("\\n|\\r|\\t", "");
+                if(!TextUtils.isEmpty(text)) {
+                    mTextToProcess = text;
+                    populateWordSelectBox();
+                }
             }
         });
 //                        dialogBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -4050,7 +4185,10 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                 public void onStop(String utteranceId, boolean interrupted) {
                     super.onStop(utteranceId, interrupted);
                     String text = recordsMap.get(utteranceId);
-                    mTts.synthesizeToFile(text, null, new File(utteranceId), utteranceId);
+                    if(!TextUtils.isEmpty(text)) {
+                        Trace.i("onStop", text);
+                        mTts.synthesizeToFile(text, null, new File(utteranceId), utteranceId);
+                    }
 //                    mTts.stop();
 //                    mTts.shutdown();
                 }
@@ -4303,30 +4441,28 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         return StringUtil.htmlTagFilter(content);
     }
 
-    private void changePronounceToSpinner(String word) {
-        if(word.isEmpty() || currentDictionary == null)
-            return;
-
-        int type = getTypeCurrentDictionary();
-        int index = settings.getRestorePronounceSpinnerIndex(Settings.ACTION_CLICK, type, currentDictionary.isExistAudioUrl(), toLoadTTS);
-        String[] languages = PronounceManager.getAvailablePronounceLanguage(currentDictionary, toLoadTTS);
-        //根据文字判断语言并切换发音spinner
-        if (!(currentDictionary.isExistAudioUrl() &&
-                (pronounceLanguageSpinner.getSelectedItemPosition() == PronounceManager.getDictInformationSize() - 1))) {
-
-            if(index == -1 || index >= languages.length -1) {
-                index = PronounceManager.getSoundInforIndexByList(type);
-            }
-            pronounceLanguageSpinner.setSelection(index);
-            pickedSentencePronouceLanguageIndex = settings.getRestorePronounceSpinnerIndex(Settings.ACTION_LONGCLICK, type, currentDictionary.isExistAudioUrl(), toLoadTTS);;
-            if(pickedSentencePronouceLanguageIndex == -1 || pickedSentencePronouceLanguageIndex >= languages.length -1) {
-                pickedSentencePronouceLanguageIndex = PronounceManager.getSoundInforIndexByList(type) != -1 ? PronounceManager.getSoundInforIndexByList(type) : 0;
-            }
-        }
-//        Trace.e("changePronounce",
-//                String.format("%s is in %s",
-//                        word, (String) pronounceLanguageSpinner.getSelectedItem()));
-    }
+//    private void changePronounceToSpinner(String word) {
+//        if(word.isEmpty() || currentDictionary == null)
+//            return;
+//
+//        int type = getTypeCurrentDictionary();
+//        int index = settings.getRestorePronounceSpinnerIndex(Settings.ACTION_CLICK, type, currentDictionary.isExistAudioUrl(), toLoadTTS);
+//        String[] languages = PronounceManager.getAvailablePronounceLanguage(currentDictionary, toLoadTTS);
+//        //根据文字判断语言并切换发音spinner
+//        if (!(currentDictionary.isExistAudioUrl() &&
+//                (pronounceLanguageSpinner.getSelectedItemPosition() == PronounceManager.getDictInformationSize() - 1))) {
+//
+//            if(index == -1 || index >= languages.length -1) {
+//                index = PronounceManager.getSoundInforIndexByList(type);
+//            }
+//            pronounceLanguageSpinner.setSelection(index);
+//            pickedSentencePronouceLanguageIndex = settings.getRestorePronounceSpinnerIndex(Settings.ACTION_LONGCLICK, type, currentDictionary.isExistAudioUrl(), toLoadTTS);;
+//            if(pickedSentencePronouceLanguageIndex == -1 || pickedSentencePronouceLanguageIndex >= languages.length -1) {
+//                pickedSentencePronouceLanguageIndex = PronounceManager.getSoundInforIndexByList(type) != -1 ? PronounceManager.getSoundInforIndexByList(type) : 0;
+//                settings.setRestorePronounceSpinnerIndex(Settings.ACTION_LONGCLICK, pickedSentencePronouceLanguageIndex, type, currentDictionary.isExistAudioUrl(), toLoadTTS);
+//            }
+//        }
+//    }
 
     private int getTypeCurrentDictionary() {
         if (currentDictionary == null) return DictLanguageType.NAN;

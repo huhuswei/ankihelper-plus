@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:hint="@string/til_ocr_hint_result"
+            android:gravity="left">
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/layout_perform_edit_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:isScrollContainer="true"
+            android:orientation="horizontal" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+                <com.mmjang.ankihelper.widget.NoteEditText
+                    android:id="@+id/result_net"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingLeft="@dimen/margin_normal"
+                    android:paddingRight="@dimen/margin_normal"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/primary_text"
+                    android:background="@drawable/no_solid_background" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

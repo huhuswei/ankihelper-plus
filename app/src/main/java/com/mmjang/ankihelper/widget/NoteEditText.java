@@ -36,7 +36,7 @@ public class NoteEditText extends TextInputEditText {
     }
 
     private void init() {
-        setPadding(86,getPaddingTop(),10,getPaddingBottom());
+        setPadding(60,getPaddingTop(),10,getPaddingBottom());
         setGravity(Gravity.TOP|Gravity.START);
     }
 
@@ -74,7 +74,7 @@ public class NoteEditText extends TextInputEditText {
         for (int i=0;i<lineCount;i++){
             int lineBottom = getLayout().getLineBottom(i);
             String serial;
-            if(i < 999)
+            if(i < 99)
                 serial = String.valueOf(i+1);
             else
                 serial = "🤡";

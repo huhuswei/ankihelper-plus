@@ -68,6 +68,19 @@
 <!--                        </intent-filter>-->
 <!--        </activity>-->
 
+        <activity-alias
+            android:name=".ui.popup.PopupActivity"
+            android:targetActivity=".ui.popup.PopupActivity"
+            android:exported="true"
+            android:label="@string/popup_name"
+            android:icon="@drawable/ic_launcher"
+            android:theme="@style/Transparent"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
         <activity
             android:name=".ui.popup.PopupActivity"
             android:excludeFromRecents="true"
@@ -78,10 +91,6 @@
             android:noHistory="true"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -236,8 +245,9 @@
                 android:resource="@xml/assist_service" />
         </service>
 
-        <activity
+        <activity-alias
             android:name=".ui.floating.screenshot.ScreenCaptureActivity"
+            android:targetActivity=".ui.floating.screenshot.ScreenCaptureActivity"
             android:label="@string/screenshot_name"
             android:icon="@drawable/print_screen"
             android:excludeFromRecents="true"
@@ -247,6 +257,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity-alias>
+        <activity
+            android:name=".ui.floating.screenshot.ScreenCaptureActivity"
+            android:label="@string/screenshot_name"
+            android:icon="@drawable/print_screen"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/ScreenCaptureTheme">
         </activity>
         <activity
             android:name=".ui.floating.screenshot.CaptureResultActivity"

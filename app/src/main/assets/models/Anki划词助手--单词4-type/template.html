@@ -1,6 +1,6 @@
 单词
 @@@
-Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|Remarks
+Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|type|Remarks
 @@@
 <div class="tango">
     <a href="javascript:getSelectionTextAndSearch()">
@@ -21,8 +21,10 @@ Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|Remarks
 </div>
 
 <br/><br/><br/><br/>
+{{#type}}
+<div class="complex"><div class="center-text"><div class="keyword-type">{{type:type}}</div></div></div>
+{{/type}}
 {{#释义}}{{释义}}{{/释义}}
-
 <br/>
 <div style="display:none">
     {{#自动发音}}{{自动发音}}{{/自动发音}}
@@ -51,13 +53,17 @@ Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|Remarks
 <br/><br/><br/><br/>
 
 <br/>
-
 <xs>
+    {{#type}}<animate class="slide">
+    <div class="complex"><div class="center-text"><div class="keyword">{{type:type}}</div></div></div></animate>
+    {{/type}}
     {{#释义}}{{释义}}{{/释义}}
     <animate class="slide">
-    {{#摘取例句加粗}}{{摘取例句加粗}}{{/摘取例句加粗}}
-    {{#例句}}{{例句}}{{/例句}}
+        {{#摘取例句加粗}}{{摘取例句加粗}}{{/摘取例句加粗}}
+        {{#例句}}{{例句}}{{/例句}}
     </animate>
+
+
 </xs>
 
 <div class="huaci">
@@ -167,7 +173,12 @@ Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|Remarks
     }
 
 </script>
+
 @@@
+.center-text {
+text-align: center;
+}
+
 .card {
 font-family          :serif;
 font-size              : 20px;
@@ -282,22 +293,28 @@ box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
 border-color: rgba(162, 179, 207, 0.2) !important;
 }
 
-.complex .pronunciation,
-.complex .sense,
 .complex .misc-content{
-  display:block;
+display:block;
 }
 
+.complex .keyword,
+.complex .pronunciation,
 .complex .definition,
 .complex .translation{
 display:none;
 /* display:block; */
 }
 
+xs .complex .pronunciation{
+display: inline-block;
+}
+
+xs .complex .keyword{
+display: inline-block;
+}
+
 xs .complex .definition,
 xs .complex .translation,
-xs .complex .pronunciation,
-xs .complex .sense,
 xs .complex .misc-content{
 display:block;
 }
