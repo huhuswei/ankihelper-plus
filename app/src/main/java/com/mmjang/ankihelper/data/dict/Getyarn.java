@@ -31,7 +31,7 @@ public class Getyarn implements IDictionary {
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_ORIGIN,
-            Constant.DICT_FILED_SENTENCE};
+            Constant.DICT_FIELD_SENTENCE};
 
     String indexHtml = "https://getyarn.io";
     String vIndexHtml = "https://y.yarn.co";

@@ -37,7 +37,6 @@ import com.mmjang.ankihelper.util.ColorThemeUtils;
 import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.ViewUtil;
-
 import java.util.List;
 
 
@@ -57,7 +56,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
     private SeekBar seekBarFloatingAlpha;
     private SeekBar seekBarFloatingHovering;
 
-//    private SeekBar seekBarSidelineWidth;
+    //    private SeekBar seekBarSidelineWidth;
 //    private SeekBar seekBarSidelineHeight;
     private SeekBar seekBarFloatingSize;
     private TextView textViewFloatBallAccessibility;
@@ -76,23 +75,24 @@ public class FloatingSettingActivity extends AppCompatActivity {
     int alpha = 100;
     int size = ViewUtil.dp2px(60);
     int hoveringTime = 200;
-//    int[] sidelineSize = {ViewUtil.dp2px(30), ViewUtil.dp2px(50)};
+    //    int[] sidelineSize = {ViewUtil.dp2px(30), ViewUtil.dp2px(50)};
     private static final int REQUEST_OVERLAYS_WINDOW = 2;
     private static final int REQUEST_ACCESSIBILITY_SETTINGS = 3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        if(Settings.getInstance(this).getPinkThemeQ()){
-//            setTheme(R.style.AppThemePink);
-//        }else{
-//            setTheme(R.style.AppTheme);
-//        }
         ColorThemeUtils.initColorTheme(FloatingSettingActivity.this);
         super.onCreate(savedInstanceState);
+
+        UserService userService = MyApplication.getShizukuService();
+        userService.addListeners();
+        userService.connectShizuku();
+
         ActivityUtil.checkStateForAnkiDroid(this);
         setContentView(R.layout.activity_floating_settings);
         checkAndRequestPermissions();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         settings = Settings.getInstance(MyApplication.getContext());
         textViewFloatBallAccessibility = (TextView) findViewById(R.id.tv_open_float_ball_accessibility);
@@ -101,8 +101,6 @@ public class FloatingSettingActivity extends AppCompatActivity {
         seekBarFloatingAlpha = (SeekBar) findViewById(R.id.sb_floating_alpha);
         seekBarFloatingHovering = (SeekBar) findViewById(R.id.sb_floating_hovering);
         seekBarFloatingSize = (SeekBar) findViewById(R.id.sb_floating_size);
-//        seekBarSidelineWidth = (SeekBar) findViewById(R.id.sb_sideline_width);
-//        seekBarSidelineHeight = (SeekBar) findViewById(R.id.sb_sideline_height);
         switchFloatBall = (SwitchCompat) findViewById(R.id.switch_float_ball);
         switchPinFloating = (SwitchCompat) findViewById(R.id.switch_pin_Floating);
         switchFloatingAutoSide = (SwitchCompat) findViewById(R.id.switch_Floating_auto_side);
@@ -112,6 +110,13 @@ public class FloatingSettingActivity extends AppCompatActivity {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 switchFloatBall.setChecked(settings.getFloatBallEnable());
+                if(switchFloatBall.isChecked()) {
+                    AssistFloatWindow.Companion.getInstance().show();
+                    MyApplication.getShizukuService().enabledAccessibilityService();
+                } else {
+                    AssistFloatWindow.Companion.getInstance().hide();
+                    MyApplication.getShizukuService().disabledAccessibilityService();
+                }
             }
         };
         //        startQSTileService();
@@ -122,10 +127,6 @@ public class FloatingSettingActivity extends AppCompatActivity {
         seekBarFloatingHovering.setMax(500);
         seekBarFloatingSize.setMin(ViewUtil.dp2px(20f));
         seekBarFloatingSize.setMax(ViewUtil.dp2px(100f));
-//        seekBarSidelineWidth.setMax(ScreenUtil.INSTANCE.getScreenWidthPixels(FloatingSettingActivity.this)/2);
-//        seekBarSidelineHeight.setMax(ScreenUtil.INSTANCE.getScreenHeightPixels(FloatingSettingActivity.this)/2);
-//        seekBarSidelineWidth.setMax(ViewUtil.dp2px(60f));
-//        seekBarSidelineHeight.setMax(ViewUtil.dp2px(80f));
         //设置初始值
         Settings settings = Settings.getInstance(getApplicationContext());
         switchFloatBall.setChecked(settings.getFloatBallEnable());
@@ -136,12 +137,10 @@ public class FloatingSettingActivity extends AppCompatActivity {
         seekBarFloatingAlpha.setEnabled(switchFloatBall.isChecked());
         seekBarFloatingSize.setEnabled(switchFloatBall.isChecked());
         seekBarFloatingHovering.setEnabled(switchFloatBall.isChecked());
-//        seekBarSidelineWidth.setEnabled(switchFloatBall.isChecked() && switchPinFloating.isChecked() && switchFloatingAutoSide.isChecked());
-//        seekBarSidelineHeight.setEnabled(switchFloatBall.isChecked() && switchPinFloating.isChecked() && switchFloatingAutoSide.isChecked());
         switchSnipSearch.setChecked(settings.get(Settings.FLOATING_SNIP_SEARCH_SWITCH, false));
         switchClearSearched.setEnabled(switchFloatBall.isChecked());
         switchClearSearched.setChecked(settings.getClearSearchedEnable());
-        alpha  = settings.getFloatingButtonAlpha();
+        alpha = settings.getFloatingButtonAlpha();
         hoveringTime = settings.get(Settings.FLOATING_HOVERING_MILLISECOND, Constant.FLOATING_HOVERING_DEFAULT_TIME_MS);
         size = settings.getFloatingButtonSize();
 //        sidelineSize = settings.getSidelineSize();
@@ -149,16 +148,16 @@ public class FloatingSettingActivity extends AppCompatActivity {
         seekBarFloatingAlpha.setProgress(alpha);
         seekBarFloatingHovering.setProgress(hoveringTime);
         seekBarFloatingSize.setProgress(size);
-//        seekBarSidelineWidth.setProgress(sidelineSize[0]);
-//        seekBarSidelineHeight.setProgress(sidelineSize[1]);
+
 
         seekBarFloatingAlpha.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 alpha = progress;
                 settings.setFloatingButtonAlpha(alpha);
-                if(settings.getFloatBallEnable())
+                if (settings.getFloatBallEnable()) {
                     AssistFloatWindow.Companion.getInstance().show();
+                }
             }
 
             @Override
@@ -195,7 +194,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 size = progress;
                 settings.setFloatingButtonSize(size);
-                if(settings.getFloatBallEnable())
+                if (settings.getFloatBallEnable())
                     AssistFloatWindow.Companion.getInstance().show();
             }
 
@@ -251,9 +250,13 @@ public class FloatingSettingActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(requestAccessibility()) {
-                            Toast.makeText(FloatingSettingActivity.this, "辅助服务已打开", Toast.LENGTH_LONG).show();
-
+                        switch (requestAccessibility()) {
+                            case REQUEST_SUCCESS_SHIZUKU_SERVICE:
+                                Toast.makeText(FloatingSettingActivity.this, "Shizuku连接正常（若悬浮按钮未显示，请检查授权情况）", Toast.LENGTH_LONG).show();
+                                break;
+                            case REQUEST_SUCCESS_ACCESSIBILITY_SERVICE:
+                                Toast.makeText(FloatingSettingActivity.this, "辅助服务已打开", Toast.LENGTH_LONG).show();
+                                break;
                         }
                     }
                 }
@@ -263,8 +266,8 @@ public class FloatingSettingActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(requestDrawOverLays()) {
-                            Toast.makeText(FloatingSettingActivity.this, "悬浮权限已打开", Toast.LENGTH_LONG).show();
+                        if (requestDrawOverLays()) {
+                            Toast.makeText(FloatingSettingActivity.this, "悬浮权限已打开", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -283,13 +286,15 @@ public class FloatingSettingActivity extends AppCompatActivity {
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(isChecked) {
-                            AssistFloatWindow.Companion.getInstance().show();
-                        } else {
-                            AssistFloatWindow.Companion.getInstance().hide();
-                        }
+//                        if (isChecked) {
+//                            AssistFloatWindow.Companion.getInstance().show();
+//                            MyApplication.getShizukuService().enabledAccessibilityService();
+//                        } else {
+//                            AssistFloatWindow.Companion.getInstance().hide();
+//                            MyApplication.getShizukuService().disabledAccessibilityService();
+//                        }
                         settings.setFloatBallEnable(isChecked);
-                        switchFloatBall.setChecked(isChecked);
+//                        switchFloatBall.setChecked(isChecked);
                         switchPinFloating.setEnabled(switchFloatBall.isChecked());
                         switchFloatingAutoSide.setEnabled(switchFloatBall.isChecked() && !switchPinFloating.isChecked());
                         seekBarFloatingAlpha.setEnabled(switchFloatBall.isChecked());
@@ -340,9 +345,9 @@ public class FloatingSettingActivity extends AppCompatActivity {
                 }
         );
 
-        if(getIntent().getAction() == TileService.ACTION_QS_TILE_PREFERENCES){
+        if (getIntent().getAction() == TileService.ACTION_QS_TILE_PREFERENCES) {
             ComponentName componentName = (ComponentName) getIntent().getExtras().get(Intent.EXTRA_COMPONENT_NAME);
-            if(componentName != null) {
+            if (componentName != null) {
                 try {
                     Object t = Class.forName(componentName.getClassName()).newInstance();
                     if (t instanceof QuickStartTileService)
@@ -393,18 +398,27 @@ public class FloatingSettingActivity extends AppCompatActivity {
             return true;
     }
 
-    public boolean requestAccessibility() {
-        AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> serviceInfos = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
-        for (AccessibilityServiceInfo info : serviceInfos) {
-            String id = info.getId();
-            if (id.contains(ASSIST_SERVICE_INFO_ID)) {
-                return true;
+    private static final int REQUEST_SUCCESS_ACCESSIBILITY_SERVICE = 0;
+    private static final int REQUEST_SUCCESS_SHIZUKU_SERVICE = 1;
+    private static final int REQUEST_FAILURE= -1;
+    public int requestAccessibility() {
+        if(MyApplication.getShizukuService().checkShizukuServiceState()) {
+            return REQUEST_SUCCESS_SHIZUKU_SERVICE;
+        } else {
+            AccessibilityManager am = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
+            List<AccessibilityServiceInfo> serviceInfos = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
+            for (AccessibilityServiceInfo info : serviceInfos) {
+                String id = info.getId();
+//            Trace.i("floating:" + id);
+                if (id.contains(ASSIST_SERVICE_INFO_ID)) {
+                    return REQUEST_SUCCESS_ACCESSIBILITY_SERVICE;
+                }
             }
+
+            Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
+            startActivityForResult(intent, REQUEST_ACCESSIBILITY_SETTINGS);
+            return REQUEST_FAILURE;
         }
-        Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
-        startActivityForResult(intent, REQUEST_ACCESSIBILITY_SETTINGS);
-        return false;
     }
 
     @SuppressLint("BatteryLife")
@@ -458,13 +472,15 @@ public class FloatingSettingActivity extends AppCompatActivity {
     }
 
     private void checkAndRequestPermissions() {
-        if(requestDrawOverLays()) {
+        if (requestDrawOverLays()) {
             Toast.makeText(FloatingSettingActivity.this, "悬浮权限已打开", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     protected void onResume() {
+        super.onResume();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
             boolean i = powerManager.isIgnoringBatteryOptimizations(this.getPackageName());
@@ -475,13 +491,27 @@ public class FloatingSettingActivity extends AppCompatActivity {
                 mrl.setVisibility(View.VISIBLE);
             }
         }
-        super.onResume();
+
+        if(settings.getFloatBallEnable() != switchFloatBall.isChecked()) {
+            settings.setFloatBallEnable(switchFloatBall.isChecked());
+        } else {
+            if (settings.getFloatBallEnable()) {
+                AssistFloatWindow.Companion.getInstance().show();
+                MyApplication.getShizukuService().enabledAccessibilityService();
+            } else {
+                AssistFloatWindow.Companion.getInstance().hide();
+                MyApplication.getShizukuService().disabledAccessibilityService();
+            }
+        }
+
         ActivityUtil.checkStateForAnkiDroid(this);
     }
 
+
+
     @Override
     protected void onDestroy() {
-        settings.getSharedPreferences().unregisterOnSharedPreferenceChangeListener(callbackSwitchFloatBall);
         super.onDestroy();
+        settings.getSharedPreferences().unregisterOnSharedPreferenceChangeListener(callbackSwitchFloatBall);
     }
 }

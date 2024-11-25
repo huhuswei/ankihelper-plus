@@ -22,6 +22,7 @@
     <string name="str_add_rich_text">添加富文本</string>
     <string name="str_rich_text_to_plain">转为纯文本</string>
     <string name="plan_already_exists">方案名冲突，请修改！</string>
+    <string name="cleared">已清空</string>
     <string name="dialog_note">笔记</string>
     <string name="dialog_ok">确定</string>
     <string name="dialog_tag">标签</string>
@@ -88,7 +89,7 @@
     <string name="tv_floating_alpha">透明度</string>
     <string name="tv_floating_hovering">悬停<i>（毫秒）</i></string>
     <string name="tv_floating_size">尺寸</string>
-    <string name="str_clear_cache">清除缓存</string>
+    <string name="str_clear_cache">🚽清空缓存</string>
     <string name="tv_customize_your_plan_list">定制方案列表</string>
     <string name="tv_customize_your_deck_list">定制牌组列表</string>
     <string name="toast_keep_at_least_one_deck">最少保留一个牌组</string>

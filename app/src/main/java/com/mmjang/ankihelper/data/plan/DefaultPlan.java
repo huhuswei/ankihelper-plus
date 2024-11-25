@@ -27,8 +27,6 @@ import com.mmjang.ankihelper.util.ToastUtil;
 import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.Utils;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -214,7 +212,7 @@ public class DefaultPlan {
                     Constant.DICT_FIELD_EMPTY + TAB + Constant.DICT_FIELD_EMPTY,
                     Constant.DICT_FIELD_SENTENCE_PICKED_BOLD + JOINT + Constant.DICT_FIELD_TRANSLATION + JOINT + Constant.DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_LINK + TAB + Constant.DICT_FIELD_EMPTY,
                     Constant.DICT_FIELD_EMPTY + TAB + Constant.DICT_FIELD_EMPTY,
-                    Constant.DICT_FIELD_KEY_DAV_OFFLINE_LINK + JOINT + Constant.DICT_FIELD_KEYWORD + JOINT + Constant.DICT_FILED_SENSE + JOINT + Constant.MDX_ADD_TAG + Constant.DICT_FIELD_DEFINITION + TAB + Constant.DICT_FIELD_KEY_DAV_OFFLINE_LINK + JOINT + Constant.DICT_FIELD_KEYWORD + JOINT + Constant.DICT_FILED_SENSE + JOINT + Constant.MDX_ADD_TAG + Constant.DICT_FIELD_DEFINITION,
+                    Constant.DICT_FIELD_KEY_DAV_OFFLINE_LINK + JOINT + Constant.DICT_FIELD_KEYWORD + JOINT + Constant.DICT_FIELD_SENSE + JOINT + Constant.MDX_ADD_TAG + Constant.DICT_FIELD_DEFINITION + TAB + Constant.DICT_FIELD_KEY_DAV_OFFLINE_LINK + JOINT + Constant.DICT_FIELD_KEYWORD + JOINT + Constant.DICT_FIELD_SENSE + JOINT + Constant.MDX_ADD_TAG + Constant.DICT_FIELD_DEFINITION,
                     Constant.DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG + TAB + Constant.DICT_FIELD_EMPTY,
                     Constant.DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_SOUNDTAG + TAB + Constant.DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG,
                     Constant.DICT_FIELD_URL + TAB + Constant.DICT_FIELD_EMPTY,

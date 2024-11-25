@@ -38,7 +38,7 @@ public class MdictManager {
     public static final String FAULT_CUSTOM_FIELDS = String.format(
             "%s@%s@%s",
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FILED_SENSE,
+            Constant.DICT_FIELD_SENSE,
             Constant.MDX_ADD_TAG + Constant.DICT_FIELD_DEFINITION);
 //            Constant.DICT_FIELD_CSS,
 //            Constant.DICT_FIELD_JS);

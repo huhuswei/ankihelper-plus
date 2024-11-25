@@ -439,23 +439,22 @@ public class CustomDictionaryActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_delete_all_custom_dictionary:
-                AlertDialog.Builder dlg = new AlertDialog.Builder(CustomDictionaryActivity.this);
-                dlg.setTitle(R.string.confirm_deletion).
-                        //.setMessage("Do you really want to whatever?")
-                                setIcon(android.R.drawable.ic_dialog_alert).
-                        setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                clearAllCustomDict();
-                            }
-                        }).setNegativeButton(android.R.string.no, null);
-                dlg.show();
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_item_delete_all_custom_dictionary) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(CustomDictionaryActivity.this);
+            dlg.setTitle(R.string.confirm_deletion).
+                    //.setMessage("Do you really want to whatever?")
+                            setIcon(android.R.drawable.ic_dialog_alert).
+                    setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            clearAllCustomDict();
+                        }
+                    }).setNegativeButton(android.R.string.no, null);
+            dlg.show();
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
+        } else if (itemId == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

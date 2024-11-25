@@ -28,49 +28,50 @@ public class TranslateBuilder {
     String result;
     Translator translator;
 
-    private static Class[] classList = new Class[]{
-            BaiduTranslator.class,
-            CaiyunTranslator.class,
-            YoudaoTranslator.class,
-            MicrosoftTranslator.class
-    };
-
-    public static String[] getNameArr()
-    {
-        ArrayList<String>  nameList = new ArrayList();
-        for(int index=0; index < classList.length; index++) {
-            try {
-                Translator translator = (Translator)classList[index].getConstructor().newInstance();
-                nameList.add(translator.name());
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        }
-        return nameList.toArray(new String[0]);
+    // 获取所有翻译器名称
+    public static String[] getNameArr() {
+        return new String[]{
+                new BaiduTranslator().name(),
+                new DeepLTranslator().name(),
+                new DeepLXTranslator().name(),
+                new CaiyunTranslator().name(),
+                new YoudaoTranslator().name(),
+                new MicrosoftTranslator().name()
+        };
     }
+
+    // 构造函数
     public TranslateBuilder(int index) {
-        try {
-            translator = (Translator) classList[index].getConstructor().newInstance();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
+        translator = createTranslator(index);
+        if (translator == null) {
+            throw new IllegalArgumentException("Invalid translator index: " + index);
+        }
+    }
+
+    // 创建翻译器实例
+    private Translator createTranslator(int index) {
+        switch (index) {
+            case 0:
+                return new BaiduTranslator();
+            case 1:
+                return new DeepLTranslator();
+            case 2:
+                return new DeepLXTranslator();
+            case 3:
+                return new CaiyunTranslator();
+            case 4:
+                return new YoudaoTranslator();
+            case 5:
+                return new MicrosoftTranslator();
+            default:
+                return null;
         }
     }
 
     public Translator getTranslator() {
         return this.translator;
     }
+
     public String getTextFromZhToEn(String text) {
         return translator.translate(text, translator.getZh(), translator.getEn());
     }

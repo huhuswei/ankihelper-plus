@@ -36,8 +36,8 @@ public class EudicSentence implements IDictionary {
     private static final String[] EXP_ELE =
             new String[] {
                     Constant.DICT_FIELD_KEYWORD,
-                    Constant.DICT_FILED_CHINESE_SENTENCE,
-                    Constant.DICT_FILED_SENTENCE,
+                    Constant.DICT_FIELD_CHINESE_SENTENCE,
+                    Constant.DICT_FIELD_SENTENCE,
                     /*"Vocab音频",*/
                     Constant.DICT_FIELD_ORIGIN,
 //                    "Card"
@@ -251,8 +251,8 @@ public class EudicSentence implements IDictionary {
 //                "%s");
 //                String.format(Constant.TPL_HTML_AUDIO_TAG, audioFileName + Constant.MP3_SUFFIX));
         eleMap.put(Constant.DICT_FIELD_KEYWORD, key);
-        eleMap.put(Constant.DICT_FILED_CHINESE_SENTENCE, cn);
-        eleMap.put(Constant.DICT_FILED_SENTENCE, en);
+        eleMap.put(Constant.DICT_FIELD_CHINESE_SENTENCE, cn);
+        eleMap.put(Constant.DICT_FIELD_SENTENCE, en);
 //        eleMap.put(EXP_ELE[3], audioTag);//test
         eleMap.put(Constant.DICT_FIELD_ORIGIN, title);
 //        eleMap.put(EXP_ELE[4], html);

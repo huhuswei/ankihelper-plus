@@ -15,7 +15,7 @@ public class Constant {
 
     public static final String[] TANGO_DEFAULT_FIELDS = new String[]{
             "body",
-            Constant.DICT_FILED_SENSE,
+            Constant.DICT_FIELD_SENSE,
             Constant.DICT_FIELD_PHONETICS,
             Constant.DICT_FIELD_DEFINITION,
     };
@@ -47,15 +47,17 @@ public class Constant {
     public static final String DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_SOUNDTAG = "摘取例句🔊💾▶️[Sound]";   //18
     public static final String DICT_FIELD_SENTENCE_PICKED_TTS_SOUNDTAG = "摘取例句🔊▶️[tts]";        //14
 
+    // deprecated
+//    public static final String DEPRECATED_DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG = "🔊|🎞💾▶️[Sound](🍏Remarks)";        //14
     //
 
     public static final String MDX_ADD_TAG ="+";
     public static final String DICT_FIELD_KEYWORD = "关键字";
     public static final String DICT_FIELD_PHONETICS = "音标";
     public static final String DICT_FIELD_DEFINITION = "释义";
-    public static final String DICT_FILED_SENSE = "词性";
-    public static final String DICT_FILED_CHINESE_SENTENCE = "例句中文";
-    public static final String DICT_FILED_SENTENCE = "例句";
+    public static final String DICT_FIELD_SENSE = "词性";
+    public static final String DICT_FIELD_CHINESE_SENTENCE = "例句中文";
+    public static final String DICT_FIELD_SENTENCE = "例句";
     public static final String DICT_FIELD_ORIGIN = "origin";
     public static final String DICT_FIELD_IMG = "🖼💾[img]";
 
@@ -78,22 +80,22 @@ public class Constant {
             DICT_FIELD_URL,// = "URL";                                                   //6
             DICT_FIELD_FULL_DEFINITIONS,// = "所有释义";                                   //7
             DICT_FIELD_TRANSLATION,// = "句子翻译";                                        //8
+            DICT_FIELD_KEY_TTS_SOUNDTAG,
             DICT_FIELD_KEY_DAV_ONLINE_LINK,// = "🔊|🎞🌐🔗";                               //9
-//            DICT_FIELD_KEY_DAV_ONLINE_AUDIOTAG,// = "🔊|🎞🌐▶️[Audio]",
-            DICT_FIELD_KEY_DAV_ONLINE_VIDEOTAG,// = "🔊|🎞🌐▶️[Video]";                    //x10
-            DICT_FIELD_KEY_DAV_ONLINE_SOUNDTAG,// = "🔊|🎞🌐▶️[Sound]";                    //11
             DICT_FIELD_KEY_DAV_OFFLINE_LINK,// = "🔊|🎞💾🔗";                              //x12
+//            DICT_FIELD_KEY_DAV_ONLINE_AUDIOTAG,// = "🔊|🎞🌐▶️[Audio]",
+//            DICT_FIELD_KEY_DAV_ONLINE_VIDEOTAG,// = "🔊|🎞🌐▶️[Video]";                    //x10
+            DICT_FIELD_KEY_DAV_ONLINE_SOUNDTAG,// = "🔊|🎞🌐▶️[Sound]";                    //11
 //            DICT_FIELD_KEY_DAV_OFFLINE_AUDIOTAG,// = "🔊|🎞💾▶️[Audio]";
-            DICT_FIELD_KEY_DAV_OFFLINE_VIDEOTAG,// = "🔊|🎞💾▶️[Video]";                   //13
+//            DICT_FIELD_KEY_DAV_OFFLINE_VIDEOTAG,// = "🔊|🎞💾▶️[Video]";                   //13
             DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG,// = "🔊|🎞💾▶️[Sound](🍏Remarks)";        //14
-//            DICT_FIELD_KEY_TTS_SOUNDTAG,
+            DICT_FIELD_SENTENCE_PICKED_TTS_SOUNDTAG,
             DICT_FIELD_SENTENCE_PICKED_DAV_ONLINE_LINK,// = "摘取例句🔊🌐🔗";               //15
+            DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_LINK,// = "摘取例句🔊💾🔗";              //x17
 //            DICT_FIELD_SENTENCE_PICKED_DAV_ONLINE_AUDIOTAG,// = "摘取例句🔊🌐▶️[Audio]";
             DICT_FIELD_SENTENCE_PICKED_DAV_ONLINE_SOUNDTAG,// = "摘取例句🔊🌐▶️[Sound]";    //16
-            DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_LINK,// = "摘取例句🔊💾🔗";              //x17
 //            DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_AUDIOTAG,// = "摘取例句🔊💾▶️[Audio]";   //18
             DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_SOUNDTAG,// = "摘取例句🔊💾▶️[Sound]";   //18
-//            DICT_FIELD_SENTENCE_PICKED_TTS_SOUNDTAG
 //            DICT_FIELD_COMPLEX_ONLINE,
 //            DICT_FIELD_COMPLEX_OFFLINE,
 //            DICT_FIELD_COMPLEX_MUTE

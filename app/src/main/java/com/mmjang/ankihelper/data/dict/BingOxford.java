@@ -36,7 +36,7 @@ public class BingOxford implements IDictionary {
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_PHONETICS,
-            Constant.DICT_FILED_SENSE,
+            Constant.DICT_FIELD_SENSE,
             Constant.DICT_FIELD_DEFINITION
     };
 
@@ -102,7 +102,7 @@ public class BingOxford implements IDictionary {
                 LinkedHashMap<String, String> defMap = new LinkedHashMap<>();
                 defMap.put(Constant.DICT_FIELD_KEYWORD, key);
                 defMap.put(Constant.DICT_FIELD_PHONETICS, "");
-                defMap.put(Constant.DICT_FILED_SENSE, sense);
+                defMap.put(Constant.DICT_FIELD_SENSE, sense);
                 defMap.put(Constant.DICT_FIELD_DEFINITION, def);
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
@@ -127,7 +127,7 @@ public class BingOxford implements IDictionary {
 //                    String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, word, yinbiao, sense, definition, "");
                     defMap.put(Constant.DICT_FIELD_KEYWORD, word);
                     defMap.put(Constant.DICT_FIELD_PHONETICS, yinbiao);
-                    defMap.put(Constant.DICT_FILED_SENSE, sense);
+                    defMap.put(Constant.DICT_FIELD_SENSE, sense);
                     defMap.put(Constant.DICT_FIELD_DEFINITION, definition);
 //                    defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //                    defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
@@ -157,7 +157,7 @@ public class BingOxford implements IDictionary {
 //                    String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, word, yinbiao, sense, definition, "");
                     defMap.put(Constant.DICT_FIELD_KEYWORD, word);
                     defMap.put(Constant.DICT_FIELD_PHONETICS, yinbiao);
-                    defMap.put(Constant.DICT_FILED_SENSE, sense);
+                    defMap.put(Constant.DICT_FIELD_SENSE, sense);
                     defMap.put(Constant.DICT_FIELD_DEFINITION, definition);
 //                    defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //                    defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
@@ -189,7 +189,7 @@ public class BingOxford implements IDictionary {
 //                    String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, word, yinbiao, sense, definition, "");
                     defMap.put(Constant.DICT_FIELD_KEYWORD, word);
                     defMap.put(Constant.DICT_FIELD_PHONETICS, yinbiao);
-                    defMap.put(Constant.DICT_FILED_SENSE, sense);
+                    defMap.put(Constant.DICT_FIELD_SENSE, sense);
                     defMap.put(Constant.DICT_FIELD_DEFINITION, definition);
 //                    defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //                    defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);

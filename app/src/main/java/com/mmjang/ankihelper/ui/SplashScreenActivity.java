@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -25,6 +24,7 @@ import com.mmjang.ankihelper.R;
 import com.mmjang.ankihelper.anki.AnkiDroidHelper;
 import com.mmjang.ankihelper.data.Settings;
 import com.mmjang.ankihelper.data.database.MigrationUtil;
+import com.mmjang.ankihelper.ui.floating.UserService;
 import com.mmjang.ankihelper.util.ColorThemeUtils;
 import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.DarkModeUtils;
@@ -48,6 +48,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         DarkModeUtils.initDarkMode(SplashScreenActivity.this);
         ColorThemeUtils.initColorTheme(SplashScreenActivity.this);
         super.onCreate(savedInstanceState);
+
+        UserService userService = MyApplication.getShizukuService();
+        userService.addListeners();
+        userService.connectShizuku();
+
         ScreenUtils.hideStatusBar(SplashScreenActivity.this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash_screen);
@@ -182,5 +187,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

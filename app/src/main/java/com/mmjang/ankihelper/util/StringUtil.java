@@ -153,12 +153,10 @@ public class StringUtil {
 //            // 还原HTML
 //            //content = URLDecoder.decode(content, "UTF-8");
             String text = content.replaceAll("\\n+", " ").
-                    replaceAll("<br/?>|</?p>", "\n").
-                    replaceAll("<[\\w\\W].*?>", "").
-                    replaceAll("\\n", "<br/>");
+                    replaceAll("<br/?>|</?p>|</dd>", "\n").
+                    replaceAll("<[\\w\\W].*?>", "");
 
-            return text;
-
+            return text.strip().trim().replaceAll("[\\r\\n]", "<br/>");
         }
 
         public static String htmlTagFilter (String str)throws PatternSyntaxException {

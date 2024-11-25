@@ -22,7 +22,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -30,7 +29,6 @@ import android.speech.tts.UtteranceProgressListener;
 import android.speech.tts.Voice;
 import android.text.Editable;
 import android.text.Html;
-import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.TextUtils;
@@ -73,7 +71,6 @@ import android.widget.ScrollView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -120,7 +117,6 @@ import com.mmjang.ankihelper.domain.CBWatcherService;
 import com.mmjang.ankihelper.domain.FinishActivityManager;
 import com.mmjang.ankihelper.domain.PlayAudioManager;
 import com.mmjang.ankihelper.domain.PronounceManager;
-import com.mmjang.ankihelper.ui.floating.assist.AssistFloatWindow;
 import com.mmjang.ankihelper.ui.plan.ComplexElement;
 import com.mmjang.ankihelper.ui.share.SharePopupWindow;
 import com.mmjang.ankihelper.ui.tango.OutputLocatorPOJO;
@@ -394,8 +390,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
 
 //        handleIntent();
 //        handleIntent();
-        ToastUtil.show(Constant.NoteMode.values()[settings.get(Settings.NOTE_MODE, 0)].getNameResId(),
-                Gravity.TOP);
+
 //        getIntent().putExtra(Constant.INTENT_ANKIHELPER_ACTION, false);
 //        processTextFromFxService();
         //async invoke droid
@@ -411,6 +406,17 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         recordsMap = new HashMap<>();
         //cache
         mProxy = new HttpProxyCacheServer.Builder(PopupActivity.this).maxCacheSize(Constant.DEFAULT_MAX_SIZE).build();
+
+
+        if(!hasInit) {
+            handleIntent();
+            processTextFromFxService();
+            hasInit = true;
+        }
+        populatePlanSpinner();
+        ToastUtil.show(Constant.NoteMode.values()[settings.get(Settings.NOTE_MODE, 0)].getNameResId(),
+                Gravity.TOP);
+
     }
 
     @Override
@@ -425,10 +431,11 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         String process = intent.getStringExtra(Intent.EXTRA_TEXT);
         boolean isAction = intent.getBooleanExtra(Constant.INTENT_ANKIHELPER_ACTION, false);
         if(hasInit && !TextUtils.isEmpty(process) &&
-                (process.equals(Constant.FLOATING_USE_CLIPBOARD_CONTENT_FLAG) ||
-                        process.equals(Constant.USE_CLIPBOARD_CONTENT_FLAG) ||
-                        process.equals(Constant.USE_FX_SERVICE_CB_FLAG) ||
-                        isAction)) {
+                (
+//                    process.equals(Constant.FLOATING_USE_CLIPBOARD_CONTENT_FLAG) ||
+                    process.equals(Constant.USE_CLIPBOARD_CONTENT_FLAG) ||
+                    process.equals(Constant.USE_FX_SERVICE_CB_FLAG) ||
+                    isAction)) {
             handleIntent();
             processTextFromFxService();
         }
@@ -637,16 +644,30 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         if (outputPlanList.size() == 0) {
             return;
         }
+
+        if(!TextUtils.isEmpty(getIntent().getStringExtra(Constant.INTENT_ANKIHELPER_PLAN_NAME))) {
+            mPlanNameFromIntent = getIntent().getStringExtra(Constant.INTENT_ANKIHELPER_PLAN_NAME);
+        } else if(Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getData().getQueryParameter("plan") != null) {
+            mPlanNameFromIntent = getIntent().getData().getQueryParameter("plan");
+        }
+
+        //set plan to last selected plan
+        String lastSelectedPlan = settings.getLastSelectedPlan();
+
         final String[] planNameArr = new String[outputPlanList.size()];
         for (int i = 0; i < outputPlanList.size(); i++) {
             planNameArr[i] = outputPlanList.get(i).getPlanName();
+
+            if(planNameArr[i].equals(mPlanNameFromIntent)) {
+                lastSelectedPlan = mPlanNameFromIntent;
+            }
         }
+
         ArrayAdapter<String> planSpinnerAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, planNameArr);
         planSpinner.setAdapter(planSpinnerAdapter);
         planSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //set plan to last selected plan
-        String lastSelectedPlan = settings.getLastSelectedPlan();
+
         if (lastSelectedPlan.isEmpty()) //first use, set default plan to first one if any
         {
             if (outputPlanList.size() > 0) {
@@ -674,17 +695,22 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
 //        }
 //        mPlanNameFromIntent = intent.getData().getQueryParameter("plan");
 
-        if(!TextUtils.isEmpty(getIntent().getStringExtra(Constant.INTENT_ANKIHELPER_PLAN_NAME))) {
-            tempPlan = lastSelectedPlan;
-            mPlanNameFromIntent = getIntent().getStringExtra(Constant.INTENT_ANKIHELPER_PLAN_NAME);
-            lastSelectedPlan = mPlanNameFromIntent;
-        } else if(Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getData().getQueryParameter("plan") != null) {
-            tempPlan = lastSelectedPlan;
-            mPlanNameFromIntent = getIntent().getData().getQueryParameter("plan");
-            lastSelectedPlan = mPlanNameFromIntent;
-        } else if(!TextUtils.isEmpty(tempPlan)) {
-            tempPlan = "";
-        }
+//        if(!TextUtils.isEmpty(getIntent().getStringExtra(Constant.INTENT_ANKIHELPER_PLAN_NAME))) {
+//            tempPlan = lastSelectedPlan;
+//            mPlanNameFromIntent = getIntent().getStringExtra(Constant.INTENT_ANKIHELPER_PLAN_NAME);
+//            lastSelectedPlan = mPlanNameFromIntent;
+//        } else if(Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getData().getQueryParameter("plan") != null) {
+//            tempPlan = lastSelectedPlan;
+//            mPlanNameFromIntent = getIntent().getData().getQueryParameter("plan");
+//            lastSelectedPlan = mPlanNameFromIntent;
+//        } else if(!TextUtils.isEmpty(tempPlan)) {
+//            tempPlan = "";
+//        }
+
+//        tempPlan = lastSelectedPlan;
+
+
+
         ///////////////
         int i = 0;
         boolean find = false;
@@ -1674,7 +1700,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                 try {
                     mUpdateNoteId = Long.parseLong(updateId);
                     mPreNoteId = mUpdateNoteId;
-                    if (mUpdateNoteId > 0) {
+                    if (mUpdateNoteId > 0L) {
                         mTagEditedByUser =
                                 MyApplication.getAnkiDroid()
                                         .getApi().getNote(mUpdateNoteId)
@@ -2150,7 +2176,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                                 if(def.hasElement(title)) {
                                     String refinedText = selectText;
                                     switch(title) {
-                                        case Constant.DICT_FILED_SENSE:
+                                        case Constant.DICT_FIELD_SENSE:
                                             refinedText = RegexUtil.colorizeSense(refinedText);
                                     }
                                     mdxEleSelectedMap.put(title, refinedText);
@@ -3457,7 +3483,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
             @Override
             public void run() {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(result, InputMethodManager.SHOW_IMPLICIT);
+                imm.showSoftInput(result, InputMethodManager.SHOW_FORCED);
             }
         });
 //        containerLl = (LinearLayout) dialogView.findViewById(R.id.layout_container);
@@ -3774,8 +3800,8 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                     .setLegacyStreamType(AudioManager.STREAM_MUSIC)
                     .build();
             mVideoMediaPlayer.setAudioAttributes(aa);
-
-        } else {
+        }
+        else {
             mVideoMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         }
 
@@ -3820,6 +3846,13 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                         mSurfaceView.setVisibility(View.VISIBLE);
 //                            mVideoMediaPlayer.setDisplay(surfaceHolder);
                         mMediaProgress.setVisibility(View.GONE);
+                        mVideoMediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                            @Override
+                            public void onSeekComplete(MediaPlayer mp) {
+                            }
+                        });
+                        // 启用硬件解码
+//                        mVideoMediaPlayer.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT);
                         mVideoMediaPlayer.start();
 //                        Trace.e("start", String.valueOf(mVideoMediaPlayer.isPlaying()));
                     }
@@ -3829,6 +3862,8 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         mVideoMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                mVideoMediaPlayer.start();
+                mVideoMediaPlayer.pause();
                 mp.reset();
                 mSurfaceView.setVisibility(View.VISIBLE);
                 mMediaProgress.setVisibility(View.GONE);
@@ -3933,9 +3968,11 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
 //            mTts.stop();
 //            mTts.shutdown();
 //        }
+        if(mTts != null) {
         mTts.speak("",
                 TextToSpeech.QUEUE_FLUSH,
                 null, "null");
+        }
         fetch.removeListener(fetchListener);
         try {
             File preImg = new File(StorageUtils.getIndividualCacheDirectory(PopupActivity.this), settings.get(Settings.SCREENSHOT_NAME, ""));
@@ -4193,15 +4230,10 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
 //                    mTts.shutdown();
                 }
             });
+
+            populateLanguageSpinner();
         } else {
             Trace.e("tts status OnInit", "TextToSpeech is failed!");
-        }
-
-        populatePlanSpinner();
-        if(!hasInit) {
-            handleIntent();
-            processTextFromFxService();
-            hasInit = true;
         }
     }
 
@@ -4408,7 +4440,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                     currentDictionary instanceof Dub91Sentence ||
                     currentDictionary instanceof EnglishSentenceSet ||
                     currentDictionary instanceof BatchClip) {
-                content = def.getExportElement(Constant.DICT_FILED_SENTENCE);
+                content = def.getExportElement(Constant.DICT_FIELD_SENTENCE);
             } else if (currentDictionary instanceof Handian) {
                 content = !TextUtils.isEmpty(keyword) ? keyword : def.getExportElement(Constant.DICT_FIELD_KEYWORD);
             } else if (currentDictionary instanceof Cloze) {
@@ -4425,7 +4457,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                     currentDictionary instanceof RenRenCiDianSentence ||
                     currentDictionary instanceof Dub91Sentence ||
                     currentDictionary instanceof EnglishSentenceSet) {
-                content += def.getExportElement(Constant.DICT_FILED_CHINESE_SENTENCE);
+                content += def.getExportElement(Constant.DICT_FIELD_CHINESE_SENTENCE);
             } else if(currentDictionary instanceof VocabCom ||
                     currentDictionary instanceof Mnemonic ||
                     currentDictionary instanceof CollinsEnEn ||

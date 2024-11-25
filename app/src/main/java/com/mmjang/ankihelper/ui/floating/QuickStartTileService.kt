@@ -1,6 +1,5 @@
 package com.mmjang.ankihelper.ui.floating
 
-import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.content.SharedPreferences
@@ -18,17 +17,17 @@ import com.mmjang.ankihelper.util.ToastUtil
 import com.mmjang.ankihelper.util.Trace
 
 
-@SuppressLint("NewApi")
 class QuickStartTileService : TileService(), TileServiceLongClick {
 
     private var setting = Settings.getInstance(MyApplication.getContext())
     private var callbackChangeState =  SharedPreferences.OnSharedPreferenceChangeListener {
         sharePreferences, key ->
         if(this.qsTile != null) {
-            if (setting.floatBallEnable == true)
+            if (setting.floatBallEnable == true) {
                 this.qsTile.state = Tile.STATE_ACTIVE
-            else
+            } else {
                 this.qsTile.state = Tile.STATE_INACTIVE
+            }
             var icon: Icon = Icon.createWithResource(applicationContext, R.drawable.icon_light)
             qsTile.icon = icon//设置图标
             qsTile.updateTile()//更新Tile
@@ -62,6 +61,14 @@ class QuickStartTileService : TileService(), TileServiceLongClick {
     override fun onBind(intent: Intent?): IBinder? {
         requestListeningState(this,
             ComponentName(this, QuickStartTileService::class.java))
+
+        val userService = MyApplication.getShizukuService()
+        userService.addListeners()
+        userService.connectShizuku()
+
+        if(setting.floatBallEnable && MyApplication.getShizukuService().checkShizukuServiceState()) {
+            MyApplication.getShizukuService().enabledAccessibilityService()
+        }
         return super.onBind(intent)
     }
 
@@ -141,11 +148,13 @@ class QuickStartTileService : TileService(), TileServiceLongClick {
     private fun cancelNotification() {
         setting.floatBallEnable = false
         AssistFloatWindow.instance.hide()
+        MyApplication.getShizukuService().disabledAccessibilityService()
     }
 
     private fun startOrShowNotification() {
         setting.floatBallEnable = true
         AssistFloatWindow.instance.show()
+        MyApplication.getShizukuService().enabledAccessibilityService()
     }
 
     override fun onLongClick() {

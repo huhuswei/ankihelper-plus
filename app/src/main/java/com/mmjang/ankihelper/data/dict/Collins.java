@@ -77,7 +77,7 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_PHONETICS,
             Constant.DICT_FIELD_DEFINITION,
-            Constant.DICT_FILED_SENSE
+            Constant.DICT_FIELD_SENSE
     };
 
     public String getDictionaryName() {
@@ -203,7 +203,7 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
 //        String complex = FieldUtil.formatComplexTplWord(DICT_NAME, defMap.get(EXP_ELE_LIST[0]), phonetics, sense, definition, Constant.AUDIO_INDICATOR_MP3);
 //        String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, defMap.get(EXP_ELE_LIST[0]), phonetics, sense, definition, "");
         defMap.put(Constant.DICT_FIELD_PHONETICS, phonetics);
-        defMap.put(Constant.DICT_FILED_SENSE, sense);
+        defMap.put(Constant.DICT_FIELD_SENSE, sense);
         defMap.put(Constant.DICT_FIELD_DEFINITION,definition);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
@@ -300,7 +300,7 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
         defMap.put(Constant.DICT_FIELD_KEYWORD, youdaoResult.returnPhrase);
         defMap.put(Constant.DICT_FIELD_PHONETICS, youdaoResult.phonetic);
         defMap.put(Constant.DICT_FIELD_DEFINITION, definition);
-        defMap.put(Constant.DICT_FILED_SENSE, "");
+        defMap.put(Constant.DICT_FIELD_SENSE, "");
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_MUTE, muteComplex);

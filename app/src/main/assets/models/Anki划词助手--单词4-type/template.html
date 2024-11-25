@@ -20,6 +20,12 @@ Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|type|Rema
     </a>
 </div>
 
+{{#Tags}}
+<div class="tags">
+    <span>{{Tags}}</span>
+</div>
+{{/Tags}}
+
 <br/><br/><br/><br/>
 {{#type}}
 <div class="complex"><div class="center-text"><div class="keyword-type">{{type:type}}</div></div></div>
@@ -50,7 +56,11 @@ Note ID|摘取例句加粗|例句|释义|自动发音|手动发音|url|type|Rema
     </a>
 </div>
 
-<br/><br/><br/><br/>
+{{#Tags}}
+<div class="tags">
+    <span>{{Tags}}</span>
+</div>
+{{/Tags}}
 
 <br/>
 <xs>
@@ -184,10 +194,13 @@ font-family          :serif;
 font-size              : 20px;
 text-align             : left;
 color                     : #101010;
-background-color :rgb(203,213,223)
+background-color :rgb(220, 240, 220);
 }
 
 .complex {
+background-color :rgb(255,255,255, 0.6);
+backdrop-filter: blur(10px);  /* 增加模糊效果 */
+-webkit-backdrop-filter: blur(10px);  /* 为Safari浏览器提供支持 */
 margin: auto;
 position: relative;
 color: #2e2e2f;
@@ -199,7 +212,6 @@ margin-bottom: 1rem;
 border: 3px dashed transparent;
 max-width: 800px;
 /*background-color: rgba(255, 255, 255, 1);*/
-background-color : #f8f8f8;
 color: #000;
 border-radius: 10px;
 /*
@@ -208,7 +220,6 @@ box-shadow: 0px 19px 38px 0px rgba(0, 0, 0, 0.3),
 */
 }
 
-video,
 .keyword,
 .pronunciation,
 .sentence,
@@ -220,17 +231,17 @@ video,
 .note,
 .mbox {
 padding: 0 2px 0;
-margin: 2px 0 2px;
+margin: 2px 0 6px;
 display: inline-block;
 /* 设置为行内块元素 */
 clear: right;
 }
 
 .keyword {
-font-size: 22px;
+font-size: 16px;
 color: #066e29;
 font-family:bentley;
-font-size:1.6em;
+font-size:1.2em;
 font-weight:700;
 letter-spacing:1px;
 font-variant:small-cas;
@@ -240,7 +251,7 @@ line-height:120%;
 
 .definition {
 background-color: #c7edcc;
-font-size:1.2em;
+font-size:1.0em;
 }
 
 video,
@@ -389,6 +400,23 @@ transform: scale(1.1);
 }
 */
 
+
+*::-webkit-media-controls-panel {
+display: none!important;
+-webkit-appearance: none;
+}
+
+*::--webkit-media-controls-play-button {
+display: none!important;
+-webkit-appearance: none;
+}
+
+*::-webkit-media-controls-start-playback-button {
+display: none!important;
+-webkit-appearance: none;
+}
+
+
 input[type=range].rate {
 display:block;
 width: 100px;
@@ -464,8 +492,6 @@ text-align: center;
 margin-right: 0;
 }
 
-
-
 /* Cloze */
 .cloze {
 color: #ec6c4f;
@@ -476,14 +502,31 @@ padding-bottom: 2px;
 -webkit-animation-fill-mode: forwards;
 }
 
+/* 标签 */
+.tags {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top: 7px;
+left:7px;
+border-radius: 3px;
+padding:6px;
+background-color:#cacaca;
+color: #000000;
+opacity: 0.3;
+text-align:left;
+background-color:#f2f8f7;
+font-size:20px;
+text-decoration:none !important;
+}
 
 /*来源网页*/
 .url {
 z-index: 9999;
 position: fixed;
 margin: 0 auto;
-top: 0px;
-left:7px;
+top: 7px;
+right:157px;
 border-radius: 3px;
 padding:6px;
 opacity:0.75;
@@ -493,13 +536,28 @@ font-size:20px;
 text-decoration:none !important;
 }
 
+/*悬浮查词按钮*/
+.helper {
+z-index: 9999;
+position: fixed;
+margin: 0 auto;
+top:7px;
+right:107px;
+border-radius: 3px;
+padding:6px;
+opacity:0.75;
+text-align:right;
+background-color:#f2f8f7;
+font-size:20px;
+}
+.helper a{text-decoration:none !important}
 
 /*悬浮查词按钮*/
 .tango {
 z-index: 9999;
 position: fixed;
 margin: 0 auto;
-top:0px;
+top:7px;
 right:57px;
 border-radius: 3px;
 padding:6px;
@@ -515,7 +573,7 @@ font-size:20px;
 z-index: 9999;
 position: fixed;
 margin: 0 auto;
-top:0px;
+top:7px;
 right:7px;
 border-radius: 3px;
 padding:6px;
@@ -526,21 +584,6 @@ font-size:20px;
 }
 .eudic a{text-decoration:none !important}
 
-/*悬浮查词按钮*/
-.helper {
-z-index: 9999;
-position: fixed;
-margin: 0 auto;
-top:0px;
-right:107px;
-border-radius: 3px;
-padding:6px;
-opacity:0.75;
-text-align:right;
-background-color:#f2f8f7;
-font-size:20px;
-}
-.helper a{text-decoration:none !important}
 
 /* ------a标签单击选择文本 ------- */
 /***

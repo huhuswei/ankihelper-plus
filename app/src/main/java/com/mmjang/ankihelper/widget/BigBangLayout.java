@@ -56,7 +56,8 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
     public static final String ENTER_SYMBOL = "\n";
     public static final String TAB = "_Tab_";
 
-    private static final int DEFAULT_TEXT_SIZE = 14;//sp
+//    private static final int DEFAULT_TEXT_SIZE = 14;//sp
+    private static final int DEFAULT_ITEM_PADDING=10;
     private static final int DEFAULT_TEXT_COLOR_RES = R.color.bigbang_item_text;
     private static final int DEFAULT_TEXT_BG_RES = R.drawable.item_background;
     private static final int DEFAULT_SECTION_TEXT_BG_RES = R.drawable.item_background_section;
@@ -68,7 +69,7 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
     private int mSymbolTextBgRes;
     private int mBlockSymbolBgRes;
     private int mTextSize;
-    private int mTextPadding = (int) ViewUtil.dp2px(ConstantUtil.DEFAULT_ITEM_PADDING);
+    private int mTextPadding = (int) ViewUtil.dp2px(DEFAULT_ITEM_PADDING);
     private int mSymbolTextPadding = (int) ViewUtil.dp2px(0);
     private int mSpaceSymbolTextPadding = (int) ViewUtil.dp2px(0);
     private int mTextPaddingPort = (int) ViewUtil.dp2px(5);
@@ -1279,7 +1280,7 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
         }
 
         public void setSelected(boolean selected) {
-            if (symbolSelectable || !isSymbol() || !isSpaceSymbol()) {
+            if (isSymbolSelectable() || (!isSymbol() && !isSpaceSymbol())) {
                 view.setSelected(selected);
                 if (selected) {
                     //                    view.getBackground().setAlpha(128);

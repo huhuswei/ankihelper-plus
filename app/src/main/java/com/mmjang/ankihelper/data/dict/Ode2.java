@@ -81,7 +81,7 @@ public class Ode2 extends SQLiteAssetHelper implements IDictionary {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_PHONETICS,
             Constant.DICT_FIELD_DEFINITION,
-            Constant.DICT_FILED_SENSE
+            Constant.DICT_FIELD_SENSE
     };
 
     public String getDictionaryName() {
@@ -203,7 +203,7 @@ public class Ode2 extends SQLiteAssetHelper implements IDictionary {
 //        String complex = FieldUtil.formatComplexTplWord(DICT_NAME, eleMap.get(EXP_ELE_LIST[0]), phonetics, sense, definition, Constant.AUDIO_INDICATOR_MP3);
 //        String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, eleMap.get(EXP_ELE_LIST[0]), phonetics, sense, definition, "");
         eleMap.put(Constant.DICT_FIELD_PHONETICS, phonetics);
-        eleMap.put(Constant.DICT_FILED_SENSE, sense);
+        eleMap.put(Constant.DICT_FIELD_SENSE, sense);
         eleMap.put(Constant.DICT_FIELD_DEFINITION, definition);
 //        eleMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        eleMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
@@ -300,7 +300,7 @@ public class Ode2 extends SQLiteAssetHelper implements IDictionary {
         LinkedHashMap<String, String> exp = new LinkedHashMap<>();
         exp.put(Constant.DICT_FIELD_KEYWORD, youdaoResult.returnPhrase);
         exp.put(Constant.DICT_FIELD_PHONETICS, youdaoResult.phonetic);
-        exp.put(Constant.DICT_FILED_SENSE, "");
+        exp.put(Constant.DICT_FIELD_SENSE, "");
         exp.put(Constant.DICT_FIELD_DEFINITION, definition);
 //        exp.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        exp.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);

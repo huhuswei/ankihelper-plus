@@ -40,7 +40,7 @@ class AssistFloatWindow private constructor() {
     private var longClickedState: Boolean = false
     private var portraitState: Boolean = true
     private var keyboardState: Boolean = false
-    private var popupDisplayState: Boolean = false
+//    private var popupDisplayState: Boolean = false
 
     fun open(floatWindowCallback: FloatWindowCallback) {
         // 以屏幕左上角为原点，设置x、y初始值
@@ -49,7 +49,7 @@ class AssistFloatWindow private constructor() {
     }
 
     private fun onListeningPinFloating(floatWindowCallback: FloatWindowCallback) {
-        pinState = settings.floatBallEnable
+        pinState = settings.get(Settings.FLOATING_BUTTON_PIN_POSITION_ENABLE, false)
         autoSideState = settings.get(Settings.FlOATING_BUTTON_AUTO_SIDE, false)
 //        sidelineWidth = settings.sidelineSize[0]
 
@@ -60,19 +60,18 @@ class AssistFloatWindow private constructor() {
             val nowAutoSideState = settings.get(Settings.FlOATING_BUTTON_AUTO_SIDE, false)
             val nowOrientationState = settings.get(Settings.ORIENTATION_PORTRAIT, true)
             val nowKeyboardState = settings.get(Settings.KEYBOARD_STATE, false)
-            val nowPopupDisplayState = settings.get(Settings.POPUP_DISPLAY_STATE, false)
+//            val nowPopupDisplayState = settings.get(Settings.POPUP_DISPLAY_STATE, false)
 
             if (nowPinState != pinState ||
                 nowAutoSideState != autoSideState ||
                 nowOrientationState != portraitState ||
-                (nowKeyboardState != keyboardState && !popupDisplayState) ||
-                (nowPopupDisplayState != popupDisplayState && !keyboardState)
+                nowKeyboardState != keyboardState
             ) {
                 pinState = nowPinState
                 autoSideState = nowAutoSideState
                 portraitState = settings.get(Settings.ORIENTATION_PORTRAIT, true)
                 keyboardState = nowKeyboardState
-                popupDisplayState = nowPopupDisplayState
+//                popupDisplayState = nowPopupDisplayState
 
                 val point = settings.floatingButtonPosition
                 if (nowAutoSideState) {
@@ -85,25 +84,23 @@ class AssistFloatWindow private constructor() {
                     settings.floatingButtonPosition = point
                 }
 
-                if(settings.floatBallEnable && AssistUtil.isAccessibilitySettingsOn(MyApplication.getContext(), AssistService::class.java)) {
+                if(settings.floatBallEnable) {
                     EasyFloat.dismissAppFloat()
                     launchFloatingButton(floatWindowCallback)
                 }
             }
-//            else if (nowSidelineSize != sidelineSize) {
-//                ColorThemeUtils.setFloatingLogo(MyApplication.getContext(), EasyFloat.getAppFloatView(), false)
-//            }
         }
         settings.sharedPreferences.registerOnSharedPreferenceChangeListener(callbackChangeState)
     }
 
     private fun launchFloatingButton(floatWindowCallback: FloatWindowCallback) {
         val point: Point =
-            if(settings.get(Settings.KEYBOARD_STATE, false) ||
-                    settings.get(Settings.POPUP_DISPLAY_STATE, false))
+            if(keyboardState) {
                 Point(settings.floatingButtonPosition.x, 0)
-            else
+            }
+            else {
                 settings.floatingButtonPosition
+            }
         val snowPinState = settings.get(Settings.FLOATING_BUTTON_PIN_POSITION_ENABLE, false)
         val snowAutoSideState = settings.get(Settings.FlOATING_BUTTON_AUTO_SIDE, false)
 
@@ -205,7 +202,7 @@ class AssistFloatWindow private constructor() {
                         val rect = Rect()
                         view.getWindowVisibleDisplayFrame(rect)
 
-                        if((location[0]<=8 || (location[0]+settings.floatingButtonSize) >= screenWidth) &&
+                        if((location[0]<=8 || (location[0]+settings.floatingButtonSize) >= screenWidth-8) &&
                             (location[1] - rect.top) != settings.floatingButtonPosition.y) {
                             val point = Point(location[0], location[1] - rect.top)
                             settings.floatingButtonPosition = point
@@ -251,7 +248,7 @@ class AssistFloatWindow private constructor() {
     fun show() {
         EasyFloat.showAppFloat()
     }
-    
+
     fun hide() {
         EasyFloat.hideAppFloat()
     }

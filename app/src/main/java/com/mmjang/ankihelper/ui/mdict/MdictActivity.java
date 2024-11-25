@@ -398,14 +398,13 @@ public class MdictActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_delete_all_mdict:
-                clearAllMdict();
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_item_delete_all_mdict) {
+            clearAllMdict();
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
+        } else if (itemId == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

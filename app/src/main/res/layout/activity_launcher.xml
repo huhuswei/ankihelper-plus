@@ -361,6 +361,23 @@
 
             </com.balysv.materialripple.MaterialRippleLayout>
 
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/btn_clear_cache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_clear_cache"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

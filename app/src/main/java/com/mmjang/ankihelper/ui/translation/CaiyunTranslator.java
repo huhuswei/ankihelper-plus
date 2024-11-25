@@ -67,11 +67,9 @@ public class CaiyunTranslator implements Translator {
     public String translate(String query, String from, String to) {
         String result;
         Settings settings = Settings.getInstance(MyApplication.getContext());
-        String key;
-        if (settings.getUserCaiyunAppSecretKey().isEmpty()) {
+        String key = settings.getUserCaiyunAppSecretKey();
+        if (key.isEmpty()) {
             key = USER_CAIYUN_APP_SECRET_KEY;
-        } else {
-            key = settings.getUserCaiyunAppSecretKey();
         }
         try {
             JSONObject bodyJson = new JSONObject();

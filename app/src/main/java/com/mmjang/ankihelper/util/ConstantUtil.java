@@ -2,6 +2,7 @@ package com.mmjang.ankihelper.util;
 
 public class ConstantUtil {
 
+    /*
     public static final String CONTENT="content://";
     public static final String AUTHORITY="com.forfun.bigbang";
     public static final String SEPARATOR= "/";
@@ -107,6 +108,7 @@ public class ConstantUtil {
     public static final int DEFAULT_ITEM_PADDING=10;
 
 
+
     //whiteListActivity
     public static final String WHITE_LIST_COUNT ="white_list_count";
     public static final String WHITE_LIST ="white_list";
@@ -158,4 +160,5 @@ public class ConstantUtil {
     //xp全局复制
     public static final String UNIVERSAL_COPY_BROADCAST_XP="universal_copy_broadcast_xp";
 
+     */
 }

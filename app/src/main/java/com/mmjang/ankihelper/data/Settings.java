@@ -15,7 +15,6 @@ import com.mmjang.ankihelper.MyApplication;
 import com.mmjang.ankihelper.data.dict.DictLanguageType;
 import com.mmjang.ankihelper.ui.floating.assist.ScreenUtil;
 import com.mmjang.ankihelper.util.Constant;
-import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.ViewUtil;
 
 import java.io.File;
@@ -51,6 +50,8 @@ public class Settings {
     public final static String USER_YOUDAO_APP_ID = "user_youdao_app_id";
     public final static String USER_YOUDAO_APP_KEY = "user_youdao_app_key";
 
+    private final static String USER_DEEPLX_APP_URL = "user_deeplx_app_url";
+    private final static String USER_DEEPL_APP_SECRET_KEY = "user_deepl_app_secret_key";
     private final static String USER_CAIYUN_APP_SECRET_KEY = "user_caiyun_app_secret_key";
 
     private final static String USER_MICROSOFT_APP_ID = "user_microsoft_translate_app_id";
@@ -660,6 +661,23 @@ public class Settings {
         return sp.contains(key);
     }
 
+    public String getUserDeepLXAPIURLs() {
+        return sp.getString(USER_DEEPLX_APP_URL, "");
+    }
+
+    public void setUserDeepLXAPIURLs(String urls) {
+        editor.putString(USER_DEEPLX_APP_URL, urls);
+        editor.commit();
+    }
+
+    public String getUserDeepLAppSecretKey() {
+        return sp.getString(USER_DEEPL_APP_SECRET_KEY, "");
+    }
+
+    public void setUserDeepLAppSecretKey(String key) {
+        editor.putString(USER_DEEPL_APP_SECRET_KEY, key);
+        editor.commit();
+    }
 
     public String getUserCaiyunAppSecretKey() {
         return sp.getString(USER_CAIYUN_APP_SECRET_KEY, "");

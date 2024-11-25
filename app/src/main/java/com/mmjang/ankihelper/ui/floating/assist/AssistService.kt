@@ -32,7 +32,7 @@ import com.mmjang.ankihelper.util.Trace
 class AssistService : AccessibilityService(), FloatWindowCallback {
     private var connectedState = false
     private var mAssistDragDelegate: AssistDragDelegate? = null
-    private var mScreenListener: ScreenListener = ScreenListener(this)
+//    private var mScreenListener: ScreenListener = ScreenListener(this)
     private var screenOrientationReceiver: BroadcastReceiver? = null
     private var settings: Settings = Settings.getInstance(MyApplication.getContext())
 
@@ -40,20 +40,20 @@ class AssistService : AccessibilityService(), FloatWindowCallback {
         super.onCreate()
         //初始化 错误日志系统
         CrashManager.getInstance(this)
-        mScreenListener.begin(object : ScreenStateListener {
-            override fun onScreenOn() {
-                Trace.i("AssistService", "屏幕已打开")
-            }
-
-            override fun onScreenOff() {
-                Trace.i("AssistService", "屏幕已关闭")
-                mAssistDragDelegate?.onStopCapture()
-            }
-
-            override fun onUserPresent() {
-                Trace.i("AssistService", "屏幕已解锁")
-            }
-        })
+//        mScreenListener.begin(object : ScreenStateListener {
+//            override fun onScreenOn() {
+//                Trace.i("AssistService", "屏幕已打开")
+//            }
+//
+//            override fun onScreenOff() {
+//                Trace.i("AssistService", "屏幕已关闭")
+//                mAssistDragDelegate?.onStopCapture()
+//            }
+//
+//            override fun onUserPresent() {
+//                Trace.i("AssistService", "屏幕已解锁")
+//            }
+//        })
         screenOrientationReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 if (intent.action == Intent.ACTION_CONFIGURATION_CHANGED) {
@@ -118,19 +118,23 @@ class AssistService : AccessibilityService(), FloatWindowCallback {
                 if (
                     packageName.contains("keyboard") ||
                     packageName.contains("input") ||
-                    packageName.contains("softinput")) {
-                    Trace.i("onAccessibilityEvent", "classname: " +className)
+                    packageName.contains("softinput") ||
+                    className.contains("popupactivity") ||
+                    (packageName.contains("ankihelper") && settings.get(Settings.KEYBOARD_STATE, false))
+                    ) {
+                    Trace.i("onAccessibilityEvent", "package-keyboard: " +packageName)
                     settings.put(Settings.KEYBOARD_STATE, true)
-                } else if(
-                    !className.contains("popupactivity")
-//                    ||  packageName.contains("com.android.systemui")
-//                    ||
-//                    packageName.contains("android") ||
-//                    !className.contains("android.widget")
-                ) {
-                    Trace.i("onAccessibilityEvent", "keyboard is hided. className -> " + className)
+                } else {
                     settings.put(Settings.KEYBOARD_STATE, false)
                 }
+
+//                if(className.contains("popupactivity")) {
+//                    Trace.i("onAccessibilityEvent", "class-popup: " + className)
+//
+//                    settings.put(Settings.KEYBOARD_STATE, true)
+//                }else {
+//                    settings.put(Settings.KEYBOARD_STATE, false)
+//                }
 
                 mAssistDragDelegate?.onTypeWindowStateChanged(event)
             }

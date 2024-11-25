@@ -24,8 +24,8 @@ public class EnglishSentenceSet implements IDictionary {
             Constant.DICT_FIELD_KEYWORD,
 //            "音标",
 //            "释义",
-            Constant.DICT_FILED_SENTENCE,
-            Constant.DICT_FILED_CHINESE_SENTENCE,
+            Constant.DICT_FIELD_SENTENCE,
+            Constant.DICT_FIELD_CHINESE_SENTENCE,
             Constant.DICT_FIELD_ORIGIN,
             Constant.DICT_FIELD_IMG
 //            "复合项"
