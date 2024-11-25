@@ -25,13 +25,14 @@
     <color name="secondary_text">#727272</color>
 
     <color name="transparent">#00000000</color>
-    <color name="popup_background">#E0E0E0</color>
-    <color name="popup_background_pink">#f4e7e7</color>
-    <color name="popup_background_blue">#E6EAF3</color>
+    <color name="popup_transparent">#F5F5F6F7</color>
+    <color name="popup_background">#9AE0E0E0</color>
+    <color name="popup_background_pink">#9AE1BCBC</color>
+    <color name="popup_background_blue">#9AB3C0DA</color>
 
     <color name="divider">#cee9e9e9</color>
 
-    <color name="footer_background">#e0e0e0</color>
+    <color name="footer_background">#E0E0E0</color>
     <color name="footer_background_pink">#e1bcbc</color>
     <color name="footer_background_blue">#B3C0DA</color>
 

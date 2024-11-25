@@ -44,9 +44,11 @@ public class DictionaryRegister {
             Dedict.class,
             Frdict.class,
             Esdict.class,
+            Krdict.class,
 //            SolrDictionary.class,
             DictTango.class,
-            Mdict.class
+            Mdict.class,
+//            AIDict.class
 //            EnglishDictSet.class,
 //            EnglishSentenceSet.class
     };

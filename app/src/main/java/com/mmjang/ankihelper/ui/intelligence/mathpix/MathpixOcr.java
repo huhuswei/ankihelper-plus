@@ -2,6 +2,7 @@ package com.mmjang.ankihelper.ui.intelligence.mathpix;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -86,6 +87,11 @@ public class MathpixOcr extends AsyncTask<MathpixOcr.UploadParams, Void, Mathpix
     public String getText(Bitmap bitmap) {
         recognizeText(bitmap);
         return mContent;
+    }
+
+    @Override
+    public String getText(Uri uri) {
+        return "";
     }
 
     public String getText(Bitmap image, Function<String, String> callback){

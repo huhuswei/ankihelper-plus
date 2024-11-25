@@ -26,6 +26,7 @@
     <string name="str_no_dictionary" formatted="true">The dictionary \"%s\" does not exist, please check if you need to re-import the dictionary.</string>
     <string name="str_plan_name_should_not_be_blank">Plan name can\'t be blank!</string>
     <string name="plan_already_exists">Plan name already exists!</string>
+    <string name="cleared">Cleared</string>
     <string name="dialog_note">Note</string>
     <string name="dialog_ok">Ok</string>
     <string name="username">Username</string>
@@ -93,7 +94,7 @@
     <string name="tv_floating_alpha">Alpha</string>
     <string name="tv_floating_hovering">Hovering<i>(ms)</i></string>
     <string name="tv_floating_size">Floating Size</string>
-    <string name="str_clear_cache">Clear cache</string>
+    <string name="str_clear_cache">Clear cache🚽</string>
     <string name="tv_customize_your_plan_list">Customize your plan list</string>
     <string name="tv_customize_your_deck_list">Customize your deck list</string>
     <string name="toast_keep_at_least_one_plan">Keep at least one plan</string>
@@ -251,6 +252,8 @@
     <string name="epub_reader_label">EPUB Reader</string>
     <string name="menu_title_statistics">Statistics</string>
     <string name="str_use_as_default_tags">作为默认标签</string>
+    <string name="custom_deeepl_translation_introduction"><b>DeepL</b>\n多个API，每行一条</string>
+    <string name="custom_deeeplx_translation_introduction"><b>DeepLX</b>\n多个API URL，每行一条</string>
     <string name="custom_baidu_translation_introduction"><b>百度翻译API</b>\n每月5万总字符的限额，如果使用翻译功能时出现带 recharge 字样的报错，则需要自行申请一个<a href="https://jingyan.baidu.com/article/219f4bf7bdb028de442d38e1.html">百度翻译API秘钥</a>填入下方。</string>
     <string name="custom_mathpix_ocr_introduction"><b>Mathpix API</b></string>
     <string name="custom_microsoft_translation_introduction"><b>微软翻译API</b>\n每月不知道多少万总字符的限额，可以自行申请一个<a href="https://cn.bing.com/partners/developers">微软翻译API秘钥</a>填入下方。</string>

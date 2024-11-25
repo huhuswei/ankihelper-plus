@@ -17,6 +17,7 @@ import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.Utils;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -77,7 +78,7 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_PHONETICS,
             Constant.DICT_FIELD_DEFINITION,
-            Constant.DICT_FILED_SENSE
+            Constant.DICT_FIELD_SENSE
     };
 
     public String getDictionaryName() {
@@ -111,7 +112,7 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
 
         if(re.isEmpty()){
             try{
-                re.add(toDefinition(YoudaoOnline.getYoudaoResult(key)));
+                re.add(toDefinition(key));
             }
             catch (Exception e) {
                 Trace.e("time out", Log.getStackTraceString(e));
@@ -203,7 +204,7 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
 //        String complex = FieldUtil.formatComplexTplWord(DICT_NAME, defMap.get(EXP_ELE_LIST[0]), phonetics, sense, definition, Constant.AUDIO_INDICATOR_MP3);
 //        String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, defMap.get(EXP_ELE_LIST[0]), phonetics, sense, definition, "");
         defMap.put(Constant.DICT_FIELD_PHONETICS, phonetics);
-        defMap.put(Constant.DICT_FILED_SENSE, sense);
+        defMap.put(Constant.DICT_FIELD_SENSE, sense);
         defMap.put(Constant.DICT_FIELD_DEFINITION,definition);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
@@ -272,35 +273,37 @@ public class Collins extends SQLiteAssetHelper implements IDictionary {
         return key.trim().replaceAll("[,.!?()\"'“”’？]", "").toLowerCase();
     }
 
-    private Definition toDefinition(YoudaoResult youdaoResult){
+    private Definition toDefinition(String content) throws IOException {
+        YoudaoResult youdaoResult = YoudaoOnline.getYoudaoResult(content);
         String notiString = "<font color='gray'>本地词典未查到，以下是有道在线释义或翻译</font><br/>";
-        String definition = "<b>" + youdaoResult.returnPhrase + "</b><br/>";
+        StringBuilder definition = new StringBuilder("<b>" + youdaoResult.returnPhrase + "</b><br/>");
 
         if(!youdaoResult.translation.isEmpty())
             for (String def : youdaoResult.translation) {
-                definition += def + "<br/>";
+                definition.append(def).append("<br/>");
             }
-        else
-            definition += new TranslateBuilder(
+        else {
+            definition.append(new TranslateBuilder(
                     Settings.getInstance(MyApplication.getContext()).
-                            getTranslatorCheckedIndex()).translate(youdaoResult.returnPhrase) + "<br/>";
+                            getTranslatorCheckedIndex()).translate(content)).append("<br/>");
+        }
 
 
-        definition += "<font color='gray'>网络释义</font><br/>";
+        definition.append("<font color='gray'>网络释义</font><br/>");
         for (String key : youdaoResult.webTranslation.keySet()) {
-            String joined = "";
+            StringBuilder joined = new StringBuilder();
             for (String value : youdaoResult.webTranslation.get(key)) {
-                joined += value + "; ";
+                joined.append(value).append("; ");
             }
-            definition += "<b>" + key + "</b>: " + joined + "<br/>";
+            definition.append("<b>").append(key).append("</b>: ").append(joined).append("<br/>");
         }
 //        String complex = FieldUtil.formatComplexTplWord(DICT_NAME, youdaoResult.returnPhrase, youdaoResult.phonetic, definition, Constant.AUDIO_INDICATOR_MP3);
 //        String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, youdaoResult.returnPhrase, youdaoResult.phonetic, definition, "");
         LinkedHashMap<String, String> defMap = new LinkedHashMap<>();
         defMap.put(Constant.DICT_FIELD_KEYWORD, youdaoResult.returnPhrase);
         defMap.put(Constant.DICT_FIELD_PHONETICS, youdaoResult.phonetic);
-        defMap.put(Constant.DICT_FIELD_DEFINITION, definition);
-        defMap.put(Constant.DICT_FILED_SENSE, "");
+        defMap.put(Constant.DICT_FIELD_DEFINITION, definition.toString());
+        defMap.put(Constant.DICT_FIELD_SENSE, "");
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_MUTE, muteComplex);

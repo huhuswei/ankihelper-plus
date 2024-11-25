@@ -32,8 +32,8 @@ public class Dub91Sentence implements IDictionary {
     private static final String DICT_INTRO = "www.91dub.com";
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FILED_CHINESE_SENTENCE,
-            Constant.DICT_FILED_SENTENCE,
+            Constant.DICT_FIELD_CHINESE_SENTENCE,
+            Constant.DICT_FIELD_SENTENCE,
             Constant.DICT_FIELD_IMG
     };
 

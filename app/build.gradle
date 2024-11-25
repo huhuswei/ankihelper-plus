@@ -31,6 +31,11 @@ android {
 //        }
     }
 
+    buildFeatures {
+        buildConfig true    // 开启BuildConfig类的生成
+        aidl true           // 启用aidl
+    }
+
     splits {
         abi {
             enable true
@@ -42,10 +47,6 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'key0'
-//            keyPassword 'ssphone'
-            storeFile file('/Volumes/m/Documents/keys/ankihelperKey.jks')
-//            storePassword 'ssphone'
         }
     }
 
@@ -99,6 +100,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
+
+//    implementation 'androidx.appcompat:appcompat:1.6.1'
+//    implementation 'com.google.android.material:material:1.11.0'
+
 //    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
@@ -151,17 +156,18 @@ dependencies {
     implementation 'me.everything:overscroll-decor-android:1.0.4'
 //    implementation 'com.trello:rxlifecycle-components:0.6.1'
 
+    implementation "com.deepl.api:deepl-java:1.6.0"
     //mlkit
     // To recognize Latin script
-    api 'com.google.mlkit:text-recognition:16.0.0'
+    api 'com.google.mlkit:text-recognition:16.0.1'
     // To recognize Chinese script
-    api 'com.google.mlkit:text-recognition-chinese:16.0.0'
+    api 'com.google.mlkit:text-recognition-chinese:16.0.1'
     // To recognize Devanagari script
-    api 'com.google.mlkit:text-recognition-devanagari:16.0.0'
+    api 'com.google.mlkit:text-recognition-devanagari:16.0.1'
     // To recognize Japanese script
-    api 'com.google.mlkit:text-recognition-japanese:16.0.0'
+    api 'com.google.mlkit:text-recognition-japanese:16.0.1'
     // To recognize Korean script
-    api 'com.google.mlkit:text-recognition-korean:16.0.0'
+    api 'com.google.mlkit:text-recognition-korean:16.0.1'
 
 
     //MathxView
@@ -173,6 +179,7 @@ dependencies {
     //layout
     implementation 'cn.wolfspider:autowraplinelayout:1.0.1'
 
+    //
     //perform edit
 //    implementation 'ren.qinc.edit:lib:0.0.5'
 
@@ -197,9 +204,13 @@ dependencies {
 //            "libs/commons-imaging-1.0-alpha1.jar"
     )
     implementation 'com.alibaba:fastjson:1.2.62'
-    implementation 'org.jruby.jcodings:jcodings:latest.release'
-    implementation'org.jruby.joni:joni:latest.release'
+    implementation 'org.jruby.jcodings:jcodings:1.0.60'
+    implementation'org.jruby.joni:joni:2.1.2'
     implementation 'org.nanohttpd:nanohttpd:latest.release'
+
+    def shizuku_version = "13.1.5"
+    implementation "dev.rikka.shizuku:api:$shizuku_version"
+    implementation "dev.rikka.shizuku:provider:$shizuku_version"
 //    implementation 'org.xiph.speex:speexdec:latest.release'
     // Use this instead
 //    implementation ('tokyo.northside:mdict4j:0.5.4') {

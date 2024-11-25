@@ -24,4 +24,5 @@
     <external-cache-path
         name="ext_ankihelper_cache"
         path="/" />
+    <external-path name="external_files" path="." />
 </paths>

@@ -11,6 +11,8 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.mmjang.ankihelper.anki.AnkiDroidHelper;
+import com.mmjang.ankihelper.ui.floating.IUserService;
+import com.mmjang.ankihelper.ui.floating.UserService;
 import com.mmjang.ankihelper.util.DarkModeUtils;
 //import com.tencent.bugly.crashreport.CrashReport;
 
@@ -28,7 +30,7 @@ public class MyApplication extends MultiDexApplication {
     private static AnkiDroidHelper mAnkiDroid;
     private static OkHttpClient okHttpClient;
     private static MyApplication instance;
-
+    private static UserService shizukuService;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -78,6 +80,13 @@ public class MyApplication extends MultiDexApplication {
             okHttpClient = new OkHttpClient();
         }
         return okHttpClient;
+    }
+
+    public static UserService getShizukuService() {
+        if(shizukuService == null) {
+            shizukuService = new UserService();
+        }
+        return shizukuService;
     }
 
     public static MyApplication getInstance() {

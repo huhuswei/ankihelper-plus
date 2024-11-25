@@ -94,8 +94,8 @@ public class Wordbean extends SQLiteAssetHelper implements IDictionary {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_PHONETICS,
             Constant.DICT_FIELD_DEFINITION,
-            Constant.DICT_FILED_SENTENCE,
-            Constant.DICT_FILED_CHINESE_SENTENCE,
+            Constant.DICT_FIELD_SENTENCE,
+            Constant.DICT_FIELD_CHINESE_SENTENCE,
 //            "图片",
 //            "复合项"
     };

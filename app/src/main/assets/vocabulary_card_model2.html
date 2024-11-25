@@ -1153,8 +1153,8 @@ location.href = url;
 }
 </script>
 
-<script src="https://www.lanrenzhijia.com/ajaxjs/1.11.1/jquery-1.11.1.min.js"></script>
-<script src="https://demo.lanrenzhijia.com/2015/touchSwipe0313/js/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
 
 <script>
 /**
@@ -1278,20 +1278,32 @@ function isMobile() {
     catch(e){ return false; }
 }
 
+// 在初始化swipe之前，禁用所有按钮和链接的触摸事件传播
+$('button, a').on('touchstart touchmove touchend', function(e) {
+    e.stopPropagation();
+});
+
 if (isMobile() == true) {
-        $(window).swipe({
-            swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
-                //getSelectionTextAndSearchOnHelper();
-                if (null == direction && window.getSelection().toString().trim()) {
-                    getSelectionSentence();
-                } else if (document.selection) {
-                    document.selection.empty();
-                } else if (window.getSelection) {
-                    window.getSelection().removeAllRanges();
-                }
-            },
-            //Default is 75px, set to 0 for demo so any distance triggers swipe
-            threshold: 0
-        });
+    $(window).swipe({
+        swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+            //getSelectionTextAndSearchOnHelper();
+            // 检查事件源是否为按钮或链接
+            if ($(event.target).is('button, a')) {
+                return;
+            }
+
+            if (null == direction && window.getSelection().toString().trim()) {
+                getSelectionSentence();
+            } else if (document.selection) {
+                document.selection.empty();
+            } else if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+            }
+        },
+        excludedElements: "button, a", // 排除所有按钮和链接元素
+        //Default is 75px, set to 0 for demo so any distance triggers swipe
+        threshold: 0,
+        preventDefaultEvents: false
+    });
 }
 </script>

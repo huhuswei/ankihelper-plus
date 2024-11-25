@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -33,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -108,6 +110,7 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
     private static final int PROCESS_OCR_RESULT = 1;
     private static final int PROCESS_OCRX_RESULT = 2;
     private static final int PROCESS_OCRX2_RESULT = 3;
+
     //async
     @SuppressLint("HandlerLeak")
     final Handler mHandler = new Handler() {
@@ -154,12 +157,33 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
         getWindow().getAttributes().windowAnimations = R.anim.anim_scale_in;
     }
 
+    private static final String STR_IMG_URL = "str_img_url";
+    private static final String IS_IMG_TYPE = "is_img_type";
+    private static final String IS_IMG_ACTION_SEND = "is_img_action_send";
+    private static final String STR_OCR_RESULT = "str_ocr_result";
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(STR_IMG_URL, imgUri.toString());
+        outState.putBoolean(IS_IMG_TYPE, true);
+        outState.putBoolean(IS_IMG_ACTION_SEND, true);
+        outState.putString(STR_OCR_RESULT, ocrResult.getText().toString());
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         ColorThemeUtils.setColorTheme(CaptureResultActivity.this, Constant.StyleBaseTheme.BigBangTheme);
         super.onCreate(savedInstanceState);
-        init();
+        init(savedInstanceState);
         updateUI(settings.get(Settings.CAPTURE_RESULT_EDIT_MODE, 0));
+
+//        if (preMlKitOcrLangCheckedIndex != settings.getMlKitOcrLangCheckedIndex()) {
+            if (TextUtils.isEmpty(ocrResult.getText().toString())) {
+                RecognizeTextByMlkitOcr();
+                mlkitOcrModeIndex = 1;
+            }
+//        }
 
         FinishActivityManager.getManager().finishActivity(PopupActivity.class);
     }
@@ -168,7 +192,6 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        init();
     }
 
     @Override
@@ -177,17 +200,20 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
         if (!settings.get(Settings.OCR_AUTOMATIC_RECOGNITION, false))
             return;
 
-        if (preMlKitOcrLangCheckedIndex != settings.getMlKitOcrLangCheckedIndex())
-            isRecognized = false;
-        if (hasFocus && !isRecognized) {
-            RecognizeTextByMlkitOcr();
-            isRecognized = true;
-            mlkitOcrModeIndex = 1;
-        }
+//        if (preMlKitOcrLangCheckedIndex != settings.getMlKitOcrLangCheckedIndex())
+//            isRecognized = false;
+//        if (hasFocus && !isRecognized) {
+//            if(TextUtils.isEmpty(strOcrResult)) {
+//                RecognizeTextByMlkitOcr();
+//            } else {
+//                ocrResult.setText(strOcrResult);
+//            }
+//            isRecognized = true;
+//            mlkitOcrModeIndex = 1;
+//        }
     }
 
-    @SuppressLint("ResourceType")
-    private void init() {
+    private void init(Bundle savedInstanceState) {
         Trace.d("captureResult", "init");
         settings = Settings.getInstance(MyApplication.getContext());
 //        if (settings.getPinkThemeQ()) {
@@ -222,50 +248,33 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
         setContentView(cardView);
         initWindow();
 
-        Intent intent = getIntent();
-//        imgPath = intent.getStringExtra(ScreenCapture.FILE_NAME);
-//        if (imgPath != null) {
-////            Trace.d("captureResult",  "fileName is null");
-////            // ToastUtil.show("R.string.screen_capture_fail");
-////            finish();
-////            return;
-//            Trace.d("CaptureResultActivity", imgPath);
-//            File capturedFile = new File(imgPath);
-//            if (capturedFile.exists()) {
-//                bitmap = BitmapFactory.decodeFile(imgPath);
-//            } else {
-//                Trace.d("captureResult", "captured File is not exists.");
-//                // ToastUtil.show("R.string.screen_capture_fail");
-//                finish();
-//                return;
-//            }
-//        } else {
-//            String action = intent.getAction();
-            String type = intent.getType();
-            imgUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-//            Trace.i(action + "\n" + type);
-            if (intent.getAction().equals(Intent.ACTION_SEND) && type.startsWith("image/") && imgUri != null) {
+        boolean isImgType;
+        boolean isActionSend;
+        String strResult;
+        if(savedInstanceState != null && savedInstanceState.containsKey(STR_IMG_URL)) {
+            imgUri = Uri.parse(savedInstanceState.getString(STR_IMG_URL));
+            isImgType = savedInstanceState.getBoolean(IS_IMG_TYPE);
+            isActionSend = savedInstanceState.getBoolean(IS_IMG_ACTION_SEND);
+            strResult = savedInstanceState.getString(STR_OCR_RESULT);
+        } else {
+            imgUri = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+            isImgType = getIntent().getType().startsWith("image/");
+            isActionSend = getIntent().getAction().equals(Intent.ACTION_SEND);
+            strResult = "";
+        }
 
-                //接收多张图片
-                // ArrayList<Uri> uris=intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-                bitmap = ImageUtils.ImageSizeCompress(this, imgUri);
-                if(bitmap == null) {
-                    finish();
-                    return;
-                }
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
-//                String strDate = dateFormat.format(new java.util.Date());
-//                try {
-//                    File img = StorageUtils.createCacheFile(strDate + ".png");
-//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(img));
-//                } catch (FileNotFoundException e) {
-//                    throw new RuntimeException(e);
-//                }
-            } else {
+        if (imgUri != null && isImgType && isActionSend) {
+            //接收多张图片
+            // ArrayList<Uri> uris=intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+            bitmap = ImageUtils.ImageSizeCompress(this, imgUri);
+            if(bitmap == null) {
                 finish();
                 return;
             }
-//        }
+        } else {
+            finish();
+            return;
+        }
 
         Thread tX = new Thread(
                 new Runnable() {
@@ -314,6 +323,7 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
         preMlKitOcrLangCheckedIndex = settings.getMlKitOcrLangCheckedIndex();
         ocrResult = (NoteEditText) findViewById(R.id.ocr_result);
         ocrResult.setBackgroundResource(R.drawable.edit_background);
+        ocrResult.setText(strResult);
         ocrResultRL = (RelativeLayout) findViewById(R.id.ocr_result_rl);
         containerLl = (LinearLayout) findViewById(R.id.layout_container);
         viewerOnContainerLl = (LinearLayout) findViewById(R.id.layout_container_view);
@@ -515,14 +525,12 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
 
             @Override
             public void afterTextChanged(Editable s) {
-                String latex = s.toString().trim();
 //                if(!latex.equals("")) {
 //                    mathPreview.setVisibility(View.VISIBLE);
-                String change = convertInline(latex);
+                String change = convertInline(s.toString().trim());
                 if (!mathPreview.getText().equals(change)) {
-                    latex = change;
 //                        ToastUtil.show(mathPreview.getmScrollY() +"");
-                    mathPreview.setText(latex);
+                    mathPreview.setText(change);
                 }
 //					latex = String.format("$$%s$$", latex);
 
@@ -636,6 +644,7 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
                     }
                 }
         );
+
 
         //编辑模式切换
         ivMode.setOnClickListener(new View.OnClickListener() {
@@ -1277,11 +1286,11 @@ public class CaptureResultActivity extends AppCompatActivity {//implements View.
             xBitmap = null;
         }
 
-        if(imgUri.getPath().contains("ext_ankihelper_cache")) {
-            File file = StorageUtils.createCacheFile(imgUri.getPath().substring(imgUri.getPath().lastIndexOf(File.separator)+1));
-            if (file.exists())
-                getContentResolver().delete(imgUri, null, null);
-        }
+//        if(imgUri.getPath().contains("ext_ankihelper_cache")) {
+//            File file = StorageUtils.createCacheFile(imgUri.getPath().substring(imgUri.getPath().lastIndexOf(File.separator)+1));
+//            if (file.exists())
+//                getContentResolver().delete(imgUri, null, null);
+//        }
 
         super.onDestroy();
     }

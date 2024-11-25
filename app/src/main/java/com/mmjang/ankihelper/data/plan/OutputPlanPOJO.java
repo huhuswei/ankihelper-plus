@@ -1,5 +1,6 @@
 package com.mmjang.ankihelper.data.plan;
 
+import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.Utils;
 
 import java.util.LinkedHashMap;
@@ -59,9 +60,11 @@ public class OutputPlanPOJO{
 
     public void setFieldsMap(Map<String, String> fieldsMap) {
         this.fieldsMap = Utils.fieldsMap2Str(fieldsMap);
+//        this.fieldsMap.replace(Constant.DEPRECATED_DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG, Constant.DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG);
     }
 
     public LinkedHashMap<String, String> getFieldsMap() {
+//        this.fieldsMap.replace(Constant.DEPRECATED_DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG, Constant.DICT_FIELD_KEY_DAV_OFFLINE_SOUNDTAG);
         return Utils.fieldsStr2Map(fieldsMap);
     }
 

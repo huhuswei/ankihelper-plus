@@ -16,35 +16,13 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.ichi2.anki.FlashCardsContract;
 import com.mmjang.ankihelper.data.dict.BatchClip;
-import com.mmjang.ankihelper.data.dict.BingImage;
-import com.mmjang.ankihelper.data.dict.BingOxford;
 import com.mmjang.ankihelper.data.dict.Cloze;
-import com.mmjang.ankihelper.data.dict.Collins;
-import com.mmjang.ankihelper.data.dict.CollinsEnEn;
-import com.mmjang.ankihelper.data.dict.Dedict;
 import com.mmjang.ankihelper.data.dict.Definition;
-import com.mmjang.ankihelper.data.dict.DictTango;
-import com.mmjang.ankihelper.data.dict.DictionaryDotCom;
 import com.mmjang.ankihelper.data.dict.Dub91Sentence;
-import com.mmjang.ankihelper.data.dict.Esdict;
-import com.mmjang.ankihelper.data.dict.Etymonline;
 import com.mmjang.ankihelper.data.dict.EudicSentence;
-import com.mmjang.ankihelper.data.dict.Frdict;
 import com.mmjang.ankihelper.data.dict.Getyarn;
-import com.mmjang.ankihelper.data.dict.Handian;
-import com.mmjang.ankihelper.data.dict.HujiangJapanese;
 import com.mmjang.ankihelper.data.dict.IDictionary;
-import com.mmjang.ankihelper.data.dict.IdiomDict;
-import com.mmjang.ankihelper.data.dict.JiSho;
-import com.mmjang.ankihelper.data.dict.Kuromoji;
-import com.mmjang.ankihelper.data.dict.Mdict;
-import com.mmjang.ankihelper.data.dict.Mnemonic;
-import com.mmjang.ankihelper.data.dict.Ode2;
 import com.mmjang.ankihelper.data.dict.RenRenCiDianSentence;
-import com.mmjang.ankihelper.data.dict.UrbanDict;
-import com.mmjang.ankihelper.data.dict.VocabCom;
-import com.mmjang.ankihelper.data.dict.WebsterLearners;
-import com.mmjang.ankihelper.data.dict.Wordbean;
 import com.mmjang.ankihelper.data.plan.OutputPlanPOJO;
 import com.mmjang.ankihelper.domain.PlayAudioManager;
 import com.mmjang.ankihelper.ui.plan.ComplexElement;
@@ -54,7 +32,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
-import java.net.IDN;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -444,7 +421,7 @@ public class Utils {
             case "拼音":
                 htmlTag =  String.format("<div class=\"pronunciation\">%s</div>", string);
                 break;
-            case Constant.DICT_FILED_SENSE:
+            case Constant.DICT_FIELD_SENSE:
                 htmlTag =  String.format("<div class=\"sense\">%s</div>", string);
                 break;
             case Constant.DICT_FIELD_DEFINITION:
@@ -455,32 +432,48 @@ public class Utils {
                 if (dictionary instanceof Dub91Sentence||
                         dictionary instanceof RenRenCiDianSentence||
                         dictionary instanceof EudicSentence||
-                        dictionary instanceof Getyarn||
+//                        dictionary instanceof Getyarn||
                         dictionary instanceof Cloze||
                         dictionary instanceof BatchClip) {
                     htmlTag = String.format(
-                            "<div class=\"mbox\">" +
-                                    "<audio id=\"%s\" src=\"%s\" loop=\"loop\"></audio>" +
-                                    "<script>var player=null;</script>" +
-                                    "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"1.7\" step=\"0.175\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>"+
-                                    "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.play){player.pause();player.currentTime=0.0;}\">⏹</button>"+
-                                    "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.currentTime>=0){player.currentTime=player.currentTime-3.0;}else{player.currentTime=0.0;}\">⏪</button>"+
-                                    "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.paused){player.play();}else if(player.play){player.pause();}\">▶️</button></div>",
+                            "<div class=\"mbox\">"
+                                    + "<audio id=\"%s\" src=\"%s\"></audio>"
+                                    + "<script>var player=null;</script>"
+                                    + "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"1.7\" step=\"0.175\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>"
+                                    + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.play){player.pause();player.currentTime=0.0;}\">⏹</button>"
+                                    + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.currentTime>=0){player.currentTime=player.currentTime-3.0;}else{player.currentTime=0.0;}\">⏪</button>"
+                                    + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.paused){player.play();}else if(player.play){player.pause();}\">▶️</button>"
+                                    + "</div>",
                             uuid, string, uuid, uuid, uuid, uuid
                     );
                 } else {
-                    htmlTag = String.format(
-                            "<audio id=\"%s\" src=\"%s\" loop=\"loop\"></audio>" +
-                                    "<script>var player=null;</script>" +
-                                    "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.paused){player.play();}else{player.pause();player.currentTime=0.0;}\">\uD83D\uDD0A</button>",
-                            uuid, string, uuid);
+                    if(dictionary.getAudioUrl().endsWith(Constant.MP4_SUFFIX)) {
+                        htmlTag = String.format(
+                                "<video id=\"%s\" width=\"100%%\" src=\"%s\" controlList=\"nodownload\" controls=\"controls\"></video>"
+                                        + "<div class=\"mbox\">"
+                                        + "<script>var player=null;</script>"
+                                        + "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"1.7\" step=\"0.175\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>"
+                                        + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.play){player.pause();player.currentTime=0.0;}\">⏹</button>"
+                                        + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.currentTime>=0){player.currentTime=player.currentTime-3.0;}else{player.currentTime=0.0;}\">⏪</button>"
+                                        + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.paused){player.play();}else if(player.play){player.pause();}\">▶️</button>"
+                                        + "</div>",
+                                uuid, string, uuid, uuid, uuid, uuid
+                        );
+                    } else {
+                        htmlTag = String.format(
+                                "<audio id=\"%s\" src=\"%s\"></audio>" +
+                                        "<script>var player=null;</script>" +
+                                        "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.paused){player.play();}else{player.pause();player.currentTime=0.0;}\">\uD83D\uDD0A</button>",
+                                uuid, string, uuid
+                        );
+                    }
                 }
                 break;
             case Constant.DICT_FIELD_SENTENCE_PICKED_DAV_ONLINE_LINK:
             case Constant.DICT_FIELD_SENTENCE_PICKED_DAV_OFFLINE_LINK:
                     htmlTag = String.format(
                             "<div class=\"mbox\">" +
-                                    "<audio id=\"%s\" src=\"%s\" loop=\"loop\"></audio>" +
+                                    "<audio id=\"%s\" src=\"%s\"></audio>" +
                                     "<script>var player=null;</script>" +
                                     "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"1.7\" step=\"0.35\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>"+
                                     "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.play){player.pause();player.currentTime=0.0;}\">⏹</button>"+
@@ -492,9 +485,21 @@ public class Utils {
             case Constant.DICT_FIELD_KEY_DAV_ONLINE_VIDEOTAG:
             case Constant.DICT_FIELD_KEY_DAV_OFFLINE_VIDEOTAG:
                 htmlTag = String.format(
-                        "<video id=\"%s\" width=\"100%%\" src=\"%s\" controlList=\"nodownload\" controls=\"controls\"></video>" +
-                                "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"2.0\" step=\"0.1\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>",
-                        uuid, string, uuid);
+                        "<video id=\"%s\" width=\"100%%\" src=\"%s\" controlList=\"nodownload\" controls=\"controls\"></video>"
+                                + "<div class=\"mbox\">"
+                                + "<script>var player=null;</script>"
+                                + "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"1.7\" step=\"0.175\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>"
+                                + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.play){player.pause();player.currentTime=0.0;}\">⏹</button>"
+                                + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.currentTime>=0){player.currentTime=player.currentTime-3.0;}else{player.currentTime=0.0;}\">⏪</button>"
+                                + "<button class=\"btn-play-audio\" onclick=\"var ele=document.getElementById('%s'); if(player===ele || player == null); else {player.pause(); player.currentTime=0.0;} player=ele; if(player.paused){player.play();}else if(player.play){player.pause();}\">▶️</button>"
+                                + "</div>",
+                        uuid, string, uuid, uuid, uuid, uuid
+                );
+//                htmlTag = String.format(
+//                        "<video id=\"%s\" width=\"100%%\" src=\"%s\" controlList=\"nodownload\" controls=\"controls\"></video>" +
+//                                "<input class=\"rate\" type=\"range\" min=\"0.3\" max=\"2.0\" step=\"0.1\" value=\"1.0\" oninput=\"document.getElementById('%s').playbackRate=this.value\"/>",
+//                        uuid, string, uuid);
+
                 break;
             case Constant.DICT_FIELD_SENTENCE_PICKED:
             case Constant.DICT_FIELD_SENTENCE_PICKED_BOLD:
@@ -502,7 +507,7 @@ public class Utils {
             case Constant.DICT_FIELD_SENTENCE_PICKED_CLOZE_DELETION_C1:
                 htmlTag = String.format("<div class=\"sentence\" id=\"sentence-picked\">%s</div>", string);
                 break;
-            case Constant.DICT_FILED_SENTENCE:
+            case Constant.DICT_FIELD_SENTENCE:
                 htmlTag = String.format("<div class=\"sentence\">%s</div>", string);
                 break;
             case Constant.DICT_FIELD_NOTE:
@@ -511,7 +516,7 @@ public class Utils {
             case Constant.DICT_FIELD_URL:
                 htmlTag =  String.format("<a class=\"url\" href=\"%s\">link</a>", string);
                 break;
-            case Constant.DICT_FILED_CHINESE_SENTENCE:
+            case Constant.DICT_FIELD_CHINESE_SENTENCE:
             case Constant.DICT_FIELD_TRANSLATION:
             case Constant.DICT_FIELD_CLOZE_TRANSLATION:
                 htmlTag =  String.format("<div class=\"translation\">%s</div>", string);
@@ -552,7 +557,7 @@ public class Utils {
             case "拼音":
                 htmlTag =  String.format("<div class=\"pronunciation\">%s</div>", string);
                 break;
-            case Constant.DICT_FILED_SENSE:
+            case Constant.DICT_FIELD_SENSE:
                 htmlTag =  String.format("<div class=\"sense\">%s</div>", string);
                 break;
             case Constant.DICT_FIELD_DEFINITION:
@@ -579,7 +584,7 @@ public class Utils {
             case Constant.DICT_FIELD_SENTENCE_PICKED_CLOZE_DELETION_C1:
                 htmlTag = String.format("<div class=\"sentence\" id=\"sentence-picked\">%s</div>", string);
                 break;
-            case Constant.DICT_FILED_SENTENCE:
+            case Constant.DICT_FIELD_SENTENCE:
                 htmlTag = String.format("<div class=\"sentence\">%s</div>", string);
                 break;
             case Constant.DICT_FIELD_NOTE:
@@ -588,7 +593,7 @@ public class Utils {
             case Constant.DICT_FIELD_URL:
                 htmlTag =  String.format("<a class=\"url\" href=\"%s\">link</a>", string);
                 break;
-            case Constant.DICT_FILED_CHINESE_SENTENCE:
+            case Constant.DICT_FIELD_CHINESE_SENTENCE:
             case Constant.DICT_FIELD_TRANSLATION:
             case Constant.DICT_FIELD_CLOZE_TRANSLATION:
                 htmlTag =  String.format("<div class=\"translation\">%s</div>", string);

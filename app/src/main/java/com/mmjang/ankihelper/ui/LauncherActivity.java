@@ -42,6 +42,7 @@ import com.mmjang.ankihelper.ui.about.AboutActivity;
 import com.mmjang.ankihelper.ui.content.ContentActivity;
 import com.mmjang.ankihelper.ui.customdict.CustomDictionaryActivity;
 import com.mmjang.ankihelper.ui.floating.FloatingSettingActivity;
+import com.mmjang.ankihelper.ui.floating.UserService;
 import com.mmjang.ankihelper.ui.floating.assist.AssistFloatWindow;
 import com.mmjang.ankihelper.ui.intelligence.IntelligenceActivity;
 import com.mmjang.ankihelper.ui.mdict.MdictActivity;
@@ -59,11 +60,14 @@ import com.mmjang.ankihelper.util.CrashManager;
 import com.mmjang.ankihelper.util.DarkModeUtils;
 import com.mmjang.ankihelper.util.StorageUtils;
 import com.mmjang.ankihelper.util.SystemUtils;
+import com.mmjang.ankihelper.util.Trace;
+import com.mmjang.ankihelper.util.Utils;
 import com.mmjang.ankihelper.widget.ActivationDialog;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,6 +92,7 @@ public class LauncherActivity extends AppCompatActivity {
     TextView tvAnkiDroidDir;
     TextView textViewOpenPlanManager;
     TextView textViewCustomDictionary;
+    TextView textViewClearCache;
     TextView textViewTangoDict;
     TextView textViewMdict;
     TextView textViewPopupWindowSettings;
@@ -126,6 +131,11 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //初始化 错误日志系统
         CrashManager.getInstance(this);
+
+        UserService userService = MyApplication.getShizukuService();
+        userService.addListeners();
+        userService.connectShizuku();
+
         checkAndRequestPermissions();
         ActivityUtil.checkStateForAnkiDroid(this);
         setContentView(R.layout.activity_launcher);
@@ -140,6 +150,7 @@ public class LauncherActivity extends AppCompatActivity {
         tvAnkiDroidDir.setText(MyApplication.getContext().getResources().getString(R.string.str_ankidroid_path) + "\n" + settings.getAnkiDroidDir());
         textViewOpenPlanManager = findViewById(R.id.btn_open_plan_manager);
         textViewCustomDictionary = findViewById(R.id.btn_open_custom_dictionary);
+        textViewClearCache = findViewById(R.id.btn_clear_cache);
         textViewTangoDict = findViewById(R.id.btn_set_tango);
         textViewMdict = findViewById(R.id.btn_set_mdict);
         textViewPopupWindowSettings = findViewById(R.id.btn_set_popupwindow);
@@ -282,6 +293,22 @@ public class LauncherActivity extends AppCompatActivity {
                 }
         );
 
+        textViewClearCache.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            Utils.cleanVideoCacheDir(LauncherActivity.this);
+                            Toast.makeText(LauncherActivity.this, "清除完成", Toast.LENGTH_LONG).show();
+                        } catch (IOException e) {
+                            Trace.e(null, "Error cleaning cache", e);
+                            Toast.makeText(LauncherActivity.this, "Error cleaning cache", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }
+        );
+
         textViewTangoDict.setOnClickListener(
                 v -> {
                     Intent intent = new Intent(LauncherActivity.this, DictTangoActivity.class);
@@ -389,6 +416,16 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
+        if(settings.getFloatBallEnable()) {
+            AssistFloatWindow.Companion.getInstance().show();
+            MyApplication.getShizukuService().enabledAccessibilityService();
+        } else {
+            AssistFloatWindow.Companion.getInstance().hide();
+            MyApplication.getShizukuService().disabledAccessibilityService();
+        }
+
         ActivityUtil.checkStateForAnkiDroid(this);
     }
 
@@ -601,7 +638,7 @@ public class LauncherActivity extends AppCompatActivity {
         tv2group.setText("Anki划词助手+群");
 
         layout.addView(tv1group);
-        layout.addView(tv2group);
+//        layout.addView(tv2group);
 
 
         builder.setView(layout);  // 将自定义布局添加到对话框
@@ -742,5 +779,10 @@ public class LauncherActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -7,450 +7,450 @@
     android:background="@color/transparent"
     android:fitsSystemWindows="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ll_popup_window"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="48dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn_cancel_blank"
+        <LinearLayout
+            android:id="@+id/ll_popup_window"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cv_popup_toolbar">
+
+            <View
+                android:id="@+id/view_bg_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:paddingBottom="0dp"
+                            android:animateLayoutChanges="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:background="@drawable/gradient_popup_background"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_marginBottom="3dp"
+                                android:orientation="horizontal">
+
+                                <ImageButton
+                                    android:id="@+id/btn_set_tango_dict"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0"
+                                    android:adjustViewBounds="true"
+                                    android:background="?attr/button_background_selector"
+                                    android:scaleType="centerInside"
+                                    android:src="?attr/icon_set_mdict"
+                                    android:visibility="gone" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatCheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:buttonTint="#000000"
+                                        android:visibility="gone" />
+
+                                    <Spinner
+                                        android:id="@+id/plan_spinner"
+                                        android:layout_width="match_parent"
+                                        android:scrollbars="none"
+                                        android:background="@null"
+                                        android:padding="0dp"
+                                        android:layout_height="28dp"
+                                        android:scrollbarSize="20dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <Spinner
+                                        android:id="@+id/deck_spinner"
+                                        android:layout_width="match_parent"
+                                        android:scrollbars="none"
+                                        android:background="@null"
+                                        android:padding="0dp"
+                                        android:layout_height="28dp"
+                                        android:scrollbarSize="20dp"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <Spinner
+                                        android:id="@+id/language_spinner"
+                                        android:layout_width="match_parent"
+                                        android:scrollbars="none"
+                                        android:background="@null"
+                                        android:padding="0dp"
+                                        android:layout_height="28dp"
+                                        android:scrollbarSize="20dp" />
+                                </LinearLayout>
+
+                                <ImageButton
+                                    android:id="@+id/btn_pronounce"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0"
+                                    android:adjustViewBounds="true"
+                                    android:background="?attr/button_background_selector"
+                                    android:scaleType="centerInside"
+                                    android:src="?attr/icon_play"
+                                    android:visibility="visible" />
+
+                            </LinearLayout>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_marginBottom="7dp">
+
+                                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <com.mmjang.ankihelper.widget.BigBangLayoutWrapper
+                                        android:id="@+id/bigbang_wrapper"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardview_translation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="12dp"
+                                android:layout_marginBottom="5dp"
+                                android:visibility="gone"
+                                app:cardCornerRadius="4dp"
+                                app:cardElevation="1dp">
+
+                                <EditText
+                                    android:id="@+id/edittext_translation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:background="@color/transparent"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="8dp"
+                                    android:textColor="@color/secondary_text"
+                                    android:textSize="14sp" />
+                            </androidx.cardview.widget.CardView>
+
+
+
+                            <LinearLayout
+                                android:id="@+id/view_definition_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="0dp"
+                                android:animateLayoutChanges="true"
+                                android:orientation="vertical">
+
+                                <SurfaceView
+                                    android:id="@+id/sv_surface"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_marginRight="12dp"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginBottom="2dp"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="1dp"
+                                    android:layout_gravity="center"
+                                    android:animateLayoutChanges="true"
+                                    android:visibility="gone"
+                                    app:cardBackgroundColor="?attr/color_popup_background" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_popup_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/transparent" />
-
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:scrollbars="none">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:animateLayoutChanges="true"
+                android:background="@drawable/gradient_popup_footer_background"
                 android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btn_cancel_blank_above_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:background="@color/transparent" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="0dp"
-                    app:cardBackgroundColor="?attr/color_popup_background"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="10dp">
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_marginBottom="10dp"
-                        android:animateLayoutChanges="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginBottom="3dp"
-                            android:orientation="horizontal">
-
-                            <ImageButton
-                                android:id="@+id/btn_set_tango_dict"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="5dp"
-                                android:layout_weight="0"
-                                android:adjustViewBounds="true"
-                                android:background="?attr/button_background_selector"
-                                android:scaleType="centerInside"
-                                android:src="?attr/icon_set_mdict"
-                                android:visibility="gone" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <androidx.appcompat.widget.AppCompatCheckBox
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:buttonTint="#000000"
-                                    android:visibility="gone" />
-
-                                <Spinner
-                                    android:id="@+id/plan_spinner"
-                                    android:layout_width="match_parent"
-                                    android:scrollbars="none"
-                                    android:background="@null"
-                                    android:padding="0dp"
-                                    android:layout_height="28dp"
-                                    android:scrollbarSize="20dp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <Spinner
-                                    android:id="@+id/deck_spinner"
-                                    android:layout_width="match_parent"
-                                    android:scrollbars="none"
-                                    android:background="@null"
-                                    android:padding="0dp"
-                                    android:layout_height="28dp"
-                                    android:scrollbarSize="20dp"
-                                    />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <Spinner
-                                    android:id="@+id/language_spinner"
-                                    android:layout_width="match_parent"
-                                    android:scrollbars="none"
-                                    android:background="@null"
-                                    android:padding="0dp"
-                                    android:layout_height="28dp"
-                                    android:scrollbarSize="20dp" />
-                            </LinearLayout>
-
-                            <ImageButton
-                                android:id="@+id/btn_pronounce"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="5dp"
-                                android:layout_weight="0"
-                                android:adjustViewBounds="true"
-                                android:background="?attr/button_background_selector"
-                                android:scaleType="centerInside"
-                                android:src="?attr/icon_play"
-                                android:visibility="visible" />
-
-                        </LinearLayout>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        <ProgressBar
+                            android:id="@+id/progress_bar_left"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginBottom="7dp"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="2dp">
+                            android:visibility="gone" />
 
-                            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <com.mmjang.ankihelper.widget.BigBangLayoutWrapper
-                                    android:id="@+id/bigbang_wrapper"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </RelativeLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardview_translation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        <Button
+                            android:id="@+id/btn_search_left"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginBottom="5dp"
-                            android:visibility="gone"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="1dp">
+                            android:background="?attr/icon_search"
+                            android:visibility="gone"/>
 
-                            <EditText
-                                android:id="@+id/edittext_translation"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginRight="8dp"
-                                android:background="@color/transparent"
-                                android:paddingTop="8dp"
-                                android:paddingBottom="8dp"
-                                android:textColor="@color/secondary_text"
-                                android:textSize="14sp" />
-                        </androidx.cardview.widget.CardView>
-
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
+                        <AutoCompleteTextView
+                            android:id="@+id/edit_text_hwd"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="1dp">
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@color/transparent"
+                            android:focusableInTouchMode="true"
+                            android:imeOptions="actionDone"
+                            android:inputType="textMultiLine"
+                            android:maxLines="3"
+                            android:paddingTop="7dp"
+                            android:paddingBottom="10dp"
+                            android:text=" "
+                            android:textSize="18sp" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btn_search"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:background="?attr/icon_search"
+                            android:visibility="gone"/>
 
-                                <ProgressBar
-                                    android:id="@+id/progress_bar_left"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:visibility="gone" />
-
-                                <Button
-                                    android:id="@+id/btn_search_left"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_margin="5dp"
-                                    android:background="?attr/icon_search"
-                                    android:visibility="gone"/>
-
-                                <AutoCompleteTextView
-                                    android:id="@+id/edit_text_hwd"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_weight="1"
-                                    android:background="@color/transparent"
-                                    android:focusableInTouchMode="true"
-                                    android:imeOptions="actionDone"
-                                    android:inputType="text"
-                                    android:maxLines="1"
-                                    android:paddingTop="7dp"
-                                    android:paddingBottom="10dp"
-                                    android:text=" "
-                                    android:textSize="18sp" />
-
-                                <Button
-                                    android:id="@+id/btn_search"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_margin="5dp"
-                                    android:background="?attr/icon_search"
-                                    android:visibility="gone"/>
-
-                                <ProgressBar
-                                    android:id="@+id/progress_bar"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:visibility="gone" />
-
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <LinearLayout
-                            android:id="@+id/view_definition_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:animateLayoutChanges="true"
-                            android:orientation="vertical">
-
-                            <SurfaceView
-                                android:id="@+id/sv_surface"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginRight="12dp"
-                                android:layout_marginTop="2dp"
-                                android:layout_marginBottom="2dp"
-                                app:cardCornerRadius="4dp"
-                                app:cardElevation="1dp"
-                                android:layout_gravity="center"
-                                android:animateLayoutChanges="true"
-                                android:visibility="gone"
-                                app:cardBackgroundColor="?attr/color_popup_background" />
-
-                        </LinearLayout>
-
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center">
-
-                        </androidx.cardview.widget.CardView>
+                        <ProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
 
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/footer_scroll_top"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_scroll_top" />
+
+                    <ImageButton
+                        android:id="@+id/footer_scroll_bottom"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_scroll_bottom" />
+
+                    <ImageButton
+                        android:id="@+id/footer_translate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_translate_normal" />
+
+
+                    <ImageButton
+                        android:id="@+id/footer_rotate_left"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_left_arrow" />
+
+                    <ImageButton
+                        android:id="@+id/footer_rotate_right"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_right_arrow" />
+
+                    <ImageButton
+                        android:id="@+id/footer_search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_search" />
+
+                    <ImageButton
+                        android:id="@+id/footer_note"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_note" />
+
+                    <ImageButton
+                        android:id="@+id/footer_tag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_tag" />
+
+                    <ImageButton
+                        android:id="@+id/send_aianki"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_aianki" />
+
+                    <ImageButton
+                        android:id="@+id/footer_copy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_copy" />
+
+                    <ImageButton
+                        android:id="@+id/footer_share"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="?attr/button_background_selector"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="?attr/icon_toolbar_share" />
+
+                </LinearLayout>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_popup_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        app:cardBackgroundColor="?attr/color_footer_background"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/footer_scroll_top"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_scroll_top" />
-
-            <ImageButton
-                android:id="@+id/footer_scroll_bottom"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_scroll_bottom" />
-
-            <ImageButton
-                android:id="@+id/footer_translate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_translate_normal" />
-
-
-            <ImageButton
-                android:id="@+id/footer_rotate_left"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_left_arrow" />
-
-            <ImageButton
-                android:id="@+id/footer_rotate_right"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_right_arrow" />
-
-            <ImageButton
-                android:id="@+id/footer_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_search" />
-
-            <ImageButton
-                android:id="@+id/footer_note"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_note" />
-
-            <ImageButton
-                android:id="@+id/footer_tag"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_tag" />
-
-            <ImageButton
-                android:id="@+id/footer_copy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_copy" />
-
-            <ImageButton
-                android:id="@+id/footer_share"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/button_background_selector"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="?attr/icon_toolbar_share" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
         android:id="@+id/audio_progress"

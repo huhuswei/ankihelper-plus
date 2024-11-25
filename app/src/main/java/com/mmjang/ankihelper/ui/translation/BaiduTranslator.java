@@ -47,7 +47,7 @@ public class BaiduTranslator implements Translator{
        // if(api == null) {
             Settings settings = Settings.getInstance(MyApplication.getContext());
             if(settings.getUserBaidufanyiAppId().isEmpty()) {
-                String[] appAndKey = RandomAPIKeyGenerator.next();
+                String[] appAndKey = RandomAPIKeyGenerator.next(RandomAPIKeyGenerator.Name.BAIDU);
                 api = new TransApi(appAndKey[0], appAndKey[1]);
             }else{
                 String id = settings.getUserBaidufanyiAppId();

@@ -36,6 +36,7 @@
     <attr name="icon_left_arrow" format="reference"/>
     <attr name="icon_right_arrow" format="reference"/>
     <attr name="icon_note" format="reference"/>
+    <attr name="icon_aianki" format="reference"/>
     <attr name="icon_tag" format="reference"/>
     <attr name="icon_copy" format="reference"/>
     <attr name="icon_play" format="reference"/>

@@ -588,152 +588,387 @@ public class DialogUtil {
 //    }
 
 
-    public static AlertDialog tessDatadownloadDialog(Context activityContext, ApiResponse apiResponse) {
-//        List<DownloadItem> downloadItems = new ArrayList<>();
-        // 初始化你的下载项列表...
+//    public static AlertDialog tessDatadownloadDialog(Context activityContext, ApiResponse apiResponse) {
+////        List<DownloadItem> downloadItems = new ArrayList<>();
+//        // 初始化你的下载项列表...
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
+//        LayoutInflater inflater = (LayoutInflater) activityContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View dialogLayout = inflater.inflate(R.layout.dialog_download_tess_data_item, null);
+//        LinearLayout downloadItemContainer = dialogLayout.findViewById(R.id.download_item_container);
+//        List<TesseractDataInfo> tesseractDataInfoList = apiResponse.getLanguages();
+//        for (TesseractDataInfo info : tesseractDataInfoList) {
+//            String url = String.format("%s%s", apiResponse.getUrl(), info.getDownloadPackage());
+//            // 设置初始状态
+//            String tessPath = StorageUtils.getIndividualTesseractDirectory().getPath();
+//            File dataDir = new File(tessPath, Constant.EXTERNAL_STORAGE_TESSDATA_SUBDIRECTORY);
+//            File downFile = new File(dataDir, info.getDownloadPackage());
+//            File file = new File(dataDir, info.getPackageName());
+//
+//            int tid = FileDownloadUtils.generateId(url, downFile.getPath());
+//
+//            if (FileDownloadList.getImpl().get(tid) != null) {
+//                BaseDownloadTask dt = FileDownloadList.getImpl().get(tid).getOrigin();
+//                View itemView = ((DownloadItem) dt.getTag()).getView();
+//                downloadItemContainer.addView(itemView);
+//            } else {
+//                View itemView = inflater.inflate(R.layout.item_download, null);
+//                downloadItemContainer.addView(itemView);
+//                Button downloadButton = itemView.findViewById(R.id.download_button);
+//                Button deleteButton = itemView.findViewById(R.id.delete_button);
+//                ProgressBar downloadProgress = itemView.findViewById(R.id.download_progress);
+//                TextView statusText = itemView.findViewById(R.id.download_status_text);
+//                TextView displayName = itemView.findViewById(R.id.display_name_text);
+//                displayName.setText(info.getName());
+//
+//                DownloadItem downloadItem = new DownloadItem(itemView, downloadButton, deleteButton, downloadProgress, statusText, displayName, url, dataDir.getPath(), info);
+////            downloadItems.add(downloadItem);
+//
+//                // 关联视图和DownloadItem对象
+//                DownloadItem.associateWithView(itemView, downloadItem);
+//                DownloadItem.associateWithView(downloadButton, downloadItem);
+//                DownloadItem.associateWithView(downloadProgress, downloadItem);
+//                DownloadItem.associateWithView(statusText, downloadItem);
+//                DownloadItem.associateWithView(displayName, downloadItem);
+//                DownloadItem.associateWithView(deleteButton, downloadItem);
+//
+//
+//                BaseDownloadTask dt = FileDownloader.getImpl().create(url)
+//                        .setPath(downFile.getPath(), false)
+//                        .setCallbackProgressTimes(300)
+//                        .setMinIntervalUpdateSpeed(400)
+//                        .setTag(downloadItem)
+//                        .setListener(new FileDownloadListener() {
+//                            @Override
+//                            protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//                                ((DownloadItem) task.getTag()).getDownloadButton().setText("等待");
+//                            }
+//
+//                            @Override
+//                            protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
+//                                ((DownloadItem) task.getTag()).getStatusText().setText("🔵");
+//                                ((DownloadItem) task.getTag()).getDownloadButton().setText("下载中");
+////                            downloadButton.setEnabled(false);
+//                                ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.VISIBLE);
+//
+//                            }
+//
+//                            @Override
+//                            protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//                                ((DownloadItem) task.getTag()).getDownloadProgress().setProgress(soFarBytes * 100 / totalBytes, true);
+//                            }
+//
+//                            @Override
+//                            protected void blockComplete(BaseDownloadTask task) {
+//                            }
+//
+//                            @Override
+//                            protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
+//                            }
+//
+//                            @Override
+//                            protected void completed(BaseDownloadTask task) {
+//                                task.reuse();
+//                                try {
+//
+//                                    if (downFile.getName().endsWith(".zip")) {
+//                                        //upzip
+//                                        ZipFileUtil.upZipFile(downFile, dataDir.getPath());
+//                                        ///delete zip
+//                                        if (downFile.exists())
+//                                            Utils.deleteFile(downFile);
+//                                        ToastUtil.showLong(
+//                                                ((DownloadItem) task.getTag()).getInfo().getPackageName() +
+//                                                activityContext.getResources().getString(R.string.info_downloaded));
+//                                    }
+//                                    ((DownloadItem) task.getTag()).getStatusText().setText("🟢");
+//                                    ((DownloadItem) task.getTag()).getDownloadButton().setVisibility(View.GONE);
+//                                    ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.GONE);
+//                                    ((DownloadItem) task.getTag()).getDeleteButton().setVisibility(View.VISIBLE);
+//                                } catch (Exception e) {
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//                                ((DownloadItem) task.getTag()).getStatusText().setText("🔵");
+//                                ((DownloadItem) task.getTag()).getDownloadButton().setText("继续");
+//                                ((DownloadItem) task.getTag()).getDownloadProgress().setProgress(soFarBytes * 100 / totalBytes, true);
+//                                ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.VISIBLE);
+//                            }
+//
+//                            @Override
+//                            protected void error(BaseDownloadTask task, Throwable e) {
+//                                task.reuse();
+//                                ((DownloadItem) task.getTag()).getStatusText().setText("🔴");
+//                                ((DownloadItem) task.getTag()).getDownloadButton().setText("下载");
+//                                ((DownloadItem) task.getTag()).getDownloadButton().setEnabled(true);
+//                                ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.GONE);
+//                                ToastUtil.showLong("Network error.");
+//                            }
+//
+//                            @Override
+//                            protected void warn(BaseDownloadTask task) {
+//                            }
+//                        });
+//
+//                if (file.exists()) {
+//                    statusText.setText("🟢");
+//                    downloadButton.setVisibility(View.GONE);
+//                    downloadProgress.setVisibility(View.GONE);
+//                    deleteButton.setVisibility(View.VISIBLE);
+//                } else {
+//                    statusText.setText("🔴");
+//                    downloadButton.setVisibility(View.VISIBLE);
+//                    downloadProgress.setVisibility(View.GONE);
+//                    deleteButton.setVisibility(View.GONE);
+//                }
+////
+////            downloadProgress.setVisibility(View.GONE);
+////
+//                downloadButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+////                    // 通过关联的视图找到对应的DownloadItem对象
+////                    DownloadItem clickedItem = (DownloadItem) v.getTag();
+////                    // 开始下载操作
+////                    clickedItem.startDownload();
+//                        switch (dt.getStatus()) {
+//                            case FileDownloadStatus.INVALID_STATUS:
+//                                dt.start();
+//                                break;
+//                            case FileDownloadStatus.pending:
+//                            case FileDownloadStatus.connected:
+//                            case FileDownloadStatus.progress:
+//                            case FileDownloadStatus.started:
+//                                dt.pause();
+//                                downloadButton.setText("继续");
+//                                break;
+//                            case FileDownloadStatus.paused:
+//                                dt.reuse();
+//                                dt.start();
+//                                break;
+//                        }
+//                    }
+//                });
+//                deleteButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (file.exists()) {
+//                            file.delete();
+//                            statusText.setText("🔴");
+//                            downloadButton.setText("下载");
+//                            downloadButton.setVisibility(View.VISIBLE);
+//                            deleteButton.setVisibility(View.GONE);
+//                        }
+//                    }
+//                });
+//            }
+//        }
+//
+//        builder.setView(dialogLayout);
+//        AlertDialog dialog = builder.create();
+//        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//            @Override
+//            public void onCancel(DialogInterface dialog) {
+////                FileDownloader.getImpl().pauseAll();
+////                FileDownloader.getImpl().clearAllTaskData();
+//                downloadItemContainer.removeAllViews();
+//            }
+//        });
+//        return dialog;
+//    }
 
+
+    public static AlertDialog tessDatadownloadDialog(Context activityContext, ApiResponse apiResponse) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
         LayoutInflater inflater = (LayoutInflater) activityContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View dialogLayout = inflater.inflate(R.layout.dialog_download_tess_data_item, null);
-        LinearLayout downloadItemContainer = dialogLayout.findViewById(R.id.download_item_container);
+        final LinearLayout downloadItemContainer = dialogLayout.findViewById(R.id.download_item_container);
         List<TesseractDataInfo> tesseractDataInfoList = apiResponse.getLanguages();
+
         for (TesseractDataInfo info : tesseractDataInfoList) {
             String url = String.format("%s%s", apiResponse.getUrl(), info.getDownloadPackage());
             // 设置初始状态
             String tessPath = StorageUtils.getIndividualTesseractDirectory().getPath();
             File dataDir = new File(tessPath, Constant.EXTERNAL_STORAGE_TESSDATA_SUBDIRECTORY);
-            File downFile = new File(dataDir, info.getDownloadPackage());
-            File file = new File(dataDir, info.getPackageName());
+            final File downFile = new File(dataDir, info.getDownloadPackage());
+            final File file = new File(dataDir, info.getPackageName());
 
             int tid = FileDownloadUtils.generateId(url, downFile.getPath());
 
             if (FileDownloadList.getImpl().get(tid) != null) {
                 BaseDownloadTask dt = FileDownloadList.getImpl().get(tid).getOrigin();
                 View itemView = ((DownloadItem) dt.getTag()).getView();
-                downloadItemContainer.addView(itemView);
-            } else {
-                View itemView = inflater.inflate(R.layout.item_download, null);
-                downloadItemContainer.addView(itemView);
-                Button downloadButton = itemView.findViewById(R.id.download_button);
-                Button deleteButton = itemView.findViewById(R.id.delete_button);
-                ProgressBar downloadProgress = itemView.findViewById(R.id.download_progress);
-                TextView statusText = itemView.findViewById(R.id.download_status_text);
-                TextView displayName = itemView.findViewById(R.id.display_name_text);
-                displayName.setText(info.getName());
+                if (itemView != null) {
+                    downloadItemContainer.addView(itemView);
+                }
+                continue;
+            }
 
-                DownloadItem downloadItem = new DownloadItem(itemView, downloadButton, deleteButton, downloadProgress, statusText, displayName, url, dataDir.getPath(), info);
-//            downloadItems.add(downloadItem);
+            View itemView = inflater.inflate(R.layout.item_download, null);
+            downloadItemContainer.addView(itemView);
 
-                // 关联视图和DownloadItem对象
-                DownloadItem.associateWithView(itemView, downloadItem);
-                DownloadItem.associateWithView(downloadButton, downloadItem);
-                DownloadItem.associateWithView(downloadProgress, downloadItem);
-                DownloadItem.associateWithView(statusText, downloadItem);
-                DownloadItem.associateWithView(displayName, downloadItem);
-                DownloadItem.associateWithView(deleteButton, downloadItem);
+            final Button downloadButton = itemView.findViewById(R.id.download_button);
+            final Button deleteButton = itemView.findViewById(R.id.delete_button);
+            final ProgressBar downloadProgress = itemView.findViewById(R.id.download_progress);
+            final TextView statusText = itemView.findViewById(R.id.download_status_text);
+            final TextView displayName = itemView.findViewById(R.id.display_name_text);
+            displayName.setText(info.getName());
 
+            final DownloadItem downloadItem = new DownloadItem(
+                    itemView,
+                    downloadButton,
+                    deleteButton,
+                    downloadProgress,
+                    statusText,
+                    displayName,
+                    url,
+                    dataDir.getPath(),
+                    info
+            );
 
-                BaseDownloadTask dt = FileDownloader.getImpl().create(url)
-                        .setPath(downFile.getPath(), false)
-                        .setCallbackProgressTimes(300)
-                        .setMinIntervalUpdateSpeed(400)
-                        .setTag(downloadItem)
-                        .setListener(new FileDownloadListener() {
-                            @Override
-                            protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                                ((DownloadItem) task.getTag()).getDownloadButton().setText("等待");
+            final BaseDownloadTask dt = FileDownloader.getImpl().create(url)
+                    .setPath(downFile.getPath(), false)
+                    .setCallbackProgressTimes(300)
+                    .setMinIntervalUpdateSpeed(400)
+                    .setTag(downloadItem)
+                    .setListener(new FileDownloadListener() {
+                        @Override
+                        protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                            DownloadItem item = (DownloadItem) task.getTag();
+                            if (item != null && item.getDownloadButton() != null) {
+                                item.getDownloadButton().setText("等待");
                             }
+                        }
 
-                            @Override
-                            protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
-                                ((DownloadItem) task.getTag()).getStatusText().setText("🔵");
-                                ((DownloadItem) task.getTag()).getDownloadButton().setText("下载中");
-//                            downloadButton.setEnabled(false);
-                                ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.VISIBLE);
-
-                            }
-
-                            @Override
-                            protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                                ((DownloadItem) task.getTag()).getDownloadProgress().setProgress(soFarBytes * 100 / totalBytes, true);
-                            }
-
-                            @Override
-                            protected void blockComplete(BaseDownloadTask task) {
-                            }
-
-                            @Override
-                            protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
-                            }
-
-                            @Override
-                            protected void completed(BaseDownloadTask task) {
-                                task.reuse();
-                                try {
-
-                                    if (downFile.getName().endsWith(".zip")) {
-                                        //upzip
-                                        ZipFileUtil.upZipFile(downFile, dataDir.getPath());
-                                        ///delete zip
-                                        if (downFile.exists())
-                                            Utils.deleteFile(downFile);
-                                        ToastUtil.showLong(
-                                                ((DownloadItem) task.getTag()).getInfo().getPackageName() +
-                                                activityContext.getResources().getString(R.string.info_downloaded));
-                                    }
-                                    ((DownloadItem) task.getTag()).getStatusText().setText("🟢");
-                                    ((DownloadItem) task.getTag()).getDownloadButton().setVisibility(View.GONE);
-                                    ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.GONE);
-                                    ((DownloadItem) task.getTag()).getDeleteButton().setVisibility(View.VISIBLE);
-                                } catch (Exception e) {
-
+                        @Override
+                        protected void connected(BaseDownloadTask task, String etag, boolean isContinue, int soFarBytes, int totalBytes) {
+                            DownloadItem item = (DownloadItem) task.getTag();
+                            if (item != null) {
+                                if (item.getStatusText() != null) {
+                                    item.getStatusText().setText("🔵");
+                                }
+                                if (item.getDownloadButton() != null) {
+                                    item.getDownloadButton().setText("下载中");
+                                }
+                                if (item.getDownloadProgress() != null) {
+                                    item.getDownloadProgress().setVisibility(View.VISIBLE);
                                 }
                             }
+                        }
 
-                            @Override
-                            protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                                ((DownloadItem) task.getTag()).getStatusText().setText("🔵");
-                                ((DownloadItem) task.getTag()).getDownloadButton().setText("继续");
-                                ((DownloadItem) task.getTag()).getDownloadProgress().setProgress(soFarBytes * 100 / totalBytes, true);
-                                ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.VISIBLE);
+                        @Override
+                        protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                            DownloadItem item = (DownloadItem) task.getTag();
+                            if (item != null && item.getDownloadProgress() != null && totalBytes > 0) {
+                                item.getDownloadProgress().setProgress((int) (soFarBytes * 100.0f / totalBytes), true);
                             }
+                        }
 
-                            @Override
-                            protected void error(BaseDownloadTask task, Throwable e) {
-                                task.reuse();
-                                ((DownloadItem) task.getTag()).getStatusText().setText("🔴");
-                                ((DownloadItem) task.getTag()).getDownloadButton().setText("下载");
-                                ((DownloadItem) task.getTag()).getDownloadButton().setEnabled(true);
-                                ((DownloadItem) task.getTag()).getDownloadProgress().setVisibility(View.GONE);
-                                ToastUtil.showLong("Network error.");
+                        @Override
+                        protected void blockComplete(BaseDownloadTask task) {
+                        }
+
+                        @Override
+                        protected void retry(final BaseDownloadTask task, final Throwable ex, final int retryingTimes, final int soFarBytes) {
+                        }
+
+                        @Override
+                        protected void completed(BaseDownloadTask task) {
+                            task.reuse();
+                            DownloadItem item = (DownloadItem) task.getTag();
+                            if (item == null) return;
+
+                            try {
+                                if (downFile.getName().endsWith(".zip")) {
+                                    ZipFileUtil.upZipFile(downFile, dataDir.getPath());
+                                    if (downFile.exists()) {
+                                        Utils.deleteFile(downFile);
+                                    }
+                                    ToastUtil.showLong(
+                                            item.getInfo().getPackageName() +
+                                                    activityContext.getResources().getString(R.string.info_downloaded)
+                                    );
+                                }
+
+                                if (item.getStatusText() != null) {
+                                    item.getStatusText().setText("🟢");
+                                }
+                                if (item.getDownloadButton() != null) {
+                                    item.getDownloadButton().setVisibility(View.GONE);
+                                }
+                                if (item.getDownloadProgress() != null) {
+                                    item.getDownloadProgress().setVisibility(View.GONE);
+                                }
+                                if (item.getDeleteButton() != null) {
+                                    item.getDeleteButton().setVisibility(View.VISIBLE);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
+                        }
 
-                            @Override
-                            protected void warn(BaseDownloadTask task) {
+                        @Override
+                        protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                            DownloadItem item = (DownloadItem) task.getTag();
+                            if (item != null) {
+                                if (item.getStatusText() != null) {
+                                    item.getStatusText().setText("🔵");
+                                }
+                                if (item.getDownloadButton() != null) {
+                                    item.getDownloadButton().setText("继续");
+                                }
+                                if (item.getDownloadProgress() != null) {
+                                    item.getDownloadProgress().setProgress((int) (soFarBytes * 100.0f / totalBytes), true);
+                                    item.getDownloadProgress().setVisibility(View.VISIBLE);
+                                }
                             }
-                        });
+                        }
 
-                if (file.exists()) {
-                    statusText.setText("🟢");
-                    downloadButton.setVisibility(View.GONE);
-                    downloadProgress.setVisibility(View.GONE);
-                    deleteButton.setVisibility(View.VISIBLE);
-                } else {
-                    statusText.setText("🔴");
-                    downloadButton.setVisibility(View.VISIBLE);
-                    downloadProgress.setVisibility(View.GONE);
-                    deleteButton.setVisibility(View.GONE);
-                }
-//
-//            downloadProgress.setVisibility(View.GONE);
-//
-                downloadButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                    // 通过关联的视图找到对应的DownloadItem对象
-//                    DownloadItem clickedItem = (DownloadItem) v.getTag();
-//                    // 开始下载操作
-//                    clickedItem.startDownload();
+                        @Override
+                        protected void error(BaseDownloadTask task, Throwable e) {
+                            task.reuse();
+                            DownloadItem item = (DownloadItem) task.getTag();
+                            if (item != null) {
+                                if (item.getStatusText() != null) {
+                                    item.getStatusText().setText("🔴");
+                                }
+                                if (item.getDownloadButton() != null) {
+                                    item.getDownloadButton().setText("下载");
+                                    item.getDownloadButton().setEnabled(true);
+                                }
+                                if (item.getDownloadProgress() != null) {
+                                    item.getDownloadProgress().setVisibility(View.GONE);
+                                }
+                            }
+                            ToastUtil.showLong("Network error.");
+                        }
+
+                        @Override
+                        protected void warn(BaseDownloadTask task) {
+                        }
+                    });
+
+            // 设置初始UI状态
+            if (file.exists()) {
+                statusText.setText("🟢");
+                downloadButton.setVisibility(View.GONE);
+                downloadProgress.setVisibility(View.GONE);
+                deleteButton.setVisibility(View.VISIBLE);
+            } else {
+                statusText.setText("🔴");
+                downloadButton.setVisibility(View.VISIBLE);
+                downloadProgress.setVisibility(View.GONE);
+                deleteButton.setVisibility(View.GONE);
+            }
+
+            // 设置按钮点击事件
+            downloadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (dt != null) {
                         switch (dt.getStatus()) {
                             case FileDownloadStatus.INVALID_STATUS:
                                 dt.start();
@@ -751,20 +986,20 @@ public class DialogUtil {
                                 break;
                         }
                     }
-                });
-                deleteButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (file.exists()) {
-                            file.delete();
-                            statusText.setText("🔴");
-                            downloadButton.setText("下载");
-                            downloadButton.setVisibility(View.VISIBLE);
-                            deleteButton.setVisibility(View.GONE);
-                        }
+                }
+            });
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (file.exists() && file.delete()) {
+                        statusText.setText("🔴");
+                        downloadButton.setText("下载");
+                        downloadButton.setVisibility(View.VISIBLE);
+                        deleteButton.setVisibility(View.GONE);
                     }
-                });
-            }
+                }
+            });
         }
 
         builder.setView(dialogLayout);
@@ -772,11 +1007,10 @@ public class DialogUtil {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-//                FileDownloader.getImpl().pauseAll();
-//                FileDownloader.getImpl().clearAllTaskData();
                 downloadItemContainer.removeAllViews();
             }
         });
+
         return dialog;
     }
 }

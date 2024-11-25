@@ -88,6 +88,17 @@
 #-keep interface * { *; }
 -keepclassmembers class * implements com.mmjang.ankihelper.data.dict.IDictionary{*;}
 
+# FileDownloader
+-keep class com.liulishuo.filedownloader.** { *; }
+-keep interface com.liulishuo.filedownloader.** { *; }
+
+# DownloadItem
+-keep class com.mmjang.ankihelper.util.DownloadItem { *; }
+-keepclassmembers class com.mmjang.ankihelper.util.DownloadItem {
+    *;
+}
+
+
 # sqlite
 -dontwarn org.litepal.*
 -keep class org.litepal.** { *; }
@@ -100,6 +111,12 @@
     public static ** valueOf(java.lang.String);
 }
 -keepclassmembers class * extends org.litepal.crud.DataSupport{*;}
+
+
+-keep class com.google.gson.reflect.TypeToken { *; }
+-keep class * extends com.google.gson.reflect.TypeToken
+-keepattributes AnnotationDefault,RuntimeVisibleAnnotations
+
 
 # androidx 混淆
 -keep class com.google.android.material.** {*;}

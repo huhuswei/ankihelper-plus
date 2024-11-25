@@ -128,6 +128,10 @@ class AssistDragDelegate private constructor(service: AccessibilityService) :
     fun hide(view: View) {
         if(!settings.floatBallEnable)
             mLogoView?.visibility = View.GONE
+
+        EasyFloat.dismissAppFloat(AssistFloatWindow.FLOAT_WINDOW_SELECTION)
+        mIsDragging = false
+        mHierarchyView = null
     }
 
     fun show(view: View) {

@@ -15,6 +15,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
@@ -177,6 +178,11 @@ public class MlKitOcr implements Ocr{
 
     public String getText(Bitmap image){
         return getText(image, 0);
+    }
+
+    @Override
+    public String getText(Uri uri) {
+        return "";
     }
 
     public String getText(Bitmap image, Function<String, String> callaback){

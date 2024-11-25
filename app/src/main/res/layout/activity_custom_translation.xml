@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:scrollbars="none">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -44,7 +44,9 @@
                 android:id="@+id/textview_custom_baidu_translation_introduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:textSize="16sp"
                 android:text="@string/custom_baidu_translation_introduction" />
 
@@ -58,11 +60,12 @@
                 android:id="@+id/edittext_baidufanyi_appid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
+
                 android:background="@drawable/edit_background"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:inputType="text|textCapSentences|textNoSuggestions|textMultiLine"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
                 />
 
             <TextView
@@ -75,18 +78,22 @@
                 android:id="@+id/edittext_baidufanyi_key"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
+
                 android:background="@drawable/edit_background"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:inputType="text|textCapSentences|textNoSuggestions|textMultiLine"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
                 />
 
             <TextView
                 android:id="@+id/textview_custom_caiyun_translation_introduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:textSize="16sp"
                 android:text="@string/custom_caiyun_translation_introduction" />
 
@@ -100,18 +107,22 @@
                 android:id="@+id/edittext_caiyunxiaoyi_key"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
+
                 android:background="@drawable/edit_background"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:inputType="text|textCapSentences|textNoSuggestions|textMultiLine"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
                 />
 
             <TextView
                 android:id="@+id/textview_custom_youdao_translation_introduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:textSize="16sp"
                 android:text="@string/custom_youdao_translation_introduction" />
 
@@ -125,11 +136,12 @@
                 android:id="@+id/edittext_youdaofanyi_appid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
+
                 android:background="@drawable/edit_background"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:inputType="text|textCapSentences|textNoSuggestions|textMultiLine"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
                 />
 
             <TextView
@@ -142,13 +154,76 @@
                 android:id="@+id/edittext_youdaofanyi_key"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
+
                 android:background="@drawable/edit_background"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:inputType="text|textCapSentences|textNoSuggestions|textMultiLine"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
                 />
 
+
+            <TextView
+                android:id="@+id/textview_custom_deepl_translation_introduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="16sp"
+                android:text="@string/custom_deeepl_translation_introduction" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="令牌Key:" />
+
+            <EditText
+                android:id="@+id/edittext_deepl_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/edit_background"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:minLines="6"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                />
+
+
+            <TextView
+                android:id="@+id/textview_custom_deeplx_translation_introduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="16sp"
+                android:text="@string/custom_deeeplx_translation_introduction" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="API URLs:" />
+
+            <EditText
+                android:id="@+id/edittext_deeplx_urls"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/edit_background"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="16dp"
+                android:minLines="6"
+                android:gravity="top"
+                android:inputType="text|textCapSentences|textNoSuggestions|textMultiLine"
+                />
 <!--            <TextView-->
 <!--                android:id="@+id/textview_custom_microsoft_translation_introduction"-->
 <!--                android:layout_width="match_parent"-->

@@ -100,42 +100,102 @@ class AssistService : AccessibilityService(), FloatWindowCallback {
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
+        // Log the type of accessibility event
         Trace.i("eventType", event.eventType.toString())
 
+        // Check if the floating ball feature is enabled and if the assistive float window is showing
         if (!settings.floatBallEnable ||
-            !AssistFloatWindow.instance.isShowing() ||
-            TextUtils.isEmpty(event.packageName)
-        ) {
+            !AssistFloatWindow.instance.isShowing()) {
+            // Stop capturing if conditions are not met
+            mAssistDragDelegate?.onStopCapture()
             return
         }
 
+        // Return if the package name of the event is empty
+        if (TextUtils.isEmpty(event.packageName)) {
+            return
+        }
+
+        // Handle different types of accessibility events
         when (event.eventType) {
             AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> {
-                // 躲避输入法和Popup
+                // Get the class name and package name of the event in lowercase
                 var className = event.className.toString().lowercase() ?: ""
                 var packageName = event.packageName.toString().lowercase() ?: ""
-                Trace.i("onAccessibilityEvent", "package: " + packageName +"\t" + className)
+                // Log the package and class name
+                Trace.i("onAccessibilityEvent", "package: " + packageName + "\t" + className)
+
+                // Check if the package or class name indicates a keyboard or popup activity
                 if (
                     packageName.contains("keyboard") ||
                     packageName.contains("input") ||
-                    packageName.contains("softinput")) {
-                    Trace.i("onAccessibilityEvent", "classname: " +className)
-                    settings.put(Settings.KEYBOARD_STATE, true)
-                } else if(
-                    !className.contains("popupactivity")
-//                    ||  packageName.contains("com.android.systemui")
-//                    ||
-//                    packageName.contains("android") ||
-//                    !className.contains("android.widget")
+                    packageName.contains("softinput") ||
+                    className.contains("popupactivity") ||
+                    (packageName.contains("ankihelper") && settings.get(Settings.KEYBOARD_STATE, false))
                 ) {
-                    Trace.i("onAccessibilityEvent", "keyboard is hided. className -> " + className)
+                    // Log if the package is identified as a keyboard
+                    Trace.i("onAccessibilityEvent", "package-keyboard: " + packageName)
+                    // Set keyboard state to true in settings
+                    settings.put(Settings.KEYBOARD_STATE, true)
+                } else {
+                    // Set keyboard state to false in settings
                     settings.put(Settings.KEYBOARD_STATE, false)
                 }
 
+                // Notify the delegate about the window state change
                 mAssistDragDelegate?.onTypeWindowStateChanged(event)
             }
         }
     }
+
+
+//    override fun onAccessibilityEvent(event: AccessibilityEvent) {
+//        Trace.i("eventType", event.eventType.toString())
+//
+//
+//        if (!settings.floatBallEnable ||
+//            !AssistFloatWindow.instance.isShowing()) {
+//            mAssistDragDelegate?.onStopCapture()
+//            return
+//        }
+//
+//        if (
+//            TextUtils.isEmpty(event.packageName)
+//        ) {
+//            return
+//        }
+//
+//        when (event.eventType) {
+//            AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> {
+//                // 躲避输入法和Popup
+//                var className = event.className.toString().lowercase() ?: ""
+//                var packageName = event.packageName.toString().lowercase() ?: ""
+//                Trace.i("onAccessibilityEvent", "package: " + packageName +"\t" + className)
+//                if (
+//                    packageName.contains("keyboard") ||
+//                    packageName.contains("input") ||
+//                    packageName.contains("softinput") ||
+//                    className.contains("popupactivity") ||
+//                    (packageName.contains("ankihelper") && settings.get(Settings.KEYBOARD_STATE, false))
+//                    ) {
+//                    Trace.i("onAccessibilityEvent", "package-keyboard: " +packageName)
+//                    settings.put(Settings.KEYBOARD_STATE, true)
+//                } else {
+//                    settings.put(Settings.KEYBOARD_STATE, false)
+//                }
+//
+////                if(className.contains("popupactivity")) {
+////                    Trace.i("onAccessibilityEvent", "class-popup: " + className)
+////
+////                    settings.put(Settings.KEYBOARD_STATE, true)
+////                }else {
+////                    settings.put(Settings.KEYBOARD_STATE, false)
+////                }
+//
+//                mAssistDragDelegate?.onTypeWindowStateChanged(event)
+//            }
+//        }
+//    }
 
     override fun onUnbind(intent: Intent?): Boolean {
         //test accessibility service. 2023.1.23

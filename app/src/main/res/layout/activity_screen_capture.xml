@@ -9,6 +9,8 @@
         android:id="@+id/mark_size"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
         app:vertexColor="?attr/colorPrimaryDark"
         app:strokeColor="?attr/colorPrimary"
         app:strokeWidth="2dp"

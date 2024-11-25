@@ -6,6 +6,7 @@
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradient_popup_footer_background"
         android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -20,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/gradient_popup_footer_background"
             android:orientation="vertical">
 
             <com.balysv.materialripple.MaterialRippleLayout
@@ -171,6 +173,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/gradient_popup_background"
             android:orientation="vertical">
 
             <com.balysv.materialripple.MaterialRippleLayout
@@ -356,6 +359,23 @@
                     android:padding="16dp"
                     android:layout_gravity="center_vertical"
                     android:text="@string/str_ankidroid_path"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/Divider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/btn_clear_cache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_clear_cache"
                     android:textColor="@color/primary_text"
                     android:textSize="16sp" />
 

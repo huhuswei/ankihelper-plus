@@ -66,7 +66,6 @@ public class ScreenCaptureActivity extends AppCompatActivity {
 
         initWindow();
         mMediaProjectionManager = (MediaProjectionManager) getApplication().getSystemService(Context.MEDIA_PROJECTION_SERVICE);
-        getScreenshotPermission();
 
         setContentView(R.layout.activity_screen_capture);
 
@@ -163,6 +162,7 @@ public class ScreenCaptureActivity extends AppCompatActivity {
             }
         });
 
+        getScreenshotPermission();
     }
 
         private void hideStatusBar() {
@@ -219,16 +219,17 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                try {
+//                try {
                     if(AssistFloatWindow.Companion.getScreenshotPermission() == null)
                         startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), Constant.REQUEST_MEDIA_PROJECTION);
                     else {
                         intent = (Intent) AssistFloatWindow.Companion.getScreenshotPermission().clone();
                         startScreenCapture(intent, Activity.RESULT_OK);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    requestScreenshotPermission();
+//                }
             }
         });
 
@@ -268,11 +269,11 @@ public class ScreenCaptureActivity extends AppCompatActivity {
 
     private void startScreenCapture(Intent intent, int resultCode) {
         screenCaptureService = new ScreenCapture(this ,intent, resultCode,markedArea,mGraphicPath);
-        try {
+//        try {
             screenCaptureService.toCapture();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//        }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -301,11 +302,16 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     protected void getScreenshotPermission() {
 //        try {
             if(AssistFloatWindow.Companion.getScreenshotPermission() == null) {
-                startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), Constant.REQUEST_MEDIA_PROJECTION);
+//                startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), Constant.REQUEST_MEDIA_PROJECTION);
+                requestScreenshotPermission();
             }
 //        } catch (final RuntimeException ignored) {
 //            openScreenshotPermissionRequester();
 //        }
+    }
+
+    protected void requestScreenshotPermission() {
+        startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), Constant.REQUEST_MEDIA_PROJECTION);
     }
 
 //    protected void openScreenshotPermissionRequester(){

@@ -31,7 +31,7 @@ public class UrbanDict implements IDictionary {
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
             Constant.DICT_FIELD_DEFINITION,
-            Constant.DICT_FILED_SENTENCE,
+            Constant.DICT_FIELD_SENTENCE,
 //            "复合项"
     };
 

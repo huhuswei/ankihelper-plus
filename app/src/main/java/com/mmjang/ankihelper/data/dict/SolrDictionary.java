@@ -35,8 +35,8 @@ public class SolrDictionary implements IDictionary {
     private static final String DICT_INTRO = "";
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FILED_SENTENCE,
-            Constant.DICT_FILED_CHINESE_SENTENCE,
+            Constant.DICT_FIELD_SENTENCE,
+            Constant.DICT_FIELD_CHINESE_SENTENCE,
             Constant.DICT_FIELD_ORIGIN,
 //            "复合项"
     };
@@ -152,8 +152,8 @@ public class SolrDictionary implements IDictionary {
                 String audioFileName = Utils.getSpecificFileName(key);
                 LinkedHashMap<String, String> eleMap = new LinkedHashMap<>();
                 eleMap.put(Constant.DICT_FIELD_KEYWORD, key);
-                eleMap.put(Constant.DICT_FILED_SENTENCE, en);
-                eleMap.put(Constant.DICT_FILED_CHINESE_SENTENCE, cn);
+                eleMap.put(Constant.DICT_FIELD_SENTENCE, en);
+                eleMap.put(Constant.DICT_FIELD_CHINESE_SENTENCE, cn);
                 eleMap.put(Constant.DICT_FIELD_ORIGIN, source);
                 String uiString = "";
                 if(audio.isEmpty()) {

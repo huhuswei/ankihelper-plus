@@ -69,6 +69,7 @@
         <item name="icon_right_arrow">@drawable/ic_ali_arrow_down</item>
         <item name="icon_note">@drawable/ic_ali_note</item>
         <item name="icon_tag">@drawable/ic_ali_tag</item>
+        <item name="icon_aianki">@drawable/icons8_tesseract</item>
         <item name="icon_copy">@drawable/ic_ali_copy</item>
         <item name="icon_play">@drawable/ic_ali_play</item>
         <item name="icon_set_mdict">@drawable/ic_set_dict</item>
@@ -105,6 +106,7 @@
         <item name="icon_right_arrow">@drawable/ic_ali_arrow_down_pink</item>
         <item name="icon_note">@drawable/ic_ali_note_pink</item>
         <item name="icon_tag">@drawable/ic_ali_tag_pink</item>
+        <item name="icon_aianki">@drawable/icons8_tesseract</item>
         <item name="icon_copy">@drawable/ic_ali_copy_pink</item>
         <item name="icon_play">@drawable/ic_ali_play_pink</item>
         <item name="icon_set_mdict">@drawable/ic_set_dict_pink</item>
@@ -141,6 +143,7 @@
         <item name="icon_right_arrow">@drawable/ic_ali_arrow_down</item>
         <item name="icon_note">@drawable/ic_ali_note</item>
         <item name="icon_tag">@drawable/ic_ali_tag</item>
+        <item name="icon_aianki">@drawable/icons8_tesseract</item>
         <item name="icon_copy">@drawable/ic_ali_copy</item>
         <item name="icon_play">@drawable/ic_ali_play</item>
         <item name="icon_set_mdict">@drawable/ic_set_dict_blue</item>
@@ -157,7 +160,7 @@
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1px</item>
+        <item name="android:layout_height">2px</item>
         <item name="android:background">@color/divider</item>
     </style>
 
@@ -354,5 +357,13 @@ B退出，A显示，则此时A执行动画3（android:activityCloseEnterAnimatio
 
     <style name="MathxView" parent="AppTheme">
 
+    </style>
+
+    <style name="ShapeAppearanceOverlay.TopRounded" parent="AppTheme">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">80dp</item>
+        <item name="cornerSizeTopLeft">80dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 </resources>

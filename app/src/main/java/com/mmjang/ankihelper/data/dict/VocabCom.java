@@ -6,6 +6,7 @@ import android.widget.ListAdapter;
 
 import com.mmjang.ankihelper.MyApplication;
 import com.mmjang.ankihelper.util.Constant;
+import com.mmjang.ankihelper.util.RegexUtil;
 import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.Utils;
 
@@ -47,18 +48,24 @@ public class VocabCom implements IDictionary {
         return true;
     }
 
-
-    private static final String AUDIO_TAG = "MP3";
+    private static String AUDIO_TAG = "MP3";
     private static final String DICT_NAME = "Vocabulary.com";
     private static final String DICT_INTRO = "数据来自 Vocabulary.com";
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FIELD_DEFINITION
+            Constant.DICT_FIELD_PHONETICS,
+            Constant.DICT_FIELD_SENSE,
+            Constant.DICT_FIELD_DEFINITION,
+            Constant.DICT_FIELD_SENTENCE
 //            "复合项"
     };
 
-    private static final String wordUrl = "http://app.vocabulary.com/app/1.0/dictionary/search?word=";
-    private static final String mp3Url = "https://audio.vocab.com/1.0/us/";
+//    private static final String wordUrl = "http://app.vocabulary.com/app/1.0/dictionary/search?word=";
+    private static final String baseUrl = "https://www.vocabulary.com";
+    private static final String newWordUrl = baseUrl + "/dictionary";
+    private static final String mp3Url = "https://audio.vocabulary.com/1.0/us/";
+    private static int mediaIndex = 0;
+    private static String checkKey = "";
 
     public VocabCom(Context context){
 
@@ -78,43 +85,88 @@ public class VocabCom implements IDictionary {
     }
 
     public List<Definition> wordLookup(String key) {
+        if(!checkKey.equals(key)) mediaIndex = 0;
+        checkKey = key;
         try {
 //            Document doc = Jsoup.connect(wordUrl + key)
 //                    .userAgent("Mozilla")
 //                    .timeout(5000)
 //                    .get();
             emptyAudioUrl();
-            Request request = new Request.Builder().url(wordUrl + key).build();
-            String rawhtml = MyApplication.getOkHttpClient().newCall(request).execute().body().string();
-            Document doc = Jsoup.parse(rawhtml);
-            String headWord = getSingleQueryResult(doc, "h1.dynamictext", false);
-            String defShort = getSingleQueryResult(doc, "p.short", true).replace("<i>","<b>").replace("</i>","</b>");
-            String defLong = getSingleQueryResult(doc, "p.long", true).replace("<i>","<b>").replace("</i>","</b>");
-            Elements mp3Soup = doc.select("a.audio");
-            String mp3Id = "";
-            if(mp3Soup.size() > 0){
-                mp3Id = mp3Soup.get(0).attr("data-audio");
+//            Request request = new Request.Builder().url(wordUrl + key).build();
+//            String rawhtml = MyApplication.getOkHttpClient().newCall(request).execute().body().string();
+//            Document doc = Jsoup.parse(rawhtml);
+
+            Request request = new Request.Builder().url(newWordUrl + "/" + key).build();
+            String newRawHtml = MyApplication.getOkHttpClient().newCall(request).execute().body().string();
+            Document newDoc = Jsoup.parse(newRawHtml);
+
+            String mediaSuffix = Constant.MP3_SUFFIX;
+
+//            String headWord = getSingleQueryResult(doc, "h1.dynamictext", false);   //new selector: div.header-container h1
+//            String defShort = getSingleQueryResult(doc, "p.short", true).replace("<i>","<b>").replace("</i>","</b>");
+//            String defLong = getSingleQueryResult(doc, "p.long", true).replace("<i>","<b>").replace("</i>","</b>");
+//            Elements mp3Soup = doc.select("a.audio");
+
+            String headWord = getSingleQueryResult(newDoc, "div.header-container h1", false);   //new selector: div.header-container h1
+            String defShort = getSingleQueryResult(newDoc, "p.short", true).replace("<i>","<b>").replace("</i>","</b>");
+            String defLong = getSingleQueryResult(newDoc, "p.long", true).replace("<i>","<b>").replace("</i>","</b>");
+            String defForms = getSingleQueryResult(newDoc, "p.word-forms", true).replace("<i>","<b>").replace("</i>","</b>");
+            String phonetic = "";
+
+//            Elements soup = newDoc.select("div.ipa-with-audio > a.audio");
+//            /* mp3 */
+//            if(soup.size() == 1) {
+//                String mp3Id = "";
+//                mp3Id = soup.get(0).select("a").attr("data-audio");
+//                //此页面只有一个音频，用mAudioUrl保存
+//                mAudioUrl = mp3Url + mp3Id + Constant.MP3_SUFFIX;
+//                phonetic = soup.get(0).select("span.span-replace-h3").text();
+//            } else if (soup.size() == 2) {
+//                /* mp4 */
+//                String mp4Url = soup.select("a audio.pron-audio").attr("src");
+//                mediaSuffix = Constant.MP4_SUFFIX;
+//                mAudioUrl = mp4Url;
+//                AUDIO_TAG = "MP4";
+//                phonetic = soup.select("span.")
+//            }
+            Elements soup = newDoc.select("div.video-with-label");
+            int size = soup.size();
+            if (size > 0) {
+                mAudioUrl = soup.select("source").get(mediaIndex%size).attr("src");
+                AUDIO_TAG = "MP4";
+                phonetic = soup.select("span").get(mediaIndex%size).html();
+                mediaSuffix = Constant.MP4_SUFFIX;
+            } else {
+                soup = newDoc.select("div.ipa-with-audio");
+                if(soup.size() > 0) {
+                    String mp3Id = soup.select("a.audio").get(0).attr("data-audio");
+                    mAudioUrl = mp3Url + mp3Id + Constant.MP3_SUFFIX;
+                    AUDIO_TAG = "MP3";
+                    phonetic = soup.select("span.span-replace-h3").text();
+                    Trace.i("vosv:" + phonetic);
+                }
             }
-            //此页面只有一个音频，用mAudioUrl保存
-            mAudioUrl = mp3Url + mp3Id + Constant.MP3_SUFFIX;
 
             List<Definition> definitionList = new ArrayList<>();
             if(headWord.isEmpty()){
                 return definitionList;
             }
             String audioFileName = Utils.getSpecificFileName(headWord);
+            String audioIndicator = "";
             if(!defShort.isEmpty()){
                 LinkedHashMap<String, String> defMap = new LinkedHashMap<>();
-                String audioIndicator = "";
+
                 if(!mAudioUrl.isEmpty()){
-                    audioIndicator = "<font color='#227D51' >" + AUDIO_TAG + "</font>";
+                    audioIndicator = "<font color='#227D51' >" + AUDIO_TAG + "</font>" + "<sub><small> " + (size>1?mediaIndex%size+1 + "</small></sub>":"");
                 }
-                String definition = defLong.trim() + defLong.trim();
+                String definition = defShort.trim() + defLong.trim() + defForms;
 //                String complex = FieldUtil.formatComplexTplWord(DICT_NAME, headWord, "", definition, Constant.AUDIO_INDICATOR_MP3);
 //                String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, headWord, "", definition, "");
 
                 defMap.put(Constant.DICT_FIELD_KEYWORD, headWord);
                 defMap.put(Constant.DICT_FIELD_DEFINITION, definition);
+                defMap.put(Constant.DICT_FIELD_PHONETICS, phonetic);
 //                defMap.put(EXP_ELE[2], "<div class='dictionary_vocab'>" +
 //                        "<div class='vocab_hwd'>" + headWord + "</div>" +
 //                        "<div class='vocab_def'>" + defShort + defLong + "</div>" +
@@ -122,21 +174,33 @@ public class VocabCom implements IDictionary {
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_MUTE, muteComplex);
-
-                String exportedHtml = audioIndicator +defShort + defLong;
+                String exportedHtml = headWord + " "
+                        + (!phonetic.equals("") ? phonetic + " " : "")
+                        + audioIndicator + "<br/>"
+                        + (defShort.isEmpty() ? "" : defShort + "<br/>") + (defLong.isEmpty() ? "" : defLong + "<br/>") + (defForms.isEmpty()? "" : defForms);
+//                String exportedHtml = audioIndicator +defShort + defLong;
                 Definition.ResInformation resInfor = new Definition.ResInformation(
-                        mAudioUrl, audioFileName, Constant.MP3_SUFFIX
+                        mAudioUrl, audioFileName, mediaSuffix
                 );
                 definitionList.add(new Definition(defMap, exportedHtml, resInfor));
             }
 
-            for(Element def : doc.select("h3.definition")){
+            for(Element def : newDoc.select("div.word-definitions ol li")){
                 LinkedHashMap<String, String> defMap = new LinkedHashMap<>();
-                String defText = getDefHtml(def);
+                String sense = RegexUtil.colorizeSense(def.select("div.definition div.pos-icon").html());
+                def.select("div.definition div.pos-icon").remove();
+                String sentence = def.select("div.defContent > div.example").html().replaceAll("<(/?)strong>", "<$1b>");//getDefHtml(def);
+                def.select("div.defContent > div.example").remove();
+                String defText = def.outerHtml()
+                        .replace("\"#0\"", "\"/dictionary/" + headWord + "#0\"")
+                        .replace("href=\"", "href=\"" + baseUrl);
 //                String complex = FieldUtil.formatComplexTplWord(DICT_NAME, headWord, "", defText, Constant.AUDIO_INDICATOR_MP3);
 //                String muteComplex = FieldUtil.formatComplexTplWord(DICT_NAME, headWord, "", defText, "");
-                defMap.put(EXP_ELE[0], headWord);
-                defMap.put(EXP_ELE[1], defText);
+                defMap.put(Constant.DICT_FIELD_KEYWORD, headWord);
+                defMap.put(Constant.DICT_FIELD_DEFINITION, defText);
+                defMap.put(Constant.DICT_FIELD_PHONETICS, phonetic);
+                defMap.put(Constant.DICT_FIELD_SENSE, sense);
+                defMap.put(Constant.DICT_FIELD_SENTENCE, sentence);
 //                defMap.put(EXP_ELE[2],
 //                        "<div class='dictionary_vocab'>" +
 //                                "<div class='vocab_hwd'>" + headWord + "</div>" +
@@ -146,13 +210,20 @@ public class VocabCom implements IDictionary {
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
 //                defMap.put(Constant.DICT_FIELD_COMPLEX_MUTE, muteComplex);
+//                String exportedHtml = headWord + "<br/>" + defText;
+                String exportedHtml = "<b>" + headWord +"</b> "
+                        + (!phonetic.equals("") ? phonetic + " " : "")
+                        + audioIndicator + "<br/>"
+                        + (!sense.equals("")?sense+" ":"") + "<br/>"
+                        + defText
+                        + (sentence.isEmpty() ? "" : ("<b>eg:</b><br/>" + sentence));
 
                 Definition.ResInformation resInfor = new Definition.ResInformation(
-                        mAudioUrl, audioFileName, Constant.MP3_SUFFIX
+                        mAudioUrl, audioFileName, mediaSuffix
                 );
-                definitionList.add(new Definition(defMap, defText, resInfor));
+                definitionList.add(new Definition(defMap, exportedHtml, resInfor));
             }
-
+            mediaIndex++;
             return definitionList;
 
         } catch (Exception e) {

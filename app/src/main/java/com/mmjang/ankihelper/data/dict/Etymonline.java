@@ -32,7 +32,7 @@ public class Etymonline implements IDictionary {
     private static final String DICT_INTRO = "www.etymonline.com";
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FILED_SENSE,
+            Constant.DICT_FIELD_SENSE,
             Constant.DICT_FIELD_DEFINITION,
             Constant.DICT_FIELD_IMG
     };
@@ -122,7 +122,7 @@ public class Etymonline implements IDictionary {
                 String imageTag = imageUrl.isEmpty() ? "" : String.format(Constant.TPL_HTML_IMG_TAG, imageName);
                 LinkedHashMap<String, String> defMap = new LinkedHashMap<>();
                 defMap.put(Constant.DICT_FIELD_KEYWORD, word);
-                defMap.put(Constant.DICT_FILED_SENSE, sense);
+                defMap.put(Constant.DICT_FIELD_SENSE, sense);
                 defMap.put(Constant.DICT_FIELD_DEFINITION, def);
                 defMap.put(Constant.DICT_FIELD_IMG, imageTag);
                 String html = "<b>" + word +"</b><br/>" + (!sense.equals("")?sense+"<br/>":"") + def;

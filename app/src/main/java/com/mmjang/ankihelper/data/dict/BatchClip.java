@@ -10,8 +10,6 @@ import com.mmjang.ankihelper.ui.translation.TranslateBuilder;
 import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.Utils;
 
-import org.litepal.util.Const;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,8 +25,8 @@ public class BatchClip implements IDictionary {
     private static final String SEPARATOR = "(?<!\")([?!]+|\\.\\s|\\n)(?!\")";
     private static final String[] EXP_ELE_LIST = new String[]{
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FILED_SENTENCE,
-            Constant.DICT_FILED_CHINESE_SENTENCE
+            Constant.DICT_FIELD_SENTENCE,
+            Constant.DICT_FIELD_CHINESE_SENTENCE
     };
 
     public BatchClip(Context context) {
@@ -82,8 +80,8 @@ public class BatchClip implements IDictionary {
                             getTranslatorCheckedIndex()).translate(k);
             LinkedHashMap<String, String> defMap = new LinkedHashMap<>();
             defMap.put(Constant.DICT_FIELD_KEYWORD, k);
-            defMap.put(Constant.DICT_FILED_SENTENCE, k);
-            defMap.put(Constant.DICT_FILED_CHINESE_SENTENCE, translate);
+            defMap.put(Constant.DICT_FIELD_SENTENCE, k);
+            defMap.put(Constant.DICT_FIELD_CHINESE_SENTENCE, translate);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_ONLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_OFFLINE, complex);
 //        defMap.put(Constant.DICT_FIELD_COMPLEX_MUTE, muteComplex);

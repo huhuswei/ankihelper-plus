@@ -34,7 +34,7 @@ public class Mnemonic implements IDictionary {
     private static final String DICT_INTRO = "全英文助记，慎入。";
     private static final String[] EXP_ELE = new String[] {
             Constant.DICT_FIELD_KEYWORD,
-            Constant.DICT_FILED_SENSE,
+            Constant.DICT_FIELD_SENSE,
             Constant.DICT_FIELD_DEFINITION
     };
     private static final String wordUrl = "http://www.mnemonicdictionary.com/?word=%s";
@@ -108,7 +108,7 @@ public class Mnemonic implements IDictionary {
                     String sense = RegexUtil.colorizeSense(sect.replaceFirst("\\((\\w+)\\)([\\w\\W]+)", "$1"));
                     String def = sect.replaceFirst("\\((\\w+)\\)([\\w\\W]+)", "$2").replaceAll("\\n", "");
                     defMap.put(Constant.DICT_FIELD_KEYWORD, key);
-                    defMap.put(Constant.DICT_FILED_SENSE, sense);
+                    defMap.put(Constant.DICT_FIELD_SENSE, sense);
                     defMap.put(Constant.DICT_FIELD_DEFINITION, def);
                     String audioFileName = Utils.getSpecificFileName(key);
                     String html = "<b>" + key +"</b><br/>" + (!sense.equals("")?sense+"<br/>":"") + def;

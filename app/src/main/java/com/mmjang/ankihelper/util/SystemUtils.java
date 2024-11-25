@@ -98,4 +98,20 @@ public class SystemUtils {
             return deviceID;
         }
     }
+
+    public static boolean isAppInstalled(Context context, String packageName) {
+        PackageManager pm = context.getPackageManager();
+
+        // 方法1：直接查询包信息（推荐）
+        try {
+            PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return info != null;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+
+        // 方法2：通过Intent检查（备选）
+        // Intent intent = pm.getLaunchIntentForPackage(packageName);
+        // return intent != null;
+    }
 }

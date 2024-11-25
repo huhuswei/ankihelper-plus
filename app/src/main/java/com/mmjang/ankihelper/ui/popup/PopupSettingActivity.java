@@ -2,6 +2,7 @@ package com.mmjang.ankihelper.ui.popup;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,7 @@ import java.util.List;
  */
 public class PopupSettingActivity extends AppCompatActivity {
     private AnkiDroidHelper mAnkiDroid;
+    Settings settings;
     private List<OutputPlanPOJO> mPlanList;
     private SeekBar seekBarFontSize;
     private TextView textViewSeekBar;
@@ -82,6 +84,7 @@ public class PopupSettingActivity extends AppCompatActivity {
 //        }
         ColorThemeUtils.initColorTheme(PopupSettingActivity.this);
         super.onCreate(savedInstanceState);
+        settings = Settings.getInstance(MyApplication.getContext());
         ActivityUtil.checkStateForAnkiDroid(this);
         setContentView(R.layout.activity_popup_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -115,7 +118,6 @@ public class PopupSettingActivity extends AppCompatActivity {
         //设置最大值(设置不了最小值)
         seekBarFontSize.setMax(36);
         //设置初始值
-        Settings settings = Settings.getInstance(MyApplication.getContext());
 //        alpha  = settings.getFloatingButtonAlpha();
         number = settings.getPopupFontSize();
         boolean isDeckEnable = settings.getPopupSpinnerDeckEnable();
