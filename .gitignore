@@ -12,6 +12,9 @@
 /folioreader/build
 .externalNativeBuild
 .idea
+.tmp
+.vscode
+/custom_dictionary
 
 # Custom
 _site
