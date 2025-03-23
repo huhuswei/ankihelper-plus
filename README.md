@@ -32,6 +32,7 @@ AnkiHelper Plus 是基于 [mmjang/ankihelper](https://github.com/mmjang/ankihelp
 ### 其他功能
 - **多语言支持**：支持多种语言的学习，包括英语、法语、德语、日语等
 - **用户界面优化**：提供更友好的用户界面，提升操作便捷性
+- **Shizuku 支持**：通过 Shizuku 提供更快捷打开/关闭无障碍功能
 
 ## 新增功能
 - 优化了划词助手的性能，提升了划词速度和稳定性
@@ -59,9 +60,15 @@ AnkiHelper Plus 是基于 [mmjang/ankihelper](https://github.com/mmjang/ankihelp
 
 ## 致谢
 本项目使用了以下开源库，感谢相关开发者的贡献：
-- **Tesseract OCR**：OCR 文本识别库，作者 [Google](https://github.com/tesseract-ocr/tesseract)
-- **OkHttp**：HTTP 请求库，作者 [Square](https://github.com/square/okhttp)
-- **Jsoup**：HTML 解析库，作者 [Jonathan Hedley](https://github.com/jhy/jsoup)
+- **OkHttp**：优秀的 HTTP 客户端，用于网络请求
+- **Jsoup**：Java HTML 解析器，用于处理 HTML 内容
+- **Gson**：Google 的 JSON 解析库，用于处理 JSON 数据
+- **Glide**：高效的 Android 图片加载库
+- **Tesseract OCR**：光学字符识别引擎，用于截图文字识别
+- **EventBus**：Android 事件总线，简化组件间通信
+- **ButterKnife**：视图绑定工具，简化 Android 视图代码
+- **RxJava/RxAndroid**：响应式编程库，简化异步操作
+- **ShizukuApi**：Shizuku 的 API 库，作者 [RikkaApps](https://github.com/RikkaApps/ShizukuApi)
 
 特别感谢以下开发者的贡献：
 - **mmjang**：原项目 [ankihelper](https://github.com/mmjang/ankihelper.git) 的作者，为本项目提供了核心功能基础。
