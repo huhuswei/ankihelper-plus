@@ -11,7 +11,8 @@ public class RegexUtil {
 
     public static final String EMOJI_REX = "[\\U0001f0a0-\\U0001f0ff\\U0001f170-\\U0001f19a\\U0001f300-\\U0001faff\\u2190-\\u21FF\\u2300-\\u23FF\\u2500-\\u26FF\\u2700-\\u27BF\\u27F0-\\u27FF\\u2900-\\u297F\\u2B00-\\u2BFF]+";
     public static final String SYMBOL_REX_WITH_BLANK = "[ ,\\./:\"\\\\\\[\\]\\|`~!@#\\$%\\^&\\*\\(\\)_\\+=<\\->\\?;'，。、；：‘’“”【】《》？\\{\\}！￥…（）—=]„";
-    public static final String SYMBOL_REX_WITHOUT_BLANK = "[,\\./:\"\\\\\\[\\]\\|`~ˌ!!@#\\$%\\^&\\*\\(\\)_\\+=<\\->\\?;'ˈ，。、；：‘’“”【】《》？\\{\\}！￥…（）—=„¡¿→〖〗「」・]+";
+//    public static final String SYMBOL_REX_WITHOUT_BLANK = "[ ,./:\"\\\\\\[\\]|~!@#$%^&*()_+\\-=<>?;'‘’“”，、；：！ ￥…（）【】《》？{}¡¿„·]+";
+    public static final String SYMBOL_REX_WITHOUT_BLANK = "[,./:\"\\\\\\[\\]|`~ˌ!@#$%^&*()_+=<\\->?;'ˈ，、；：‘’“”【】《》？{}！￥…（）—„¡¿→〖〗「」・]+";
     public static final String SYMBOL_FILTER = "[,/:\"\\\\\\[\\]\\|`~!!@#\\$%\\^&\\*\\(\\)_\\+=<>\\?;'，。、；：‘’“”【】《》？\\{\\}！￥…（）=„¡¿→]";
 //    public static final String SYMBOL_REX_WITHOUT_BLANK_WITH_SPACE = "[\\)\"]+";
 //    public static final String SYMBOL_REX_WITHOUT_BLANK = "[/:\"\\\\\\[\\]\\|`~!! @#\\$%\\^&\\*\\(\\)_\\+=<\\->\\?;，。、；：‘’“”【】《》？\\{\\}！￥…（）—=„¡¿]";

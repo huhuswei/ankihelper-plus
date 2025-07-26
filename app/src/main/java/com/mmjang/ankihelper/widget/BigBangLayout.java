@@ -798,28 +798,30 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
                     } else {
                         return true;
                     }
-                    if (!mDisallowedParentIntercept && Math.abs(x - mDownX) > mScaledTouchSlop) {
+                    if (!mDisallowedParentIntercept){// && Math.abs(x - mDownX) > mScaledTouchSlop) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                         mDisallowedParentIntercept = true;
                     }
                     Item item = findItemByPoint(x, y);
-                    if (mTargetItem != item) {// && System.currentTimeMillis() - touchTime > 50) {
-                        mTargetItem = item;
-                        if (item != null) {
-                            item.setSelected(!item.isSelected());
-                            ItemState state = new ItemState(item, item.isSelected());
-                            if (mItemState == null) {
-                                mItemState = state;
-                            } else {
-                                state.next = mItemState;
-                                mItemState = state;
+                    if(item != null) {
+                        if (mTargetItem != item) {// && System.currentTimeMillis() - touchTime > 50) {
+                            mTargetItem = item;
+                            if (item != null) {
+                                item.setSelected(!item.isSelected());
+                                ItemState state = new ItemState(item, item.isSelected());
+                                if (mItemState == null) {
+                                    mItemState = state;
+                                } else {
+                                    state.next = mItemState;
+                                    mItemState = state;
+                                }
                             }
                         }
-                    }
-                    longPressedHandler.removeCallbacks(mLongPressedSelectionRunnable);
-                    mLongPressedSelectionRunnable.setPosition(x, y);
-                    longPressedHandler.postDelayed(mLongPressedSelectionRunnable, 0);
+                        longPressedHandler.removeCallbacks(mLongPressedSelectionRunnable);
+                        mLongPressedSelectionRunnable.setPosition(x, y);
+                        longPressedHandler.postDelayed(mLongPressedSelectionRunnable, 0);
 //                    multiPressed(x, y);
+                    }
                     break;
                 case MotionEvent.ACTION_CANCEL:
                     if (mItemState != null) {
@@ -884,15 +886,17 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
         @Override
         public void run() {
             Item item = findItemByPoint(x, y);
-            if (item != null && !item.isSelected()) {
-                for (Item i : getItemAll()) {
-                    i.setSelected(false);
-                }
-                if (!mDisallowedParentIntercept && Math.abs(x - mDownX) < mScaledTouchSlop) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    mDisallowedParentIntercept = true;
-                }
+            if (item != null) {
+                if (!item.isSelected()) {
+                    for (Item i : getItemAll()) {
+                        i.setSelected(false);
+                    }
+                    if (!mDisallowedParentIntercept) {// && Math.abs(x - mDownX) < mScaledTouchSlop) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        mDisallowedParentIntercept = true;
+                    }
 //                item.view.setSelected(true);
+                }
             }
         }
     }
