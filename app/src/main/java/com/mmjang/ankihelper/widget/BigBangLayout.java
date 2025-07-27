@@ -1244,6 +1244,50 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
 
     }
 
+    /**
+     * 在BigBangLayout中选中与目标文本完全匹配的连续Items（支持跨行匹配）
+     * @param mTargetWord 要匹配的目标文本（可包含换行符，但匹配时会被忽略）
+     */
+    public void selectTargetText(String mTargetWord) {
+        // 不拆分 mTargetWord，直接作为整体匹配
+        String target = mTargetWord.replace("\n", ""); // 移除目标中的换行符
+        List<BigBangLayout.Item> allItems = new ArrayList<>();
+
+        // 1. 收集所有Item（跨行）
+        for (BigBangLayout.Line line : this.getLines()) {
+            allItems.addAll(line.getItems());
+        }
+
+        // 2. 全局滑动窗口匹配
+        for (int i = 0; i <= allItems.size() - 1; i++) {
+            StringBuilder combined = new StringBuilder();
+            int j = i;
+            int matchedChars = 0; // 已匹配的字符数
+
+            // 3. 尝试匹配目标字符串
+            while (j < allItems.size() && matchedChars < target.length()) {
+                String itemText = allItems.get(j).getText().toString();
+
+                // 检查当前Item是否能继续匹配
+                if (target.startsWith(itemText, matchedChars)) {
+                    combined.append(itemText);
+                    matchedChars += itemText.length();
+                    j++;
+                } else {
+                    break; // 不匹配则中断
+                }
+            }
+
+            // 4. 完全匹配时选中Items
+            if (matchedChars == target.length()) {
+                for (int k = i; k < j; k++) {
+                    allItems.get(k).setSelected(true);
+                }
+                break; // 找到第一个匹配后退出
+            }
+        }
+    }
+
     public class Item {
         Line line;
         public int index;
@@ -1389,6 +1433,8 @@ public class BigBangLayout extends ViewGroup implements BigBangHeader.ActionList
 //                }
 //            }
 //        }
+
+
     }
 
 

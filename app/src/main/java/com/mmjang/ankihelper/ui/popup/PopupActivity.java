@@ -186,6 +186,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -519,14 +520,17 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
 //        asyncSearch(word);
 
         if (!TextUtils.isEmpty(mTargetWord)) {
-            for (BigBangLayout.Line line : bigBangLayout.getLines()) {
-                List<BigBangLayout.Item> items = line.getItems();
-                for (BigBangLayout.Item item : items) {
-                    if (item.getText().equals(mTargetWord)) {
-                        item.setSelected(true);
-                    }
-                }
-            }
+//            for (BigBangLayout.Line line : bigBangLayout.getLines()) {
+//                List<BigBangLayout.Item> items = line.getItems();
+//                for (BigBangLayout.Item item : items) {
+//                    if (item.getText().equals(mTargetWord)) {
+//                        item.setSelected(true);
+//                    }
+//                }
+//            }
+
+            bigBangLayout.selectTargetText(mTargetWord);
+
             acTextView.setText(mTargetWord);
             if(isAutomaticSearch) {
                 asyncSearch(mTargetWord);
@@ -1727,7 +1731,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
             String base64 = intent.getStringExtra(Constant.INTENT_ANKIHELPER_BASE64);
             mTextToProcess = intent.getStringExtra(Intent.EXTRA_TEXT);
 
-            if (mTextToProcess != null && mTextToProcess.equals(Constant.USE_FX_SERVICE_CB_FLAG)) {
+             if (mTextToProcess != null && mTextToProcess.equals(Constant.USE_FX_SERVICE_CB_FLAG)) {
                 mTextToProcess = intent.getStringExtra(Constant.FLOATING_GET_CONTENT);
                 isFromFxService = true;
             } else if (mTextToProcess != null && mTextToProcess.equals(Constant.USE_CLIPBOARD_CONTENT_FLAG)) {
@@ -4765,5 +4769,32 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         String regex = "(\\${1,2})(.+?)(\\${1,2})";
         String latex = text.replaceAll(regex, "\\\\($2\\\\)");
         return latex;
+    }
+
+    private void selectMatchedItems(int startLine, int startItem, int endLine, int endItem) {
+        for (int lineIdx = startLine; lineIdx <= endLine; lineIdx++) {
+            List<BigBangLayout.Item> items = bigBangLayout.getLines().get(lineIdx).getItems();
+            int start = (lineIdx == startLine) ? startItem : 0;
+            int end = (lineIdx == endLine) ? endItem : items.size() - 1;
+
+            for (int i = start; i <= end; i++) {
+                items.get(i).setSelected(true);
+            }
+        }
+    }
+
+    private void handleLineSeparator(List<int[]> activeMatches, String target) {
+        Iterator<int[]> iter = activeMatches.iterator();
+        while (iter.hasNext()) {
+            int[] state = iter.next();
+            int matchedLen = state[0];
+
+            // 假设行间有隐式空格
+            if (matchedLen < target.length() && target.charAt(matchedLen) == ' ') {
+                state[0] += 1; // 跳过空格
+            } else {
+                iter.remove(); // 不匹配则移除
+            }
+        }
     }
 }
