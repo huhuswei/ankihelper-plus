@@ -37,7 +37,7 @@ public class TextSplitter {
                 }
                 i++;
             } else if(RegexUtil.isSymbol(first) && i > 0 && StringUtil.isSpace(str.charAt(i - 1))) {
-                s = s + DEVIDER + ' ' + first + DEVIDER;
+                s = s + DEVIDER + first + DEVIDER;
             } else if (RegexUtil.isSymbol(first) ||
                     StringUtil.isSpace(first) ||
                     first == Constant.LEFT_BOLD_SUBSTITUDE.charAt(0) ||
