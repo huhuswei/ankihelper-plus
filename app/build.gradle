@@ -16,6 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         setProperty("archivesBaseName", "Anki 划词助手+" + " " + versionName)
+        vectorDrawables.useSupportLibrary = true
 
 //        externalNativeBuild {
 //            cmake {
@@ -47,6 +48,10 @@ android {
 
     signingConfigs {
         release {
+            keyAlias 'key0'
+            keyPassword 'ss4235087'
+            storeFile file('/Volumes/m/Documents/keys/ankihelperKey.jks')
+            storePassword 'ss4235087'
         }
     }
 

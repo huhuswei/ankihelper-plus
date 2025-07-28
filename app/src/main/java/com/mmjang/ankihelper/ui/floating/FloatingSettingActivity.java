@@ -15,9 +15,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.service.quicksettings.TileService;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,11 +35,13 @@ import com.mmjang.ankihelper.MyApplication;
 import com.mmjang.ankihelper.R;
 import com.mmjang.ankihelper.data.Settings;
 import com.mmjang.ankihelper.ui.floating.assist.AssistFloatWindow;
+import com.mmjang.ankihelper.ui.floating.assist.AssistService;
 import com.mmjang.ankihelper.util.ActivityUtil;
 import com.mmjang.ankihelper.util.ColorThemeUtils;
 import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.ViewUtil;
+
 import java.util.List;
 
 
@@ -62,6 +67,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
     private TextView textViewFloatBallAccessibility;
     private TextView textViewFloatBallOverlays;
     private TextView textViewKillBattery;
+    private EditText editTextPackageNames;
     private SwitchCompat switchFloatBall;
     private SwitchCompat switchPinFloating;
     private SwitchCompat switchFloatingAutoSide;
@@ -89,7 +95,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
         userService.addListeners();
         userService.connectShizuku();
 
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_floating_settings);
         checkAndRequestPermissions();
 
@@ -98,6 +104,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
         textViewFloatBallAccessibility = (TextView) findViewById(R.id.tv_open_float_ball_accessibility);
         textViewFloatBallOverlays = (TextView) findViewById(R.id.tv_open_float_ball_overlays);
         textViewKillBattery = (TextView) findViewById(R.id.tv_kill_battery);
+        editTextPackageNames = (EditText) findViewById(R.id.edittext_package_names);
         seekBarFloatingAlpha = (SeekBar) findViewById(R.id.sb_floating_alpha);
         seekBarFloatingHovering = (SeekBar) findViewById(R.id.sb_floating_hovering);
         seekBarFloatingSize = (SeekBar) findViewById(R.id.sb_floating_size);
@@ -148,7 +155,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
         seekBarFloatingAlpha.setProgress(alpha);
         seekBarFloatingHovering.setProgress(hoveringTime);
         seekBarFloatingSize.setProgress(size);
-
+        editTextPackageNames.setText(settings.get(Settings.ACCESSIBILITY_PACKE_NAMES, Constant.ACCESSIBILITY_PACKE_NAMES));
 
         seekBarFloatingAlpha.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -282,6 +289,26 @@ public class FloatingSettingActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        editTextPackageNames.addTextChangedListener(
+                new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        settings.put(Settings.ACCESSIBILITY_PACKE_NAMES, s.toString().trim());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                    }
+                }
+        );
+
+
         switchFloatBall.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -504,7 +531,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
             }
         }
 
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
 

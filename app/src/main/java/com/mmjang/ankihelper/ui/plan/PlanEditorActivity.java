@@ -3,7 +3,6 @@ package com.mmjang.ankihelper.ui.plan;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,7 +33,6 @@ import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.data.dict.DictionaryRegister;
 import com.mmjang.ankihelper.data.dict.IDictionary;
 import com.mmjang.ankihelper.MyApplication;
-import com.mmjang.ankihelper.util.SystemUtils;
 import com.mmjang.ankihelper.util.Utils;
 
 import org.apache.commons.lang.StringUtils;
@@ -77,7 +75,7 @@ public class PlanEditorActivity extends AppCompatActivity {
 //            startAnkiDroid();
 //            return;
 //        }
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_plan_editor);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         try {
@@ -96,7 +94,7 @@ public class PlanEditorActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     @Override

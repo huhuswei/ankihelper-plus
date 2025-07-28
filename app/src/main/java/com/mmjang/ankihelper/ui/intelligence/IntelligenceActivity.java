@@ -45,7 +45,7 @@ public class IntelligenceActivity extends AppCompatActivity {
         settings = Settings.getInstance(this);
         ColorThemeUtils.initColorTheme(IntelligenceActivity.this);
         super.onCreate(savedInstanceState);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_intelligence_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -100,6 +100,6 @@ public class IntelligenceActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 }

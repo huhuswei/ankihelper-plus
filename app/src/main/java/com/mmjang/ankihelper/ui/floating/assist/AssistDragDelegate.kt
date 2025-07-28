@@ -99,7 +99,8 @@ class AssistDragDelegate private constructor(service: AccessibilityService) :
      */
     fun onTypeWindowStateChanged(event: AccessibilityEvent) {
         val className = event.className
-        if (!TextUtils.isEmpty(className) && className.toString() == AssistUtil.CLASS_NAME_WECHAT_TEXT_PREVIEW){
+        if (className.isNullOrEmpty() && className.toString() in settings.get(Settings.ACCESSIBILITY_PACKE_NAMES,
+                Constant.ACCESSIBILITY_PACKE_NAMES)){
             if (mPendingPreview) {
                 getNodesFromWindows()?.let {
                     AssistUtil.getWechatPreviewTextNode(
@@ -114,7 +115,7 @@ class AssistDragDelegate private constructor(service: AccessibilityService) :
                                         mMainHandler.postDelayed({
                                             AssistUtil.simulateClick(mService, point)
                                             executeSelectNode(it)
-                                        }, 50)
+                                        }, 200)
                                     }
                                 }
                             }
@@ -210,7 +211,7 @@ class AssistDragDelegate private constructor(service: AccessibilityService) :
         var distance = Math.sqrt((point.x - mPrePoint.x).toDouble().pow(2.0) + (point.y - mPrePoint.y).toDouble().pow(2.0)).toInt()
 
         if(distance < 4)
-            counter = System.currentTimeMillis() - startingTime;
+            counter = (System.currentTimeMillis() - startingTime)%9999;
         else {
             counter = 0
             startingTime = System.currentTimeMillis();
@@ -385,8 +386,8 @@ class AssistDragDelegate private constructor(service: AccessibilityService) :
 //        var mBundle = Bundle()
 //        startActivity(MyApplication.getContext(), intent, mBundle)
         try {
-            if(!settings.get(Settings.POPUP_DISPLAY_STATE, false))
-                settings.put(Settings.POPUP_DISPLAY_STATE, true)
+//            if(!settings.get(Settings.POPUP_DISPLAY_STATE, false))
+//                settings.put(Settings.POPUP_DISPLAY_STATE, true)
             pendingIntent.send()
         } catch (e: CanceledException) {
             e.printStackTrace()

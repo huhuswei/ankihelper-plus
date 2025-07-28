@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mmjang.ankihelper.MyApplication;
 import com.mmjang.ankihelper.R;
 import com.mmjang.ankihelper.data.Settings;
-import com.mmjang.ankihelper.ui.floating.assist.AssistFloatWindow;
 import com.mmjang.ankihelper.util.ActivityUtil;
 import com.mmjang.ankihelper.util.ColorThemeUtils;
 import com.mmjang.ankihelper.util.DialogUtil;
@@ -34,7 +33,7 @@ public class CustomTranslationActivity extends AppCompatActivity {
 //        }
         ColorThemeUtils.initColorTheme(CustomTranslationActivity.this);
         super.onCreate(savedInstanceState);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_custom_translation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textViewChooseTranslationEngine = findViewById(R.id.tv_choose_translation_engine);
@@ -235,7 +234,7 @@ public class CustomTranslationActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     @Override

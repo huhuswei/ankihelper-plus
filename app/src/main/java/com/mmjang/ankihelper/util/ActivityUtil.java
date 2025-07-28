@@ -41,7 +41,7 @@ public class ActivityUtil {
         return false;
     }
 
-    public static void checkStateForAnkiDroid(Activity activity) {
+    public static boolean checkAndStartAnkiDroid(Activity activity) {
         if (AnkiDroidHelper.isApiAvailable(MyApplication.getContext()) && !MyApplication.getAnkiDroid().isAnkiDroidRunning()) {
             MyApplication.getAnkiDroid().startAnkiDroid();
 
@@ -61,6 +61,19 @@ public class ActivityUtil {
                                     }
                                 },
                     200);
+            return false;
         }
+        return true;
+    }
+
+    public static boolean recreateApp(Activity activity) {
+        if (AnkiDroidHelper.isApiAvailable(MyApplication.getContext()) && !MyApplication.getAnkiDroid().isAnkiDroidRunning()) {
+            Intent intent = activity.getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.finish();
+            activity.startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

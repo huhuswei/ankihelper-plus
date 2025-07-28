@@ -113,11 +113,65 @@
             android:noHistory="true"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateAlwaysHidden">
+
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
+                <action
+                    android:name="android.intent.action.SEND" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:mimeType="text/plain" />
             </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="dicttango.intent.action.SEARCH" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="colordict.intent.action.SEARCH" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="mdict.intent.action.SEARCH" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="com.ngc.fora.action.LOOKUP" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.PROCESS_TEXT" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:mimeType="text/plain" />
+            </intent-filter>
+
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.TRANSLATE" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.intent.extra.PROCESS_TEXT_LANGUAGE"
+                android:value="*" />
+
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.DEFINE" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -155,6 +209,7 @@
                     android:pathPrefix="/lookup"
                     />
             </intent-filter>
+
             <intent-filter>
                 <action
                     android:name="colordict.intent.action.SEARCH" />

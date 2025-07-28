@@ -3,6 +3,9 @@ package com.mmjang.ankihelper.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -286,4 +289,31 @@ public class ColorThemeUtils {
         multiChoiceDialog.show();
     }
 
+    public static int getThemeColor(Context context, int attrResId) {
+        TypedValue typedValue = new TypedValue();
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{attrResId});
+        int color = a.getColor(0, 0);
+        a.recycle();
+        return color;
+    }
+
+    public static int[] getThemeColors(Context context, Constant.StyleBaseTheme style) {
+        int themeResId = getColorTheme(context, style);
+        Context themedContext = new ContextThemeWrapper(context, themeResId);
+
+        TypedArray ta = themedContext.obtainStyledAttributes(new int[]{
+                android.R.attr.colorBackground,
+                android.R.attr.textColorPrimary,
+                android.R.attr.textColorSecondary,
+                android.R.attr.colorControlNormal
+        });
+
+        int[] colors = new int[4];
+        for (int i = 0; i < colors.length; i++) {
+            colors[i] = ta.getColor(i, 0xFF000000);
+        }
+        ta.recycle();
+
+        return colors;
+    }
 }

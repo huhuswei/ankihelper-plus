@@ -3,6 +3,11 @@ package com.mmjang.ankihelper.util;
 import com.mmjang.ankihelper.R;
 import com.mmjang.ankihelper.widget.button.MLLabel;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /**
  * Created by liao on 2017/4/27.
  */
@@ -353,4 +358,38 @@ public class Constant {
 //    public static String URL_QUERY_ANSWER="xxx";
 
     public static String CACHE_TEMP_HTML = "temp.html";
+
+    // 设置只监听浏览器应用（覆盖主流浏览器）
+    // 如果需要静态方法获取字符串表示
+    public static String ACCESSIBILITY_PACKE_NAMES=
+        "com.ss.aianki\n" +
+        "com.mmbox.xbrowser.pro\n" +
+        "com.android.chrome\n" +
+        "com.chrome.beta\n" +
+        "com.chrome.dev\n" +
+        "com.chrome.canary\n" +
+        "com.kiwibrowser.browser\n" +
+        "org.kiwix.kiwixmobile.standalone\n" +
+        "org.mozilla.firefox\n" +
+        "org.mozilla.firefox_beta\n" +
+        "org.mozilla.fenix\n" +
+        "com.microsoft.emmx\n" +
+        "com.microsoft.emmx.beta\n" +
+        "com.microsoft.emmx.dev\n" +
+        "com.opera.browser\n" +
+        "com.opera.browser.beta\n" +
+        "com.sec.android.app.sbrowser\n" +
+        "com.sec.android.app.sbrowser.beta\n" +
+        "com.brave.browser\n" +
+        "com.brave.browser_beta\n" +
+        "com.vivaldi.browser\n" +
+        "com.duckduckgo.mobile.android\n" +
+        "com.UCMobile.intl\n" +
+        "com.android.browser\n" +
+        "com.huawei.browser\n" +
+        "com.tencent.mtt\n" +
+        "com.baidu.browser.inter\n" +
+        "com.quark.browser\n" +
+        "com.ss.aianki";
+
 }

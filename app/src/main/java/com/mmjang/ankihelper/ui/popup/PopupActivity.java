@@ -3,7 +3,6 @@ package com.mmjang.ankihelper.ui.popup;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -37,7 +36,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.Display;
@@ -82,14 +80,12 @@ import com.danikula.videocache.file.Md5FileNameGenerator;
 import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.gson.JsonIOException;
 import com.ichi2.anki.api.NoteInfo;
 import com.mmjang.ankihelper.MyApplication;
 import com.mmjang.ankihelper.R;
 import com.mmjang.ankihelper.anki.AnkiDroidHelper;
 import com.mmjang.ankihelper.data.Settings;
 import com.mmjang.ankihelper.data.database.ExternalDatabase;
-import com.mmjang.ankihelper.data.dict.AIDict;
 import com.mmjang.ankihelper.data.dict.BatchClip;
 import com.mmjang.ankihelper.data.dict.BingOxford;
 import com.mmjang.ankihelper.data.dict.Cloze;
@@ -169,10 +165,7 @@ import com.tonyodev.fetch2core.Func;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
-import org.litepal.util.Const;
 
 
 import java.io.File;
@@ -196,13 +189,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 import static com.mmjang.ankihelper.util.FieldUtil.getBlankSentence;
 import static com.mmjang.ankihelper.util.FieldUtil.getBoldSentence;
@@ -318,6 +305,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
     boolean isRedrawing = false;
 
     boolean hasInit = false;
+    boolean ankiDroidIsOk = true;
 //    String selectedTextMdx = "";
     //async event
     private static final int PROCESS_DEFINITION_LIST = 1;
@@ -376,13 +364,12 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         ColorThemeUtils.setColorTheme(PopupActivity.this, Constant.StyleBaseTheme.Transparent);
         super.onCreate(savedInstanceState);
         settings = Settings.getInstance(MyApplication.getContext());
-        if(!settings.get(Settings.POPUP_DISPLAY_STATE, false))
-            settings.put(Settings.POPUP_DISPLAY_STATE, true);
+        settings.put(Settings.POPUP_DISPLAY_STATE, true);
         FinishActivityManager.getManager().addActivity(this);
 //        StorageUtils.generateCachePath();
         //初始化 错误日志系统
         CrashManager.getInstance(this);
-        ActivityUtil.checkStateForAnkiDroid(PopupActivity.this);
+        ankiDroidIsOk = ActivityUtil.checkAndStartAnkiDroid(PopupActivity.this);
         setStatusBarColor();
         setContentView(R.layout.activity_popup);
         initAnkiApi();
@@ -1770,6 +1757,9 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                 }
             }
             mTargetWord = intent.getStringExtra(Constant.INTENT_ANKIHELPER_TARGET_WORD);
+        } else if (Intent.ACTION_TRANSLATE.equals(action)) {
+//            mTextToProcess = settings.get(Settings.ACTION_TRANSLATE_CONTEXT_SENTENCE, intent.getStringExtra(Intent.EXTRA_TEXT));
+            mTextToProcess = intent.getStringExtra(Intent.EXTRA_TEXT);
         } else if (Intent.ACTION_PROCESS_TEXT.equals(action) && type.equals("text/plain")) {
             mTextToProcess = intent.getStringExtra(Intent.EXTRA_PROCESS_TEXT);
             mTargetWord = intent.getStringExtra(Constant.INTENT_ANKIHELPER_TARGET_WORD);
@@ -1877,7 +1867,9 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         });
 
         //删除
-        getIntent().removeExtra(Intent.EXTRA_TEXT);
+        if(ankiDroidIsOk) {
+            getIntent().removeExtra(Intent.EXTRA_TEXT);
+        }
     }
 
     private void processTextFromFxService() {
@@ -4188,10 +4180,16 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        settings.put(Settings.KEYBOARD_STATE, false);
-        settings.put(Settings.POPUP_DISPLAY_STATE, false);
+
         super.onDestroy();
         Runtime.getRuntime().gc();
+    }
+
+    @Override
+    protected void onPause() {
+        settings.put(Settings.POPUP_DISPLAY_STATE, false);
+        super.onPause();
+
     }
 
     private void startCBService() {

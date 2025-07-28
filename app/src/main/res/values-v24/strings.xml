@@ -59,6 +59,7 @@
     <string name="switch_pin_floating">Pin-up📌</string>
     <string name="switch_floating_auto_side">Auto Side</string>
     <string name="tv_open_accessibility">Accessibility service</string>
+    <string name="tv_accessibility_package_name">Package name</string>
     <string name="tv_kill_battery">Kill battery</string>
     <string name="tv_open_overlays">Overlays permission</string>
     <string name="switch_clear_searched">Clear copied text after Search</string>

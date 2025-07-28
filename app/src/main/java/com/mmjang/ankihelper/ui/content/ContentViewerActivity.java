@@ -57,7 +57,7 @@ public class ContentViewerActivity extends AppCompatActivity implements TextToSp
 //        }
         ColorThemeUtils.initColorTheme(ContentViewerActivity.this);
         super.onCreate(savedInstanceState);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_content_viewer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh);
@@ -164,7 +164,7 @@ public class ContentViewerActivity extends AppCompatActivity implements TextToSp
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     private void refreshContent(int index) {

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.text.Html;
 import android.text.SpannableString;
 import android.view.KeyEvent;
@@ -58,8 +57,8 @@ import com.mmjang.ankihelper.util.ColorThemeUtils;
 import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.CrashManager;
 import com.mmjang.ankihelper.util.DarkModeUtils;
+import com.mmjang.ankihelper.ui.floating.assist.AssistCustomToastPositionUtils;
 import com.mmjang.ankihelper.util.StorageUtils;
-import com.mmjang.ankihelper.util.SystemUtils;
 import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.Utils;
 import com.mmjang.ankihelper.widget.ActivationDialog;
@@ -88,6 +87,7 @@ public class LauncherActivity extends AppCompatActivity {
 //    SwitchCompat switchPinkTheme;
     TextView tvColorTheme;
     TextView tvDarkMode;
+    TextView tvToastPos;
 
     TextView tvAnkiDroidDir;
     TextView textViewOpenPlanManager;
@@ -137,7 +137,7 @@ public class LauncherActivity extends AppCompatActivity {
         userService.connectShizuku();
 
         checkAndRequestPermissions();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_launcher);
 
         setVersion();
@@ -146,6 +146,7 @@ public class LauncherActivity extends AppCompatActivity {
         switchLeftHandMode = findViewById(R.id.left_hand_mode);
         tvColorTheme = findViewById(R.id.btn_color_theme);
         tvDarkMode = findViewById(R.id.btn_dark_mode);
+        tvToastPos = findViewById(R.id.btn_toast_position);
         tvAnkiDroidDir = findViewById(R.id.btn_ankidroid_dir);
         tvAnkiDroidDir.setText(MyApplication.getContext().getResources().getString(R.string.str_ankidroid_path) + "\n" + settings.getAnkiDroidDir());
         textViewOpenPlanManager = findViewById(R.id.btn_open_plan_manager);
@@ -230,6 +231,8 @@ public class LauncherActivity extends AppCompatActivity {
         tvDarkMode.setOnClickListener(
                 v -> DarkModeUtils.darkModeSettingDialog(LauncherActivity.this)
         );
+
+        tvToastPos.setOnClickListener(v -> AssistCustomToastPositionUtils.selectPositionDialog(LauncherActivity.this));
 
         tvAnkiDroidDir.setOnClickListener(
                 v -> {
@@ -426,7 +429,7 @@ public class LauncherActivity extends AppCompatActivity {
             MyApplication.getShizukuService().disabledAccessibilityService();
         }
 
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     public boolean startLatexEditor() {

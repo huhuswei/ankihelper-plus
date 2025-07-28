@@ -153,5 +153,65 @@ public class DarkModeUtils {
                 break;
         }
     }
+
+    /**
+     * 专门为CustomToast设计的暗黑模式检测方法
+     * 使用Application Context并确保设置正确加载
+     */
+    public static boolean isDarkModeForCustomToast(Context context) {
+        try {
+            // 使用Application Context避免内存泄漏
+            Context appContext = context.getApplicationContext();
+            Settings settings = Settings.getInstance(appContext);
+            int nightMode = settings.get(KEY_CURRENT_MODEL, AppCompatDelegate.MODE_NIGHT_YES);
+
+            if (nightMode == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
+                // 跟随系统模式
+                int applicationUiMode = appContext.getResources().getConfiguration().uiMode;
+                int systemMode = applicationUiMode & Configuration.UI_MODE_NIGHT_MASK;
+                return systemMode == Configuration.UI_MODE_NIGHT_YES;
+            } else {
+                // 直接使用用户设置的模式
+                return nightMode == AppCompatDelegate.MODE_NIGHT_YES;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 如果出现异常，回退到系统检测
+            return isSystemDarkMode(context);
+        }
+    }
+
+    /**
+     * 系统暗黑模式检测（不使用app设置）
+     */
+    public static boolean isSystemDarkMode(Context context) {
+        int applicationUiMode = context.getResources().getConfiguration().uiMode;
+        int systemMode = applicationUiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return systemMode == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+    /**
+     * 获取当前暗黑模式设置的字符串表示，用于调试
+     */
+    public static String getDarkModeStatus(Context context) {
+        try {
+            Settings settings = Settings.getInstance(context);
+            int nightMode = settings.get(KEY_CURRENT_MODEL, AppCompatDelegate.MODE_NIGHT_YES);
+
+            switch (nightMode) {
+                case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
+                    return "FOLLOW_SYSTEM (System is: " +
+                            (isSystemDarkMode(context) ? "DARK" : "LIGHT") + ")";
+                case AppCompatDelegate.MODE_NIGHT_NO:
+                    return "DAY_MODE";
+                case AppCompatDelegate.MODE_NIGHT_YES:
+                    return "NIGHT_MODE";
+                default:
+                    return "UNKNOWN: " + nightMode;
+            }
+        } catch (Exception e) {
+            return "ERROR: " + e.getMessage();
+        }
+    }
 }
 

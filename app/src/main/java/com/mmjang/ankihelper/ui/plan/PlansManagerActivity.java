@@ -61,7 +61,7 @@ public class PlansManagerActivity extends AppCompatActivity {
         ColorThemeUtils.initColorTheme(PlansManagerActivity.this);
         super.onCreate(savedInstanceState);
         settings = Settings.getInstance(MyApplication.getContext());
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_plans_manager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -101,7 +101,7 @@ public class PlansManagerActivity extends AppCompatActivity {
 //        mPlanList.addAll(newList);
 //        mPlansAdapter.notifyDataSetChanged();
         mPlansAdapter.refresh();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     private void initPlanList() {
@@ -336,7 +336,7 @@ public class PlansManagerActivity extends AppCompatActivity {
 //        if(requestCode == REQUEST_HANDLE_INTENT) {
 //            if (data != null && data.hasExtra(Intent.EXTRA_INDEX)) {
 //                mIntent = data;
-//                MyApplication.getAnkiDroid().checkStateForAnkiDroid();
+//                MyApplication.getAnkiDroid().checkAndStartAnkiDroid();
 //            }
 //        }
 //        super.onActivityResult(requestCode, resultCode, data);

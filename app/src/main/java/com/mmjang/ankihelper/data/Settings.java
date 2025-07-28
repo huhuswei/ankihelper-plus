@@ -15,6 +15,7 @@ import com.mmjang.ankihelper.MyApplication;
 import com.mmjang.ankihelper.data.dict.DictLanguageType;
 import com.mmjang.ankihelper.ui.floating.assist.ScreenUtil;
 import com.mmjang.ankihelper.util.Constant;
+import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.ViewUtil;
 
 import java.io.File;
@@ -27,6 +28,7 @@ import java.util.LinkedHashMap;
  */
 public class Settings {
 
+    public static final String TOAST_POSITION_INDEX = "toast_position_index";
     private static Settings settings = null;
 
     private final static String PREFER_NAME = "settings";    //应用设置名称
@@ -147,6 +149,8 @@ public class Settings {
     public static final String POPUP_DISPLAY_STATE = "popup_display_state";
 
     public static final String PREF_SELECTED_APP_PACKAGE_NAME = "pref_selected_app_package_name";
+    public static final String ACTION_TRANSLATE_CONTEXT_SENTENCE = "action_translate_context_sentence";
+    public static final String ACCESSIBILITY_PACKE_NAMES = "accessibility_package_name";
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
@@ -770,6 +774,7 @@ public class Settings {
     }
 
     public boolean put(String TAG, boolean value) {
+        if (TAG == POPUP_DISPLAY_STATE) Trace.i("POPUP_DISPLAY_STATE", "put_" + value);
         editor.putBoolean(TAG, value);
         editor.commit();
         return true;

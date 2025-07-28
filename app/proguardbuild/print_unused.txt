@@ -10036,6 +10036,42 @@ com.lzf.easyfloat.widget.appfloat.ParentFrameLayout:
 com.lzf.easyfloat.widget.appfloat.TouchUtils:
     public final android.content.Context getContext()
 com.mmjang.ankihelper.BuildConfig
+com.mmjang.ankihelper.CustomToast$Companion:
+    public static final synthetic void access$performDismiss(com.mmjang.ankihelper.CustomToast$Companion)
+    public static final synthetic void access$removeCurrentView(com.mmjang.ankihelper.CustomToast$Companion)
+    public final void forceDismiss()
+    public final long getRemainingTime()
+    public final boolean isShowing()
+com.mmjang.ankihelper.CustomToast:
+    public static final synthetic long access$getCurrentDuration$cp()
+    private static final void dismissInternal()
+    public final void extendDuration(long)
+    private static final void extendDuration$lambda-17(com.mmjang.ankihelper.CustomToast,long)
+    private final void extendDurationInternal(long)
+    private static final void extendDurationInternal$lambda-19(com.mmjang.ankihelper.CustomToast)
+    public static final void forceDismiss()
+    public static final com.mmjang.ankihelper.CustomToast getInstance(android.content.Context)
+    public static final long getRemainingTime()
+    public static final boolean isShowing()
+    private static final void performDismiss()
+    private static final void removeCurrentView()
+    public static synthetic void show$default(com.mmjang.ankihelper.CustomToast,java.lang.String,java.lang.String,long,com.mmjang.ankihelper.widget.CustomToastPosition,java.lang.Integer,kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function0,int,java.lang.Object)
+    public final void updateContent(java.lang.String,java.lang.String,java.lang.Integer)
+    public static synthetic void updateContent$default(com.mmjang.ankihelper.CustomToast,java.lang.String,java.lang.String,java.lang.Integer,int,java.lang.Object)
+    private static final void updateContent$lambda-13(com.mmjang.ankihelper.CustomToast,java.lang.String,java.lang.String,java.lang.Integer)
+    public final void updatePosition(com.mmjang.ankihelper.widget.CustomToastPosition)
+    private static final void updatePosition$lambda-20(com.mmjang.ankihelper.CustomToast,com.mmjang.ankihelper.widget.CustomToastPosition)
+    private final void updatePositionInternal(com.mmjang.ankihelper.widget.CustomToastPosition)
+com.mmjang.ankihelper.CustomToastKt:
+    public static final void extendCustomToastDuration(android.content.Context,long)
+    public static final void forceDismissCustomToast(android.content.Context)
+    public static final long getCustomToastRemainingTime(android.content.Context)
+    public static final boolean isCustomToastShowing(android.content.Context)
+    public static final com.mmjang.ankihelper.CustomToast showCustomToast(android.content.Context,java.lang.String)
+    public static final com.mmjang.ankihelper.CustomToast showCustomToast(android.content.Context,java.lang.String,java.lang.String)
+    public static final void updateCustomToastContent(android.content.Context,java.lang.String,java.lang.String,java.lang.Integer)
+    public static synthetic void updateCustomToastContent$default(android.content.Context,java.lang.String,java.lang.String,java.lang.Integer,int,java.lang.Object)
+    public static final void updateCustomToastPosition(android.content.Context,com.mmjang.ankihelper.widget.CustomToastPosition)
 com.mmjang.ankihelper.R$anim
 com.mmjang.ankihelper.R$animator
 com.mmjang.ankihelper.R$array
@@ -10065,8 +10101,10 @@ com.mmjang.ankihelper.anki.AnkiDroidHelper:
     public void storeDeckReference(java.lang.String,long)
     public void storeModelReference(java.lang.String,long)
 com.mmjang.ankihelper.data.Settings:
+    public static final java.lang.String ACCESSIBILITY_PACKE_NAMES
     public static final java.lang.String ACTION_CLICK
     public static final java.lang.String ACTION_LONGCLICK
+    public static final java.lang.String ACTION_TRANSLATE_CONTEXT_SENTENCE
     private static final java.lang.String ANKIDROID_MEDIA_DIRECTORY
     private static final java.lang.String AUTO_CANCEL_POPUP_Q
     public static final java.lang.String CAPTURE_RESULT_EDIT_MODE
@@ -10130,10 +10168,12 @@ com.mmjang.ankihelper.data.Settings:
     private static final java.lang.String POPUP_TOOLBAR_SEARCH_ENABLE
     private static final java.lang.String POPUP_TOOLBAR_TAG_ENABLE
     private static final java.lang.String PREFER_NAME
+    public static final java.lang.String PREF_SELECTED_APP_PACKAGE_NAME
     public static final java.lang.String SCREENSHOT_NAME
     private static final java.lang.String SET_AS_DEFAULT_TAG
     private static final java.lang.String SHOW_CONTENT_ALREADY_READ
     public static final java.lang.String THEME_COLOR_INDEX
+    public static final java.lang.String TOAST_POSITION_INDEX
     private static final java.lang.String TRANSLATOR_CHECKED_INDEX
     private static final java.lang.String USER_BAIDUFANYI_APP_ID
     private static final java.lang.String USER_BAIDUFANYI_APP_KEY
@@ -10219,6 +10259,7 @@ com.mmjang.ankihelper.data.database.ExternalDatabaseContext:
     private static final java.lang.String DEBUG_CONTEXT
 com.mmjang.ankihelper.data.database.MigrationUtil:
     public void <init>()
+com.mmjang.ankihelper.data.dict.AIDict
 com.mmjang.ankihelper.data.dict.Definition$ResInformation:
     public void <init>()
     public void setAudioName(java.lang.String)
@@ -10393,21 +10434,44 @@ com.mmjang.ankihelper.ui.floating.UserService:
     private static final int PERMISSION_CODE
     public void removeListeners()
     public void requestShizukuPermission()
+com.mmjang.ankihelper.ui.floating.assist.AssistCustomToastPositionUtils:
+    public void <init>()
+    public static int getCurrentPositionGravity(android.content.Context)
+    public static int getCurrentPositionIndex(android.content.Context)
+com.mmjang.ankihelper.ui.floating.assist.AssistDragDelegate$onTypeWindowStateChanged$1$1
 com.mmjang.ankihelper.ui.floating.assist.AssistDragDelegate:
+    public static final synthetic void access$executeSelectNode(com.mmjang.ankihelper.ui.floating.assist.AssistDragDelegate,android.view.accessibility.AccessibilityNodeInfo)
+    public static final synthetic android.os.Handler access$getMMainHandler$p(com.mmjang.ankihelper.ui.floating.assist.AssistDragDelegate)
+    public static final synthetic android.accessibilityservice.AccessibilityService access$getMService$p(com.mmjang.ankihelper.ui.floating.assist.AssistDragDelegate)
     public final void onTouch(android.view.View,android.view.MotionEvent)
+    public final void onTypeWindowStateChanged(android.view.accessibility.AccessibilityEvent)
     private final void performClipboardCheck()
 com.mmjang.ankihelper.ui.floating.assist.AssistFloatWindow:
     public static final java.lang.String FLOAT_WINDOW_SELECTION
     public final boolean isShowing(java.lang.String)
     private final void putTextToPopupWindow(java.lang.String)
     public final void show(java.lang.String)
+com.mmjang.ankihelper.ui.floating.assist.AssistNotificationHelper:
+    private static final java.lang.String CHANNEL_ID
+    private static final int NOTIFICATION_ID
+    public void cancelNotification()
+    public void showNotification(java.lang.String,java.lang.String)
+    public void showNotification(java.lang.String,java.lang.String,java.lang.String)
+com.mmjang.ankihelper.ui.floating.assist.AssistService$TextWithPosition:
+    public final java.lang.String component1()
+    public final int component2()
+    public final int component3()
+    public final com.mmjang.ankihelper.ui.floating.assist.AssistService$TextWithPosition copy(java.lang.String,int,int)
+    public static synthetic com.mmjang.ankihelper.ui.floating.assist.AssistService$TextWithPosition copy$default(com.mmjang.ankihelper.ui.floating.assist.AssistService$TextWithPosition,java.lang.String,int,int,int,java.lang.Object)
 com.mmjang.ankihelper.ui.floating.assist.AssistUtil:
     public static final java.lang.String CLASS_NAME_WECHAT_TEXT_PREVIEW
     private static final java.lang.String PACKAGE_NAME_WECHAT
+    public final void getWechatPreviewTextNode(android.view.accessibility.AccessibilityNodeInfo,com.mmjang.ankihelper.ui.floating.assist.PreviewTextNodeCallback)
     public final boolean isAccessibilitySettingsOn(android.content.Context,java.lang.Class)
     public final boolean isPinnedToTheSide(com.mmjang.ankihelper.data.Settings)
     public final void logoViewSlideIn(android.widget.ImageView,android.graphics.Point,com.mmjang.ankihelper.data.Settings)
     public final void logoViewSlideOut(android.widget.ImageView,android.graphics.Point,com.mmjang.ankihelper.data.Settings)
+com.mmjang.ankihelper.ui.floating.assist.PreviewTextNodeCallback
 com.mmjang.ankihelper.ui.floating.screenshot.MarkSizeView:
     private static final int DEFAULT_CANCEL_BUTTON_RES
     private static final int DEFAULT_CONFIRM_BUTTON_RES
@@ -10482,7 +10546,7 @@ com.mmjang.ankihelper.ui.popup.MdxCustomActionWebView:
     private static final java.lang.String CUSTOM_MENU_JS_INTERFACE
     private boolean isMenuStayingCutomMenuList(android.view.MenuItem)
     private boolean isMenuStayingMenuList(android.view.MenuItem)
-com.mmjang.ankihelper.ui.popup.PopupActivity$46:
+com.mmjang.ankihelper.ui.popup.PopupActivity$45:
     public void onClick(java.lang.String,java.lang.String,java.lang.String)
 com.mmjang.ankihelper.ui.share.AppInfo
 com.mmjang.ankihelper.ui.share.AppInfoAdapter$ViewHolder
@@ -10565,6 +10629,7 @@ com.mmjang.ankihelper.util.ActivityUtil:
     public void <init>()
     public static boolean isActivityRunning(android.content.Context,java.lang.Class)
     public static boolean isStatusBarShown(android.app.Activity)
+    public static boolean recreateApp(android.app.Activity)
 com.mmjang.ankihelper.util.AppRestartHelper
 com.mmjang.ankihelper.util.BuildConfig:
     public static final java.lang.String APPLICATION_ID
@@ -10583,6 +10648,8 @@ com.mmjang.ankihelper.util.ClipboardUtils:
     public static android.net.Uri getUri(android.content.Context)
 com.mmjang.ankihelper.util.ColorThemeUtils:
     public void <init>()
+    public static int getThemeColor(android.content.Context,int)
+    public static int[] getThemeColors(android.content.Context,com.mmjang.ankihelper.util.Constant$StyleBaseTheme)
 com.mmjang.ankihelper.util.Constant:
     public static final java.lang.String AIANKI_PACKAGE_NAME
     public static final java.lang.String ANKIDROID
@@ -10673,6 +10740,9 @@ com.mmjang.ankihelper.util.CrashManager:
 com.mmjang.ankihelper.util.DarkModeUtils:
     public static final java.lang.String KEY_CURRENT_MODEL
     public void <init>()
+    public static java.lang.String getDarkModeStatus(android.content.Context)
+    public static boolean isDarkModeForCustomToast(android.content.Context)
+    public static boolean isSystemDarkMode(android.content.Context)
 com.mmjang.ankihelper.util.DialogUtil$1
 com.mmjang.ankihelper.util.DialogUtil$2
 com.mmjang.ankihelper.util.DialogUtil:
@@ -10738,6 +10808,7 @@ com.mmjang.ankihelper.util.ImageUtils:
     public static android.graphics.Bitmap removedLines(android.graphics.Bitmap)
     public static android.graphics.Bitmap rotate(android.graphics.Bitmap,int)
     public static android.graphics.Bitmap toBitmap(byte[])
+com.mmjang.ankihelper.util.Informations
 com.mmjang.ankihelper.util.MathUtil
 com.mmjang.ankihelper.util.NetworkUtils
 com.mmjang.ankihelper.util.PerformEdit:
@@ -10760,6 +10831,10 @@ com.mmjang.ankihelper.util.ScreenUtils:
     public static int getVirtualBarHeight(android.app.Activity)
     public static int getVirtualBarHeightIfRoom(android.app.Activity)
     public static int px2dp(android.content.Context,float)
+com.mmjang.ankihelper.util.SentenceExtractor:
+    public final java.lang.String extractSentenceSmart(java.lang.String,int,int)
+    private final kotlin.Pair findNearestSentenceBoundaries(java.lang.String,int)
+com.mmjang.ankihelper.util.SentenceExtractorKt
 com.mmjang.ankihelper.util.ShareUtil:
     public void <init>()
     public static java.lang.String SaveTitmapToCache(android.graphics.Bitmap)
@@ -10776,6 +10851,24 @@ com.mmjang.ankihelper.util.SystemUtils:
     public void <init>()
     public static void getRunning3rdApp(android.app.Activity)
     public static boolean isBackGround(android.content.Context,java.lang.String)
+com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig:
+    public com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig setPrefix(java.lang.String)
+    public com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig setSuffix(java.lang.String)
+    public com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig setTextEnd(java.lang.String)
+com.mmjang.ankihelper.util.TextFragmentUtils:
+    private static final int MAX_EXACT_MATCH_LENGTH
+    private static final int MAX_PREFIX_SUFFIX_LENGTH
+    private static final java.lang.String TAG
+    private static final java.lang.String TEXT_FRAGMENT_PREFIX
+    public void <init>()
+    private static void addContextFromFullText(com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig,java.lang.String,java.lang.String)
+    public static com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig createOptimalFragment(java.lang.String,java.lang.String)
+    private static com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig createRangeFragment(java.lang.String)
+    public static void debugFragment(java.lang.String,com.mmjang.ankihelper.util.TextFragmentUtils$FragmentConfig)
+    public static java.lang.String extractTextFragment(java.lang.String)
+    public static java.lang.String generateContextTextFragment(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    public static java.lang.String generateRangeTextFragment(java.lang.String,java.lang.String,java.lang.String)
+    public static java.lang.String safeAddTextFragment(java.lang.String,java.lang.String)
 com.mmjang.ankihelper.util.TextSplitter:
     private static final java.lang.String DEVIDER
     public void <init>()
@@ -14083,7 +14176,6 @@ kotlin.collections.ArraysKt___ArraysKt:
     public static final java.util.Set toSet(float[])
     public static final java.util.Set toSet(int[])
     public static final java.util.Set toSet(long[])
-    public static final java.util.Set toSet(java.lang.Object[])
     public static final java.util.Set toSet(short[])
     public static final java.util.Set toSet(boolean[])
     public static final short[] toShortArray(java.lang.Short[])
@@ -14709,7 +14801,6 @@ kotlin.collections.SetsKt__SetsKt:
     private static final java.util.Set mutableSetOf()
     private static final java.util.Set orEmpty(java.util.Set)
     private static final java.util.Set setOf()
-    public static final varargs java.util.Set setOf(java.lang.Object[])
     public static final java.util.Set setOfNotNull(java.lang.Object)
     public static final varargs java.util.Set setOfNotNull(java.lang.Object[])
 kotlin.collections.SetsKt___SetsKt:
@@ -16429,16 +16520,12 @@ kotlin.text.StringsKt__StringsKt:
     private static final java.lang.String replaceRange(java.lang.String,int,int,java.lang.CharSequence)
     private static final java.lang.String replaceRange(java.lang.String,kotlin.ranges.IntRange,java.lang.CharSequence)
     private static final java.util.List split(java.lang.CharSequence,kotlin.text.Regex,int)
-    public static final java.util.List split(java.lang.CharSequence,java.lang.String[],boolean,int)
     static synthetic java.util.List split$default(java.lang.CharSequence,kotlin.text.Regex,int,int,java.lang.Object)
-    public static synthetic java.util.List split$default(java.lang.CharSequence,java.lang.String[],boolean,int,int,java.lang.Object)
     private static final kotlin.sequences.Sequence splitToSequence(java.lang.CharSequence,kotlin.text.Regex,int)
     public static final kotlin.sequences.Sequence splitToSequence(java.lang.CharSequence,char[],boolean,int)
     static synthetic kotlin.sequences.Sequence splitToSequence$default(java.lang.CharSequence,kotlin.text.Regex,int,int,java.lang.Object)
     public static synthetic kotlin.sequences.Sequence splitToSequence$default(java.lang.CharSequence,char[],boolean,int,int,java.lang.Object)
-    public static final boolean startsWith(java.lang.CharSequence,char,boolean)
     public static final boolean startsWith(java.lang.CharSequence,java.lang.CharSequence,int,boolean)
-    public static synthetic boolean startsWith$default(java.lang.CharSequence,char,boolean,int,java.lang.Object)
     public static synthetic boolean startsWith$default(java.lang.CharSequence,java.lang.CharSequence,int,boolean,int,java.lang.Object)
     public static final java.lang.CharSequence subSequence(java.lang.CharSequence,kotlin.ranges.IntRange)
     private static final java.lang.CharSequence subSequence(java.lang.String,int,int)
@@ -18678,10 +18765,12 @@ okhttp3.Call$Factory
 okhttp3.Call:
     public abstract void cancel()
     public abstract okhttp3.Call clone()
+    public abstract void enqueue(okhttp3.Callback)
     public abstract boolean isCanceled()
     public abstract boolean isExecuted()
     public abstract okhttp3.Request request()
     public abstract okio.Timeout timeout()
+okhttp3.Callback
 okhttp3.CertificatePinner$Builder:
     public final varargs okhttp3.CertificatePinner$Builder add(java.lang.String,java.lang.String[])
     public final java.util.List getPins()
@@ -18767,6 +18856,9 @@ okhttp3.Credentials:
 okhttp3.Dispatcher:
     public final java.util.concurrent.ExecutorService -deprecated_executorService()
     public void <init>(java.util.concurrent.ExecutorService)
+    public final void enqueue$okhttp(okhttp3.internal.connection.RealCall$AsyncCall)
+    private final okhttp3.internal.connection.RealCall$AsyncCall findExistingCallWithHost(java.lang.String)
+    public final void finished$okhttp(okhttp3.internal.connection.RealCall$AsyncCall)
     public final synchronized java.lang.Runnable getIdleCallback()
     public final synchronized int getMaxRequests()
     public final synchronized int getMaxRequestsPerHost()
@@ -19148,6 +19240,7 @@ okhttp3.Response:
     public final java.lang.String header(java.lang.String)
     public final java.util.List headers(java.lang.String)
     public final boolean isRedirect()
+    public final boolean isSuccessful()
     public final okhttp3.ResponseBody peekBody(long)
     public final okhttp3.Headers trailers()
 okhttp3.ResponseBody$BomAwareReader
@@ -19305,11 +19398,25 @@ okhttp3.internal.connection.Exchange:
     public final okhttp3.internal.ws.RealWebSocket$Streams newWebSocketStreams()
     public final void webSocketUpgradeFailed()
 okhttp3.internal.connection.RealCall$AsyncCall:
+    private volatile java.util.concurrent.atomic.AtomicInteger callsPerHost
+    private final okhttp3.Callback responseCallback
+    final synthetic okhttp3.internal.connection.RealCall this$0
+    public void <init>(okhttp3.internal.connection.RealCall,okhttp3.Callback)
+    public final java.lang.String getHost()
     public final okhttp3.Request getRequest()
+    public final void reuseCallsPerHostFrom(okhttp3.internal.connection.RealCall$AsyncCall)
+    public void run()
 okhttp3.internal.connection.RealCall:
+    public static final synthetic okhttp3.internal.connection.RealCall$timeout$1 access$getTimeout$p(okhttp3.internal.connection.RealCall)
+    public static final synthetic java.lang.String access$toLoggableString(okhttp3.internal.connection.RealCall)
+    public void enqueue(okhttp3.Callback)
+    public final boolean getForWebSocket()
+    public final okhttp3.Request getOriginalRequest()
     public boolean isExecuted()
+    public final java.lang.String redactedUrl$okhttp()
     public okhttp3.Request request()
     public okio.Timeout timeout()
+    private final java.lang.String toLoggableString()
 okhttp3.internal.connection.RealConnection$Companion:
     public final okhttp3.internal.connection.RealConnection newTestConnection(okhttp3.internal.concurrent.TaskRunner,okhttp3.internal.connection.RealConnectionPool,okhttp3.Route,java.net.Socket,long)
 okhttp3.internal.connection.RealConnection$newWebSocketStreams$1
@@ -26966,6 +27073,7 @@ okhttp3.internal.cache.CacheInterceptor:
     public final okhttp3.Cache cache
     public final okhttp3.Response cacheWritingResponse(okhttp3.internal.cache.CacheRequest,okhttp3.Response)
 okhttp3.internal.cache.CacheRequest
+okhttp3.internal.connection.RealCall$AsyncCall
 okhttp3.internal.http.HttpMethod:
     public static final boolean invalidatesCache(java.lang.String)
 okio.Buffer:

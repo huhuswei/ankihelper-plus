@@ -68,6 +68,7 @@
     <string name="switch_pin_floating">📌</string>
     <string name="switch_floating_auto_side">自动靠边</string>
     <string name="tv_open_accessibility">辅助服务</string>
+    <string name="tv_accessibility_package_name">包名（换行作为分隔符）</string>
     <string name="tv_kill_battery">电池优化</string>
     <string name="tv_open_overlays">获取悬浮权限</string>
     <string name="switch_clear_searched">查询后清除文本</string>
@@ -213,4 +214,14 @@
 
     <string name="text_recognition_chinese">中文</string>
     <string name="load_mdict_error_version">导入失败，词典版本小于2.0，暂不支持.</string>
+
+    <string name="str_select_position">🍞摆放吐司</string>
+    <string name="select_toast_position">🍞摆放吐司</string>
+    <string name="position_top">顶部居中</string>
+    <string name="position_center">居中</string>
+    <string name="position_bottom">底部居中</string>
+    <string name="position_top_start">左上角</string>
+    <string name="position_top_end">右上角</string>
+    <string name="position_bottom_start">左下角</string>
+    <string name="position_bottom_end">右下角</string>
 </resources>

@@ -39,8 +39,8 @@ public class ContentActivity extends AppCompatActivity {
 //        }
         ColorThemeUtils.initColorTheme(ContentActivity.this);
         super.onCreate(savedInstanceState);
-        ActivityUtil.checkStateForAnkiDroid(this);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_content);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         switchShowContentAlreadyRead = findViewById(R.id.switch_show_already_read);
@@ -123,7 +123,7 @@ public class ContentActivity extends AppCompatActivity {
 
             contentCatagoryContainer.addView(view);
         }
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     @Override

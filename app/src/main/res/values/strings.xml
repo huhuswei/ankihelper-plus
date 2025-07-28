@@ -66,6 +66,7 @@
     <string name="switch_pin_floating">Pin-up📌</string>
     <string name="switch_floating_auto_side">Auto side</string>
     <string name="tv_open_accessibility">Accessibility service</string>
+    <string name="tv_accessibility_package_name">Package name</string>
     <string name="tv_kill_battery">Kill Battery</string>
     <string name="tv_open_overlays">Overlays Permission</string>
     <string name="switch_clear_searched">Clear copied text after Search</string>
@@ -299,4 +300,13 @@
     <string name="text_recognition_chinese">Chinese</string>
     <string name="load_mdict_error_version">Failed to load, the version is less than 2.0, not implements yet.</string>
 
+    <string name="str_select_position">Select 🍞 Position</string>
+    <string name="select_toast_position">🍞Toast Position</string>
+    <string name="position_top">Top Center</string>
+    <string name="position_center">Center</string>
+    <string name="position_bottom">Bottom Center</string>
+    <string name="position_top_start">Top Left</string>
+    <string name="position_top_end">Top Right</string>
+    <string name="position_bottom_start">Bottom Left</string>
+    <string name="position_bottom_end">Bottom Right</string>
 </resources>

@@ -61,6 +61,7 @@
     <string name="switch_pin_floating">📌</string>
     <string name="switch_floating_auto_side">自动靠边</string>
     <string name="tv_open_accessibility">打开辅助服务</string>
+    <string name="tv_accessibility_package_name">包名</string>
     <string name="tv_kill_battery">电池优化</string>
     <string name="tv_open_overlays">获取悬浮权限</string>
     <string name="switch_clear_searched">查询后清除文本</string>
