@@ -54,7 +54,7 @@ public class StatActivity extends AppCompatActivity {
 //        }
         ColorThemeUtils.initColorTheme(StatActivity.this);
         super.onCreate(savedInstanceState);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_stat);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mHistoryStat = new HistoryStat(mLastDays);
@@ -111,7 +111,7 @@ public class StatActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     private void plotData() {

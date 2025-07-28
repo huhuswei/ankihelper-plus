@@ -2,7 +2,6 @@ package com.mmjang.ankihelper.ui.popup;
 
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -85,7 +84,7 @@ public class PopupSettingActivity extends AppCompatActivity {
         ColorThemeUtils.initColorTheme(PopupSettingActivity.this);
         super.onCreate(savedInstanceState);
         settings = Settings.getInstance(MyApplication.getContext());
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_popup_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textViewSeekBar = (TextView) findViewById(R.id.tv_bigbing_font_size);
@@ -356,7 +355,7 @@ public class PopupSettingActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     private void initAnkiApi() {

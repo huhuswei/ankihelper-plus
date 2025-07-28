@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.text.Html;
 import android.text.SpannableString;
 import android.view.KeyEvent;
@@ -59,7 +58,6 @@ import com.mmjang.ankihelper.util.Constant;
 import com.mmjang.ankihelper.util.CrashManager;
 import com.mmjang.ankihelper.util.DarkModeUtils;
 import com.mmjang.ankihelper.util.StorageUtils;
-import com.mmjang.ankihelper.util.SystemUtils;
 import com.mmjang.ankihelper.util.Trace;
 import com.mmjang.ankihelper.util.Utils;
 import com.mmjang.ankihelper.widget.ActivationDialog;
@@ -137,7 +135,7 @@ public class LauncherActivity extends AppCompatActivity {
         userService.connectShizuku();
 
         checkAndRequestPermissions();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_launcher);
 
         setVersion();
@@ -426,7 +424,7 @@ public class LauncherActivity extends AppCompatActivity {
             MyApplication.getShizukuService().disabledAccessibilityService();
         }
 
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     public boolean startLatexEditor() {

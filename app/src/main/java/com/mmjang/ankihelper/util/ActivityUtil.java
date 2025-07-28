@@ -41,7 +41,7 @@ public class ActivityUtil {
         return false;
     }
 
-    public static void checkStateForAnkiDroid(Activity activity) {
+    public static boolean checkAndStartAnkiDroid(Activity activity) {
         if (AnkiDroidHelper.isApiAvailable(MyApplication.getContext()) && !MyApplication.getAnkiDroid().isAnkiDroidRunning()) {
             MyApplication.getAnkiDroid().startAnkiDroid();
 
@@ -61,6 +61,8 @@ public class ActivityUtil {
                                     }
                                 },
                     200);
+            return false;
         }
+        return true;
     }
 }

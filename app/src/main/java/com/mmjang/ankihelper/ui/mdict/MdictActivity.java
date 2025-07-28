@@ -103,7 +103,7 @@ public class MdictActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //初始化 错误日志系统
         CrashManager.getInstance(this);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_mdict_manager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //views
@@ -385,7 +385,7 @@ public class MdictActivity extends AppCompatActivity {
             startProgressBarQ = false;
         }
         reFreshData();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     private void setProgressBar(boolean b) {

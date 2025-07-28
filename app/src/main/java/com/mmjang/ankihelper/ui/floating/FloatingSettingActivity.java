@@ -89,7 +89,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
         userService.addListeners();
         userService.connectShizuku();
 
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_floating_settings);
         checkAndRequestPermissions();
 
@@ -504,7 +504,7 @@ public class FloatingSettingActivity extends AppCompatActivity {
             }
         }
 
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
 

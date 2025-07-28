@@ -43,7 +43,7 @@ public class PlanScriptForAppendingActivity extends AppCompatActivity {
 //        }
         ColorThemeUtils.initColorTheme(PlanScriptForAppendingActivity.this);
         super.onCreate(savedInstanceState);
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
         setContentView(R.layout.activity_plan_script_content_editor);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         try {
@@ -56,7 +56,7 @@ public class PlanScriptForAppendingActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ActivityUtil.checkStateForAnkiDroid(this);
+        ActivityUtil.checkAndStartAnkiDroid(this);
     }
 
     @Override
