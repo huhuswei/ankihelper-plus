@@ -14,7 +14,7 @@ package com.mmjang.ankihelper.util;
  */
 
 public final class BuildConfig {
-    public final static boolean isDebug = false;
+    public final static boolean isDebug = true;
     public final static boolean isTracing = false;
 
     public static final boolean DEBUG = Boolean.parseBoolean("false");

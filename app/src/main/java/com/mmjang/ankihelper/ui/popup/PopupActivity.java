@@ -327,11 +327,10 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
             switch (msg.what) {
                 case PROCESS_DEFINITION_LIST:
                     showSearchButton();
-                    scrollView.fullScroll(ScrollView.FOCUS_UP);
                     mDefinitionList = (List<Definition>) msg.obj;
-                    scrollTo(acTextView);
                     if(!PopupActivity.this.isDestroyed()) {
                         processDefinitionList(mDefinitionList);
+//                        scrollTo(acTextView);
                     }
                     break;
                 case ASYNC_SEARCH_FAILED:
@@ -1189,6 +1188,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+//                        scrollView.scrollTo(bigBangLayout.getScrollX(), bigBangLayout.getScrollY()+bigBangLayout.getHeight());
                         final String word = acTextView.getText().toString();
                         if (!word.isEmpty()) {
                             if(mTextToProcess.isEmpty() || isRefreshedBigBang) {
@@ -1575,7 +1575,7 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
                     @Override
                     public boolean onLongClick(View view) {
 //                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                        String text = mTextToProcess;
+                        String text = getBoldSentence(bigBangLayout.getLines()); //mTextToProcess;
                         Trace.i("acTextView", text);
                         if(text != null && !text.isEmpty()) {
                             long[] vibList = new long[1];
@@ -1685,6 +1685,8 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
 //                    }
 //            );
         }
+        scrollView.scrollTo(bigBangLayout.getScrollX(), bigBangLayout.getHeight()-ScreenUtils.getAvailableScreenHeight(PopupActivity.this)/2);
+
     }
 
     @Override
@@ -4603,11 +4605,18 @@ public class PopupActivity extends AppCompatActivity implements BigBangLayoutWra
         int tvRelativeTop = tvTop - scrollY;
         int tvRelativeBottom = tvBottom - 600;
 
-        Trace.i("TvTop", "tvtop: "+tvTop);
-        Trace.i("ScrollY", "scrollY: "+scrollY);
-        Trace.i("bangBottom", "bangBottom: "+bangBottom);
-        Trace.i("tvRelativeTop", "tvRelativeTop: "+tvRelativeTop);
-        Trace.i("viewDefinitionList", "viewDefinitionList length:" + viewDefinitionList.getHeight());
+//        Trace.i("scroll_to", "tvtop: "+tvTop);
+//        Trace.i("scroll_to", "scrollY: "+scrollY);
+//        Trace.i("scroll_to", "bangBottom: "+bangBottom);
+//        Trace.i("scroll_to", "tvRelativeTop: "+tvRelativeTop);
+        Trace.i("scroll_to", "viewDefinitionList length:" + viewDefinitionList.getHeight());
+        Trace.i("scroll_to", "viewDefinitionList y:" + viewDefinitionList.getScrollY());
+        Trace.i("scroll_to", "start scrollView.getScrollY()) "+scrollView.getScrollY());
+        Trace.i("scroll_to","bigBangLayout.getScrollY() " + bigBangLayout.getScrollY());
+        Trace.i("scroll_to","bigBangLayout.getHeight() " + bigBangLayout.getHeight());
+        Trace.i("scroll_to","bigBangLayout.getScrollY()+bigBangLayout.getHeight() " + bigBangLayout.getScrollY()+bigBangLayout.getHeight());
+        Trace.i("scroll_to", "end scrollView.getScrollY()) "+scrollView.getScrollY());
+
 
 //        if (bangBottom > 600 || bangBottom < 0)
 //            scrollView.scrollBy(v.getScrollX(), tvRelativeBottom);

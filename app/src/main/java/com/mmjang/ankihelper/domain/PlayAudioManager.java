@@ -198,15 +198,15 @@ public class PlayAudioManager {
        }
     }
 
-    public static String getEudictSound(String word, String[] langAndContry) throws UnsupportedEncodingException {
+    public static String getEudictSound(String word, String[] langAndCountry) throws UnsupportedEncodingException {
 
         String wordEncodedStr = URLEncoder.encode(new String(Base64.encode(word.trim().getBytes(StandardCharsets.UTF_8), Base64.DEFAULT), StandardCharsets.UTF_8), "UTF-8");
         String urlStr = null;
-        if(langAndContry.length == 1) {
-            urlStr = String.format("https://api.frdic.com/api/v2/speech/speakweb?langid=%s&txt=QYN%s", langAndContry[0], wordEncodedStr);
+        if(langAndCountry.length == 1) {
+            urlStr = String.format("https://api.frdic.com/api/v2/speech/speakweb?langid=%s&txt=QYN%s", langAndCountry[0], wordEncodedStr);
         }
         else {
-                urlStr = String.format("https://api.frdic.com/api/v2/speech/speakweb?langid=%s&voicename=%s&txt=QYN%s", langAndContry[0], langAndContry[1], wordEncodedStr);
+                urlStr = String.format("https://api.frdic.com/api/v2/speech/speakweb?langid=%s&voicename=%s&txt=QYN%s", langAndCountry[0], langAndCountry[1], wordEncodedStr);
         }
         if (urlExit(urlStr)) {
             return urlStr;

@@ -379,7 +379,9 @@ public class PronounceManager {
             for(Voice voice : ttsVoiceList) {
                 Locale locale = voice.getLocale();
                 String name = voice.getName().split("_")[0];
-                if (locale.getLanguage().equals(DictLanguageType.getLangISO2ByLTId(dictLanguageType))) {
+                if (locale.getLanguage().equals(DictLanguageType.getLangISO2ByLTId(dictLanguageType)) ||
+                        (locale.getLanguage().equals(DictLanguageType.getLangISO2ByLTId(DictLanguageType.ZHO)) && dictLanguageType == DictLanguageType.ENG) ||
+                        (locale.getLanguage().equals(DictLanguageType.getLangISO2ByLTId(DictLanguageType.ENG)) && dictLanguageType == DictLanguageType.ZHO)) {
                     soundInforList.add(
                             new SoundInformation(
                                     //欧路 汉
